@@ -9,7 +9,7 @@ Fue creada con el los proposito de resolver limitaciones y problemas de la progr
 - [x] Resolver la division que habia entre la programacion orientada a los procesos (aqui resuelto siendo metodos) y la programacion orientada a los datos (aqui siendo atributos).
 - [x] Facilitar la reutilizacion de codigo, lo que llevo a la posibilidad de creacion de bibliotecas, y poder usar bibliotecas de terceros con facilidad, lo que evita la repeticion de codigo.
 
-La programacion orientada a objetos tiene 4 pilares fundamentales: Abstracion, Herencia, Polimorfismo y Encapsulamiento. Los cuales ampliaremos a continuacion.
+La programacion orientada a objetos tiene 4 pilares fundamentales: *Abstracion, Herencia, Polimorfismo y Encapsulamiento*. Los cuales ampliaremos a continuacion.
 
 ## **Abstracion**: 
 
@@ -121,7 +121,7 @@ class mujer(name:String) :Human(name) {
 
 Es ocultar los datos miembros de un objeto, definiendo las permisos y formas de acceso a los metodos y atributos que pertenecen a una clase, para que solo puedan ser accedidas y cambiadas por la forma definida dentro del objeto.
 
-(faltan ejemplos de codigo)
+**(faltan ejemplos de codigo) #####################################################################################**
 
 Existen tres principales modificadores de acceso, que son:
 
@@ -153,4 +153,114 @@ Este establece que al estar usando una clase, y esta clase esta siendo extendida
 
 ## I – Interface Segregation Principle (ISP)
 
+...
+
 ## D – Dependency Inversion Principle (DIP)
+
+...
+
+# Paradigma Funcional:
+
+...
+
+
+
+# Git:
+
+Esta herramienta fue desarrollada por Linus Torvadls y su funcion es tener control de las versiones del codigo de forma distribuida. Parte de los comandos usados son:
+
+`git clone` - Se usa para descargarte a tu ordenador la ultima version del codigo fuente de un repositorio remoto (gitlab / github) , puede descargarse a trvestraves del metodo SSH o HTTPS
+
+```
+git clone <https://el-link--con-nombre-del-repositorio>
+```
+
+`git branch` - Las ramas son de lo mas importante en el mundo de git, con ellas varios desarrolladores pueden trabajar al mismo tiempo sin que hayan conflictos o superposiciones a la hora de  modificar el codigo, con este comando puedes listarlas, crearlas o eliminarlas a nivel local.
+
+```
+//  creando una nueva rama
+git branch <tu-rama-para-trabajar>
+
+// visualizar ramas
+git branch
+git branch --list
+
+// borrar rama
+git branch -d <nombre-de-la-rama-a eliminar>
+```
+
+
+
+`git checkout` - Este comando sirve para cambiarte de rama de trabajo, una ves creada la rama para posicionarse en ella se debe hacer con este comando.
+
+```
+git checkout <nombre-de-la-rama-donde-quieres-trabajar>
+
+// puedes puedes resumir crear rama (en local) y cambiarte a esa rama
+// a traves del comando:
+git checkout -b <nombre-de-tu-rama-a-crear-y-posicionarte>
+// (el -b viene de rama (branch)) 
+```
+
+
+
+`git status` - Nos da toda la infromacion del estado actual de la rama que estamos trabajando, detalles de:
+
+- La rama en la que estamos posicionados y si la rama actual ya está actualizada.
+- Si hay cambios para confirmar, enviar o recibir (*pull*).
+- Si hay archivos que ya estan en preparación (*staged*), sin preparación (*unstaged*) o archivos que no están recibiendo seguimiento (*untracked*).
+- Si hay archivos creados, modificados o eliminados.
+
+```
+git status
+```
+
+***(... añadir imagen del comando usando en cmd señalando los detalles)*###################################################**
+
+
+
+`git add` - Al realizar cambios en nuestra rama, estos cambios suceden en local pero aun no son incluidas para el siguiente commit, con este comando podemos incluir los cambios del archivo o de los archivos para el siguiente commit:
+
+```
+// añadir un archivo en especifico
+git add <tu-archivo>
+
+// agregar todo
+git add -A
+
+// agregar todo lo de la carpeta donde estas actualmente
+git add .
+```
+
+
+
+`git commit` - Habiendo avanzado en las mejoras y correciones del codigo llegara el punto en el que queremos guardar los cambios (generalmente cuando una mejora esta completada o un bug resuelto), y asi establesces un punto de control para cuando quieras continuar nuevamente, el comando va a acompañado con un mesaje descriptivo en comillas para explicar que se ha modificado dentro del margen de ese commit.}
+
+```
+git commit -m "la descripcion de tu commit"
+```
+
+
+
+`git push` - Ya tenemos los comandos para trabajar las ramas a nivel local, despues de haber confirmado los cambios, necesitamos enviar la nueva rama al repositorio remoto, necesitarás usar el siguiente comando:
+
+```
+git push <nombre-remoto> <nombre-de-rama-a-subir>
+
+// si su rama es nueva, pude que tengas que
+// cargar y subir tu rama con el siguiente comando
+git push --set-upstream <nombre-remoto> <nombre-de-tu-rama-reciente>
+// o su atajo
+git push -u origin <nombre-de-tu-rama-reciente>
+```
+
+Ten en cuenta que `git push` solo carga los archivos que han sido confirmados (con `git commit`).
+
+**...(faltan mas detalles en git) #####################**
+
+
+
+
+
+
+
