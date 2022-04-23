@@ -95,7 +95,7 @@ Hombre
 
 ```kotlin
 // Hombre
-class hombre(name:String) :Human(name){
+class hombre(name:String) :serVivo(name){
     // reescribe el método de dar camisa
     override fun darCamisa() {
         println("${name} viste esta camisa azul.")
@@ -107,7 +107,7 @@ Mujeres
 
 ```kotlin
 // Mujer
-class mujer(name:String) :Human(name) {
+class mujer(name:String) :serVivo(name) {
     // reescribe el método de dar camisa
     override fun darCamisa() {
         println("${name} viste esta camisa rosa.")
