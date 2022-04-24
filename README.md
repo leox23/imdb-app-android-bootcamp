@@ -121,8 +121,6 @@ class mujer(name:String) :serVivo(name) {
 
 Es ocultar los datos miembros de un objeto, definiendo las permisos y formas de acceso a los metodos y atributos que pertenecen a una clase, para que solo puedan ser accedidas y cambiadas por la forma definida dentro del objeto.
 
-**(faltan ejemplos de codigo) #####################################################################################**
-
 Existen tres principales modificadores de acceso, que son:
 
 Public: en este caso, todas las clases de afuera y las de afuera del paquete tendran acceso. cuando implementamos una clase por defecto todas las propiedades y métodos son de tipo public.
@@ -131,7 +129,132 @@ Protected: solo las clases del paquete pueden tener aceso.
 
 Private: solo la clase principal tendra permitido el acceso.
 
-**(me faltan los getters y los setters) y mas ejemplos de codigo #####################** 
+```kotlin
+class cocina {
+    // tiempos de coccion (min)
+    var arroz : Int = 25
+    var pollo : Int = 35
+    var tajada : Int = 5
+    // las variables anteriores no tienen modificadores de acceso,
+    // por lo que por defecto son Public (todos acceden y modifican)
+
+    // metodos para cocinar
+    fun Arroz() {
+        if ( arroz > 24 ) {
+            println("El arroz se cocino durante ${arroz} minutos o un poco mas, quedo bueno.")
+        } else if (arroz > 35){
+            println("El arroz se te quemo, botalo e intentalo de nuevo.")
+        } else {
+            println("El arroz aun esta crudo, dejalo mas tiempo")
+        }
+    }
+
+    fun Pollo() {
+        println("El pollo se cocino durante ${pollo} minutos, esta bien.")
+    }
+
+    fun Tajada() {
+        println("La tajada se cocino y se volteo durante ${tajada} minutos, esta dorada")
+    }
+}
+
+fun main() {
+    val cocinarDeInmediato = cocina()
+
+    // en ocaciones no queremos que se nos cambie el valor de nuetras variables
+    // aqui no queda comestible ni el pegado
+    cocinarDeInmediato.arroz = 50
+
+    // cocinamos el arroz
+    cocinarDeInmediato.Arroz() // El arroz se te quemo, botalo e intentalo de nuevo.
+}
+```
+
+Usando los modificadores de acceso (encapsulamiento) evitamos que cambie, probemos:
+
+```kotlin
+class cocina {
+    // tiempos de coccion (min)
+    private var arroz : Int = 25
+    private var pollo : Int = 35
+    private var tajada : Int = 5
+    // con private solo podemos acceder y modificar
+    // desde este mismo objeto
+
+    // metodos para cocinar
+    fun Arroz() {
+        if ( arroz > 24 ) {
+            println("El arroz se cocino durante ${arroz} minutos o un poco mas, quedo bueno.")
+        } 
+        /*
+        ...
+        */
+    }
+    /*
+    ...
+    */
+}
+
+fun main() {
+    val cocinarDeInmediato = cocina()
+
+    // arroz, por estar privado, arrojara una excepsion y no dejara compilar
+    cocinarDeInmediato.arroz = 60 //Cannot access 'arroz': it is private in 'cocina'
+
+    // cocinamos el arroz
+    cocinarDeInmediato.Arroz()
+}
+```
+
+Te diras, ok, ya nadie profanara mi codigo del olimpo, pero... ¿y si es necesario que en casos especificos acceder a ellos o modificarlos? : Para eso existen los **Getters** y los **Setters**.
+
+Los metodos getters son usados para obtener el valor de un atributo, y los setters para fijarles valores:
+
+```kotlin
+class cocina {
+    // tiempos de coccion (min)
+    private var arroz : Int = 25
+    private var pollo : Int = 35
+    private var tajada : Int = 5
+    // con private solo podemos acceder y modificar
+    // desde este mismo objeto
+
+    // meollo
+    fun setArroz ( arroz : Int){
+        this.arroz = arroz
+        // y la logica que necesitemos
+    }
+    fun getArroz(): Int {
+        return arroz
+    }
+
+    // metodos para cocinar
+    fun Arroz() {
+        if ( arroz > 24 ) {
+            println("El arroz se cocino durante ${arroz} minutos o un poco mas, quedo bueno.")
+        }
+        /*
+        ...
+        */
+    }
+    /*
+    ...
+    */
+}
+
+fun main() {
+    val cocinarDeInmediato = cocina()
+
+    // cambiamos el valor con el metodo set
+    cocinarDeInmediato.setArroz(26)
+
+    // si necesitaramos el valor de arroz
+    // cocinarDeInmediato.getArroz()
+
+    // cocinamos el arroz
+    cocinarDeInmediato.Arroz()
+}
+```
 
 # SOLID:
 
