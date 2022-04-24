@@ -337,7 +337,7 @@ git checkout -b <nombre-de-tu-rama-a-crear-y-posicionarte>
 
 4. Si hay archivos creados, modificados o eliminados.
 
-   ![gitstatus](.\gitstatus.png)
+   ![gitstatus](./gitstatus.png)
 
 
 
@@ -392,7 +392,7 @@ Recuerda, este comando puede generar conflictos que tendremos que resolver nosot
 
 **`git revert`** - En ocaciones hacemos commit/push a codigo con ciertos errores que queremos corregir, hay varios comando para deshacer cambios en local o remoto, estos comandos hay que tratarlos con cuidado, pausadamente, porque queriendo corregir algo podemos cometer error encima de error. Es necesario primero revisar el historial de commits, lo hacemos con el comando `git log` y veras un listado detallado asi:
 
-![gitlog](.\gitlog.png)
+![gitlog](./gitlog.png)
 
 Ya visto el historial usamos el numero (alfanum) del commit que queremos revertir:
 
