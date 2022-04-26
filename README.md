@@ -1,3 +1,38 @@
+# Android Bootcamp
+
+## Indice
+
+[Programacion Orientada a Objetos](#Programacion-orientada-a-objetos (POO))
+- [Abstracion](##Abstracion)
+- [Herencia](##Herencia)
+- [Polimorfismo](##Polimorfismo)
+- [Encapsulamiento](##Encapsulamiento)
+
+[SOLID](#SOLID)
+  - [**S**ingle Responsibility Principle (SRP)](##S-–-Single-Responsibility-Principle-(SRP))
+  - [**O**pen/Closed Principle (OCP)](##O-–-Open/Closed-Principle-(OCP))
+  - [**L**iskov Substitution Principle (LSP)](##L-–-Liskov-Substitution-Principle-(LSP))
+  - [**I**nterface Segregation Principle (ISP)](##I-–-Interface-Segregation-Principle-(ISP))
+  - [**D**ependency Inversion Principle (DIP)](##D-–-Dependency-Inversion-Principle-(DIP))
+
+[Programacion Funcional](#Programacion-Funcional)
+  - [Funciones puras](###Funciones-puras)
+  - [Estados inmutables](###Estados-inmutables)
+  - [Composicion-de-funciones](###Composicion-de-funciones)
+
+[Git](#git)
+  - [`git clone`](##git-clone)
+  - [`git branch`](##git-branch)
+  - [`git checkout`](##`git-checkout`)
+  - [`git status`](##`git-status`)
+  - [`git add`](##`git-add`)
+  - [`git commit`](##`git-commit`)
+  - [`git push`](##`git-push`)
+  - [`git pull`](##`git-pull`)
+  - [`git revert`](##`git-revert`)
+  - [`git merge`](##`git-merge`)
+
+
 # Programacion orientada a objetos (POO)
 
 Es un paradigma de programacion con lenguaje descriptivo y funcional, cercano al mundo real. En este metodo de programacion el codigo se organiza unidades llamadas **clases** (como tu molde), de las cuales se crean **objetos** que contienen su datos en forma de atributos y sus funcionalidades (o procesos) en forma de metodos, los objetos los relacionamos entre si para consegir las funcionalidades que requerimos de nuestras aplicaciones.
@@ -11,7 +46,7 @@ Fue creada con el los proposito de resolver limitaciones y problemas de la progr
 
 La programacion orientada a objetos tiene 4 pilares fundamentales: *Abstracion, Herencia, Polimorfismo y Encapsulamiento*. Los cuales ampliaremos a continuacion.
 
-## **Abstracion**: 
+## **Abstracion**
 
 Se trata de aislar una pieza de codigo del resto de su contexto y otras piezas de codigo que  la acompañan, para enfocarse unicamente en ¿que es lo que hace?, en vez de ¿como lo hace?.
 
@@ -42,7 +77,7 @@ class Humano {
 
 
 
-## Herencia:
+## Herencia
 
 Es una mecanica de POO que como hemos hablado se basa en clases, la cual equivale a un molde, y con la herencia podemos extender su funcionalidad a otras clases. Comunmente se le llama **Clase Padre** (con sus atributos y metodos "genericos") a la clase que extiende, y **Clase Hija** la que esta recibiendo los atributos y metodos (la herencia) de la clase padre, la cual tendra los comportamientos de la clase padre, como si hubieran sido escrito dentro de si misma, y apartir de alli extender su funcionalidad, modificarla, o ambas, aqui el potencial de reutilizacion de codigo de la programacion Orientada a objetos. En sintesis: **Herencia = Copy paste**.
 
@@ -76,7 +111,7 @@ open class GraduateStudent : Student() {
 
 
 
-## Polimorfismo :
+## Polimorfismo 
 
 Partiendo de descomponer el termino, tenemos **Poli** = Muchos, y **Morfismo** = forma | estructura de un cuerpo. Es la capacidad que tienen los objetos de una clase de responder a los mismos mensajes o eventos (es decir al invocar el mismo metodo) desde distintas clases hijas, y que cada una de esas clases pueda responder a ese mensaje de forma distinta. Esto se logra modificando los metodos y agregar atributos en la clase hija, cosas que previamente habias heredado de la clase padre. En sintesis: **Polimorfismo = modificar el Copy Paste**, sintactimente, claro.
 
@@ -117,7 +152,7 @@ class Mujer(name:String) :SerVivo(name) {
 
 
 
-## Encapsulamiento:
+## Encapsulamiento
 
 Es ocultar los datos miembros de un objeto, definiendo las permisos y formas de acceso a los metodos y atributos que pertenecen a una clase, para que solo puedan ser accedidas y cambiadas por la forma definida dentro del objeto.
 
@@ -247,7 +282,7 @@ fun main() {
 }
 ```
 
-# SOLID:
+# SOLID
 
 Es un acronimo (en ingles) que se basa en los 5 principios basicos de la programacion orientada a objetos, con la intencion de conseguir codigo limpio, por lo que no es necesario refactorizar, y a la vez que sea mas facil de mantener.
 
@@ -478,7 +513,10 @@ interface Pato {
     }
 }
 
-// si cargamos la interfaz con caracteristicas que no tienen que ver una con la otra, luego tendremos que remover ciertas caracteristicas porque en todas las subclases no pueden ser usadas, o peor aun, que por razones obvias no deben ser usadas:
+// si cargamos la interfaz con caracteristicas que no tienen
+// que ver una con la otra, luego tendremos que remover ciertas 
+// caracteristicas porque en todas las subclases no pueden ser usadas,
+// o peor aun, que por razones obvias no deben ser usadas:
 class PatoDeHule : Pato() {
     override fun moverse(){
         // No se mueve
@@ -542,7 +580,7 @@ El **Principio de inversion de dependencia** hace el mayor enfasis en la abstrac
 
 Siendo asi, la comunicacion de un componente u otro componente de nuestro sistema serian simplemente interfaces, que manejaria los cambios, lo que hara nuestro codigo mas irrompible. 
 
-```JavaScript
+```javascript
 // JavaScript
 
 class Controlador {
@@ -576,23 +614,92 @@ class Repository {
 }
 ```
 
-# Paradigma Funcional:
+# Programacion Funcional
 
-...
+Resumiendolo, podemos decir que la programacion funcional es un paradigma en el que el codigo se esta compuesto de funciones. En comparacion a la programacion imperativa es mucho mejor, mas directa:
+
+- Se le entrega un dato o datos.
+- Se le aplica una serie de funciones consecutivas (pocas o muchas).
+- Con el fin de obtener resultado deseado.
+
+```kotlin
+// Kotlin
+// un ejemplo random
+
+class Estudiante(
+    val nombre: String,
+    val apellido: String,
+    val graduado: Boolean,
+    val promedio: Double
+)
+
+Estudiante.filter { it.graduado && it.promedio > 4.0 } // paso 1
+    .sortedBy { it.promedio } // paso 2
+    .take(10) // paso 3
+    .sortedWith(compareBy({ it.apellido }, { it.nombre })) // paso 4
+```
+
+1. Solo selecciona los estudiantes que se hayan graduado, y que tengan promedio mayor a 4.0.
+2. Los ordena por el promedio.
+3. Toma solo los primero 10 estudiantes.
+4. Luego, los ordena por apellido, y si son iguales, los compara los nombres.
+
+Super efectivo, cero verborrea y al grano, ¿a quien no le gusta?
+
+Para resolver esto mismo en programacion imperativa, habria que usar loops y seguramente metodos/funciones separadas linea a linea. Luego de este pequeña vista general, aqui **las tres ventajas por las que conviene usar programacion funcional**:
+
+### Funciones puras
+
+Esta basada en funciones matematicas, y el uso de las funciones no influye sobre la ejecucion del resto del codigo (ej. otras funciones), porque el resultado de las funciones depende unicamente de los argumentos que recibio de entrada. No existen las variables globales.
+
+```javaScript
+// JavaScript
+var miArray = [1,2,3,4,5]
+// pura
+miArray.slice(0,3); //=> [1,2,3]
+miArray.slice(0,3); //=> [1,2,3]
+miArray.slice(0,3); //=> [1,2,3]
+
+// impura
+miArray.splice(0,3); //=> [1,2,3]
+miArray.splice(0,3); //=> [4,5]
+miArray.splice(0,3); //=> []
+```
+
+### Estados inmutables
+
+Acostumbramos hasta el momento tener los estados mutables. Variables a las que le reasignamos valores, o arrays a los que le insertamos y quitamos lo necesario en cualquier momento de la ejecucion. Los estados inmutables no son modificables despues de haber sido creados o despues de que se le asigno un valor.
+
+### Composicion de funciones
+
+Es el poder colocar funciones en cadena para que se ejecuten en serie, para obtener el resultado que deseamos. un ejemplo claro es el primer ejemplo de codigo de programacion que mostramos, como se ejecutaba una funcion detras de la otra en secuencia segun se necesita
+
+> ```kotlin
+> /*...*/
+> Estudiante.filter { it.graduado && it.promedio > 4.0 }
+>     .sortedBy { it.promedio }
+>     .take(10) 
+>     .sortedWith(compareBy({ it.apellido }, { it.nombre })) 
+> ```
 
 
-
-# Git:
+# Git
 
 Esta herramienta fue desarrollada por Linus Torvadls y su funcion es tener control de las versiones del codigo de forma distribuida. Parte de los comandos usados son:
 
-**`git clone`** - Se usa para descargarte a tu ordenador la ultima version del codigo fuente de un repositorio remoto (gitlab / github) , puede descargarse a traves del metodo SSH o HTTPS.
+## Git clone
+
+ Se usa para descargarte a tu ordenador la ultima version del codigo fuente de un repositorio remoto (gitlab / github) , puede descargarse a traves del metodo SSH o HTTPS.
 
 ```bash
 git clone <https://el-link--con-nombre-del-repositorio>
 ```
 
-**`git branch`** - Las ramas son de lo mas importante en el mundo de git, con ellas varios desarrolladores pueden trabajar al mismo tiempo sin que hayan conflictos o superposiciones a la hora de  modificar el codigo, con este comando puedes listarlas, crearlas o eliminarlas a nivel local.
+
+
+## git branch
+
+ Las ramas son de lo mas importante en el mundo de git, con ellas varios desarrolladores pueden trabajar al mismo tiempo sin que hayan conflictos o superposiciones a la hora de  modificar el codigo, con este comando puedes listarlas, crearlas o eliminarlas a nivel local.
 
 ```bash
 //  creando una nueva rama
@@ -608,7 +715,9 @@ git branch -d <nombre-de-la-rama-a eliminar>
 
 
 
-**`git checkout`** - Este comando sirve para cambiarte de rama de trabajo, una vez creada la rama para posicionarse en ella se debe hacer con este comando.
+## git checkout
+
+ Este comando sirve para cambiarte de rama de trabajo, una vez creada la rama para posicionarse en ella se debe hacer con este comando.
 
 ```bash
 git checkout <nombre-de-la-rama-donde-quieres-trabajar>
@@ -621,7 +730,9 @@ git checkout -b <nombre-de-tu-rama-a-crear-y-posicionarte>
 
 
 
-**`git status`** - Nos da toda la infromacion del estado actual de la rama que estamos trabajando, detalles numerados en la imagen:
+## git status
+
+ Nos da toda la infromacion del estado actual de la rama que estamos trabajando, detalles numerados en la imagen:
 
 1. La rama en la que estamos posicionados.
 
@@ -635,7 +746,9 @@ git checkout -b <nombre-de-tu-rama-a-crear-y-posicionarte>
 
 
 
-**`git add`** - Al realizar cambios en nuestra rama, estos cambios suceden en local pero aun no son incluidas para el siguiente commit, con este comando podemos incluir los cambios del archivo o de los archivos para el siguiente commit:
+## git add
+
+ Al realizar cambios en nuestra rama, estos cambios suceden en local pero aun no son incluidas para el siguiente commit, con este comando podemos incluir los cambios del archivo o de los archivos para el siguiente commit:
 
 ```bash
 // añadir un archivo en especifico
@@ -650,7 +763,9 @@ git add .
 
 
 
-**`git commit`** - Habiendo avanzado en las mejoras y correciones del codigo llegara el punto en el que queremos guardar los cambios (generalmente cuando una mejora esta completada o un bug resuelto), y asi estableces un punto de control para cuando quieras continuar nuevamente, el comando va a acompañado con un mesaje descriptivo en comillas para explicar que se ha modificado dentro del margen de ese commit.
+## git commit
+
+ Habiendo avanzado en las mejoras y correciones del codigo llegara el punto en el que queremos guardar los cambios (generalmente cuando una mejora esta completada o un bug resuelto), y asi estableces un punto de control para cuando quieras continuar nuevamente, el comando va a acompañado con un mesaje descriptivo en comillas para explicar que se ha modificado dentro del margen de ese commit.
 
 ```
 git commit -m "la descripcion de tu commit"
@@ -658,7 +773,9 @@ git commit -m "la descripcion de tu commit"
 
 
 
-**`git push`** - Ya tenemos los comandos para trabajar las ramas a nivel local, despues de haber confirmado los cambios, necesitamos enviar la nueva rama al repositorio remoto, necesitarás usar el siguiente comando:
+## git push
+
+ Ya tenemos los comandos para trabajar las ramas a nivel local, despues de haber confirmado los cambios, necesitamos enviar la nueva rama al repositorio remoto, necesitarás usar el siguiente comando:
 
 ```bash
 git push <nombre-remoto> <nombre-de-rama-a-subir>
@@ -675,7 +792,9 @@ Ten en cuenta que `git push` solo carga los archivos que han sido confirmados (c
 
 
 
-**`git pull`** - Utilisamos este comando para recibir actualizaciones del repositirio remoto. Este comando fusiona las funcionalidades de los comandos `git fetch` y `git merge`, lo que quiere decir que al usar `git pull`, jalaremos las actualizaciones del repositorio remoto (`git fetch`) y de inmediato aplicamos esos ultimos cambios en local (`git merge`)
+## git pull
+
+ Utilisamos este comando para recibir actualizaciones del repositirio remoto. Este comando fusiona las funcionalidades de los comandos `git fetch` y `git merge`, lo que quiere decir que al usar `git pull`, jalaremos las actualizaciones del repositorio remoto (`git fetch`) y de inmediato aplicamos esos ultimos cambios en local (`git merge`)
 
 ```bash
 git pull <nombre-remoto>
@@ -685,7 +804,9 @@ Recuerda, este comando puede generar conflictos que tendremos que resolver nosot
 
 
 
-**`git revert`** - En ocaciones hacemos `git commit`/`push` a codigo con ciertos errores que queremos corregir, hay varios comandos para deshacer cambios en local o remoto, estos comandos hay que tratarlos con cuidado, pausadamente, porque queriendo corregir algo podemos cometer error encima de error. Es necesario primero revisar el historial de commits, lo hacemos con el comando `git log` y veras un listado detallado de tus commits asi:
+## git revert
+
+ En ocaciones hacemos `git commit`/`push` a codigo con ciertos errores que queremos corregir, hay varios comandos para deshacer cambios en local o remoto, estos comandos hay que tratarlos con cuidado, pausadamente, porque queriendo corregir algo podemos cometer error encima de error. Es necesario primero revisar el historial de commits, lo hacemos con el comando `git log` y veras un listado detallado de tus commits asi:
 
 ![gitlog](./gitlog.png)
 
@@ -699,7 +820,10 @@ Una ventaja de usar git revert es que lo soluciona creando un nuevo commit rever
 
 
 
-**`git merge`** - Por ultimo y no menos imortante, cuando ya hayas completado tu parte del projecto, y pulido todos los detalles, asegurandote de que todo funcione correctamente, el ultimo paso es fusionar la rama que desarrollaste con su rama padre (**`master`** en este projecto), 
+
+## git merge
+
+Por ultimo y no menos imortante, cuando ya hayas completado tu parte del projecto, y pulido todos los detalles, asegurandote de que todo funcione correctamente, el ultimo paso es fusionar la rama que desarrollaste con su rama padre (**`master`** en este projecto), 
 
 El paso a paso es:
 
@@ -722,6 +846,3 @@ git merge <nombre-de-la-rama-a-fusionar>
 ```
 
 Asegurate de que tu rama master tenga la ultima version (paso 1 y 2) antes de fusionar la rama, sino te presentara conflictos y cosas que no esperabas.
-
-
-
