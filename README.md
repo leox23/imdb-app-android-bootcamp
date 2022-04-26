@@ -1,6 +1,6 @@
 # Programacion orientada a objetos (POO)
 
-Es un paradigma de programacion con lenguaje descriptivo y funcional, cercano al mundo real. En este metodo de programacion el codigo se organiza unidades llamadas **clases ** (como tu molde), de las cuales se crean **objetos** que contienen su datos en forma de atributos y sus funcionalidades (o procesos) en forma de metodos, los objetos los relacionanamos entre si para consegir las funcionalidades que requerimos de nuestras aplicaciones.
+Es un paradigma de programacion con lenguaje descriptivo y funcional, cercano al mundo real. En este metodo de programacion el codigo se organiza unidades llamadas **clases** (como tu molde), de las cuales se crean **objetos** que contienen su datos en forma de atributos y sus funcionalidades (o procesos) en forma de metodos, los objetos los relacionamos entre si para consegir las funcionalidades que requerimos de nuestras aplicaciones.
 
 Fue creada con el los proposito de resolver limitaciones y problemas de la programacion estructurada, agregando:
 
@@ -29,7 +29,7 @@ class Humano {
     darComida() {
     alimentarlo.comida(this.edad);
     /* Qué es lo que hace el alimentarlo? ps ni idea. Y no me importa.
-     Me importa que lo hace, el resultado que meda, no el CÓMO lo hace.
+     Me importa que lo hace, el resultado que me da, no el CÓMO lo hace.
      Yo solo sé que le paso la edad a ese método y el ser vivo se alimenta 
      correctamente!.
       Es un ejemplo claro de abstraccion. Sabemos lo que necesitamos darle,
@@ -44,7 +44,7 @@ class Humano {
 
 ## Herencia:
 
-Es una mecanica de POO que como hemos hablado se basa en clases, la cual equivale a un molde, y con la herencia podemos extender su funcionalidad a otras clases. Comunmente se le llama Clase padre (con sus atributos y metodos "genericos"), clase de la cual se esta heredando, y clase hija la que esta recibiendo los atributos y metodos de la clase padre, la cual tendra los comportamientos de la clase padre, como si hubieran sido escrito dentro de si misma, y apartir de alli extender su funcionalidad, modificarla, o ambas, aqui el potencial de reutilizacion de codigo de la programacion Orientada a objetos. En sintesis: **Herencia = Copy paste**.
+Es una mecanica de POO que como hemos hablado se basa en clases, la cual equivale a un molde, y con la herencia podemos extender su funcionalidad a otras clases. Comunmente se le llama **Clase Padre** (con sus atributos y metodos "genericos"), clase de la cual se esta heredando, y **Clase Hija** la que esta recibiendo los atributos y metodos de la clase padre, la cual tendra los comportamientos de la clase padre, como si hubieran sido escrito dentro de si misma, y apartir de alli extender su funcionalidad, modificarla, o ambas, aqui el potencial de reutilizacion de codigo de la programacion Orientada a objetos. En sintesis: **Herencia = Copy paste**.
 
 ```kotlin
 //Kotlin
@@ -78,7 +78,7 @@ open class GraduateStudent : Student() {
 
 ## Polimorfismo :
 
-Partiendo de descomponer el termino, tenemos **Poli** = Muchos, y **Morfismo** = forma | estructura de un cuerpo. Es la capacidad que tienen los objetos de una clase de responder a los mismos mensajes o eventos (es decir al invocar el mismo metodo) desde distintas clases, y que cada una de esas clases pueda responder a ese mensaje de forma distinta. Esto se logra modificando los metodos y agregar atributos en la clase hija, cosas que previamente habias heredado de la clase padre. En sintesis: **Polimorfismo = modificar el Copy Paste**, sintactimente, claro.
+Partiendo de descomponer el termino, tenemos **Poli** = Muchos, y **Morfismo** = forma | estructura de un cuerpo. Es la capacidad que tienen los objetos de una clase de responder a los mismos mensajes o eventos (es decir al invocar el mismo metodo) desde distintas clases hijas, y que cada una de esas clases pueda responder a ese mensaje de forma distinta. Esto se logra modificando los metodos y agregar atributos en la clase hija, cosas que previamente habias heredado de la clase padre. En sintesis: **Polimorfismo = modificar el Copy Paste**, sintactimente, claro.
 
 **Primero creamos una clase padre:**
 
@@ -123,11 +123,11 @@ Es ocultar los datos miembros de un objeto, definiendo las permisos y formas de 
 
 Existen tres principales modificadores de acceso, que son:
 
-Public: en este caso, todas las clases de afuera y las de afuera del paquete tendran acceso. cuando implementamos una clase por defecto todas las propiedades y métodos son de tipo public.
+**Public:** en este caso, todas las clases de afuera y las de afuera del paquete tendran acceso. cuando implementamos una clase por defecto todas las propiedades y métodos son de tipo public.
 
-Protected: solo las clases del paquete pueden tener aceso.
+**Protected:** solo las clases del paquete pueden tener aceso.
 
-Private: solo la clase principal tendra permitido el acceso.
+**Private:** solo la clase principal tendra permitido el acceso.
 
 ```kotlin
 class cocina {
@@ -170,7 +170,7 @@ fun main() {
 }
 ```
 
-Usando los modificadores de acceso (encapsulamiento) evitamos que cambie, probemos:
+Usando los modificadores de acceso (encapsulando) evitamos que cambie, probemos:
 
 ```kotlin
 class cocina {
@@ -252,7 +252,7 @@ fun main() {
     // cocinarDeInmediato.getArroz()
 
     // cocinamos el arroz
-    cocinarDeInmediato.Arroz()
+    cocinarDeInmediato.Arroz() //El arroz se cocino durante 25 minutos o un poco mas, quedo bueno.
 }
 ```
 
@@ -264,7 +264,7 @@ Estos 5 principios son:
 
 ## S – Single Responsibility Principle (SRP)
 
-Este principio establece que una clase debe tener una sola responsabilidad, sin complejidades, que sea concreta, con el fin de hacer el codigo sencillo al evitar que hayan clases que cumplan con multiples funciones, lo que a veces es dificil recordar, y resulta en retrasos al revisar continuamente la clase para revisar que hace x cosa. 
+Este principio establece que una clase debe tener una sola responsabilidad, sin complejidades, que sea concreta, con el fin de hacer el codigo sencillo al evitar que hayan clases que cumplan con multiples funciones, lo que a veces es dificil recordar, y resulta en retrasos al revisar continuamente la clase para revisar que hace X cosa. 
 
 ## O – Open/Closed Principle (OCP)
 
@@ -272,7 +272,7 @@ Este afirma que cada parte del software debe ser cerrado para la modificacion, p
 
 ## L – Liskov Substitution Principle (LSP)
 
-Este establece que al estar usando una clase, y esta clase esta siendo extendida, debe ser posible usar cualquiera de las clases hijas sin que lanze un excepsion.
+Este establece toda clase que es hija de otra clase, debe poder utiliazarse como el mismo padre, y los metodos de la clase padre extendidos dentro de la clase hija sin que lanze un excepsion, es decir que este tipo de cambios no debe generar errores.
 
 ## I – Interface Segregation Principle (ISP)
 
@@ -292,15 +292,15 @@ Este establece que al estar usando una clase, y esta clase esta siendo extendida
 
 Esta herramienta fue desarrollada por Linus Torvadls y su funcion es tener control de las versiones del codigo de forma distribuida. Parte de los comandos usados son:
 
-**`git clone`** - Se usa para descargarte a tu ordenador la ultima version del codigo fuente de un repositorio remoto (gitlab / github) , puede descargarse a trvestraves del metodo SSH o HTTPS
+**`git clone`** - Se usa para descargarte a tu ordenador la ultima version del codigo fuente de un repositorio remoto (gitlab / github) , puede descargarse a traves del metodo SSH o HTTPS.
 
-```
+```bash
 git clone <https://el-link--con-nombre-del-repositorio>
 ```
 
 **`git branch`** - Las ramas son de lo mas importante en el mundo de git, con ellas varios desarrolladores pueden trabajar al mismo tiempo sin que hayan conflictos o superposiciones a la hora de  modificar el codigo, con este comando puedes listarlas, crearlas o eliminarlas a nivel local.
 
-```
+```bash
 //  creando una nueva rama
 git branch <tu-rama-para-trabajar>
 
@@ -314,9 +314,9 @@ git branch -d <nombre-de-la-rama-a eliminar>
 
 
 
-**`git checkout`** - Este comando sirve para cambiarte de rama de trabajo, una ves creada la rama para posicionarse en ella se debe hacer con este comando.
+**`git checkout`** - Este comando sirve para cambiarte de rama de trabajo, una vez creada la rama para posicionarse en ella se debe hacer con este comando.
 
-```
+```bash
 git checkout <nombre-de-la-rama-donde-quieres-trabajar>
 
 // puedes puedes resumir crear rama (en local) y cambiarte a esa rama
@@ -343,7 +343,7 @@ git checkout -b <nombre-de-tu-rama-a-crear-y-posicionarte>
 
 **`git add`** - Al realizar cambios en nuestra rama, estos cambios suceden en local pero aun no son incluidas para el siguiente commit, con este comando podemos incluir los cambios del archivo o de los archivos para el siguiente commit:
 
-```
+```bash
 // añadir un archivo en especifico
 git add <tu-archivo>
 
@@ -356,7 +356,7 @@ git add .
 
 
 
-**`git commit`** - Habiendo avanzado en las mejoras y correciones del codigo llegara el punto en el que queremos guardar los cambios (generalmente cuando una mejora esta completada o un bug resuelto), y asi establesces un punto de control para cuando quieras continuar nuevamente, el comando va a acompañado con un mesaje descriptivo en comillas para explicar que se ha modificado dentro del margen de ese commit.}
+**`git commit`** - Habiendo avanzado en las mejoras y correciones del codigo llegara el punto en el que queremos guardar los cambios (generalmente cuando una mejora esta completada o un bug resuelto), y asi estableces un punto de control para cuando quieras continuar nuevamente, el comando va a acompañado con un mesaje descriptivo en comillas para explicar que se ha modificado dentro del margen de ese commit.
 
 ```
 git commit -m "la descripcion de tu commit"
@@ -366,7 +366,7 @@ git commit -m "la descripcion de tu commit"
 
 **`git push`** - Ya tenemos los comandos para trabajar las ramas a nivel local, despues de haber confirmado los cambios, necesitamos enviar la nueva rama al repositorio remoto, necesitarás usar el siguiente comando:
 
-```
+```bash
 git push <nombre-remoto> <nombre-de-rama-a-subir>
 
 // si su rama es nueva, pude que tengas que
@@ -374,15 +374,16 @@ git push <nombre-remoto> <nombre-de-rama-a-subir>
 git push --set-upstream <nombre-remoto> <nombre-de-tu-rama-reciente>
 // o su atajo
 git push -u origin <nombre-de-tu-rama-reciente>
+
 ```
 
 Ten en cuenta que `git push` solo carga los archivos que han sido confirmados (con `git commit`).
 
 
 
-**`git pull`** - Utilisamos este comando para recibir actualizaciones del repositirio remoto. Este comando fusiona las funcionalidades de los comandos `git fetch` y `git merge`, lo que quiere decir que al usar `git pull`, jalaremos las actualizaciones del repositorio remoto (`git fetch`) y de inmediato aplicamos esos ultimos cambios en local ( `git merge` )
+**`git pull`** - Utilisamos este comando para recibir actualizaciones del repositirio remoto. Este comando fusiona las funcionalidades de los comandos `git fetch` y `git merge`, lo que quiere decir que al usar `git pull`, jalaremos las actualizaciones del repositorio remoto (`git fetch`) y de inmediato aplicamos esos ultimos cambios en local (`git merge`)
 
-```
+```bash
 git pull <nombre-remoto>
 ```
 
@@ -390,40 +391,43 @@ Recuerda, este comando puede generar conflictos que tendremos que resolver nosot
 
 
 
-**`git revert`** - En ocaciones hacemos commit/push a codigo con ciertos errores que queremos corregir, hay varios comando para deshacer cambios en local o remoto, estos comandos hay que tratarlos con cuidado, pausadamente, porque queriendo corregir algo podemos cometer error encima de error. Es necesario primero revisar el historial de commits, lo hacemos con el comando `git log` y veras un listado detallado asi:
+**`git revert`** - En ocaciones hacemos `git commit`/`push` a codigo con ciertos errores que queremos corregir, hay varios comandos para deshacer cambios en local o remoto, estos comandos hay que tratarlos con cuidado, pausadamente, porque queriendo corregir algo podemos cometer error encima de error. Es necesario primero revisar el historial de commits, lo hacemos con el comando `git log` y veras un listado detallado de tus commits asi:
 
 ![gitlog](./gitlog.png)
 
 Ya visto el historial usamos el numero (alfanum) del commit que queremos revertir:
 
-```
+```bash
 git revert <tu-commit-a-revertir>
 ```
 
-Una ventaja de usar git revert es que lo soluciona creando un nuevo revertiendo el anterior. 
+Una ventaja de usar git revert es que lo soluciona creando un nuevo commit revertiendo el anterior. 
 
 
 
-**`git merge`** - Por ultimo y no menos imortante, cuando ya hayas completado tu parte del projecto, y pulido todos los detalles, asegurandote de que todo funcione correctamente, el ultimo paso es fusionar la rama que desarrollaste con su rama padre (`master` en este projecto), 
+**`git merge`** - Por ultimo y no menos imortante, cuando ya hayas completado tu parte del projecto, y pulido todos los detalles, asegurandote de que todo funcione correctamente, el ultimo paso es fusionar la rama que desarrollaste con su rama padre (**`master`** en este projecto), 
 
 El paso a paso es:
 
-**1) Debes pasarte a la rama `master` (o tu rama principal):**
+**1) Debes pasarte a la rama `master` (o cual sea tu rama principal):**
 
-```
+```bash
 git checkout master
 ```
 
 **2) Antes de fusionarla, debes actualizar tu rama `master` local:**
 
-```
+```bash
 git fetch
 ```
 
 **3) Ahora si, puedes fusionar las caracteristicas de tu rama con la rama `master`:**
 
-```
+```bash
 git merge <nombre-de-la-rama-a-fusionar>
 ```
 
 Asegurate de que tu rama master tenga la ultima version (paso 1 y 2) antes de fusionar la rama, sino te presentara conflictos y cosas que no esperabas.
+
+
+
