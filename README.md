@@ -1,38 +1,3 @@
-# Android Bootcamp
-
-## Indice
-
-[Programacion Orientada a Objetos](#Programacion-orientada-a-objetos (POO))
-- [Abstracion](##Abstracion)
-- [Herencia](##Herencia)
-- [Polimorfismo](##Polimorfismo)
-- [Encapsulamiento](##Encapsulamiento)
-
-[SOLID](#SOLID)
-  - [**S**ingle Responsibility Principle (SRP)](##S-–-Single-Responsibility-Principle-(SRP))
-  - [**O**pen/Closed Principle (OCP)](##O-–-Open/Closed-Principle-(OCP))
-  - [**L**iskov Substitution Principle (LSP)](##L-–-Liskov-Substitution-Principle-(LSP))
-  - [**I**nterface Segregation Principle (ISP)](##I-–-Interface-Segregation-Principle-(ISP))
-  - [**D**ependency Inversion Principle (DIP)](##D-–-Dependency-Inversion-Principle-(DIP))
-
-[Programacion Funcional](#Programacion-Funcional)
-  - [Funciones puras](###Funciones-puras)
-  - [Estados inmutables](###Estados-inmutables)
-  - [Composicion-de-funciones](###Composicion-de-funciones)
-
-[Git](#git)
-  - [`git clone`](##git-clone)
-  - [`git branch`](##git-branch)
-  - [`git checkout`](##`git-checkout`)
-  - [`git status`](##`git-status`)
-  - [`git add`](##`git-add`)
-  - [`git commit`](##`git-commit`)
-  - [`git push`](##`git-push`)
-  - [`git pull`](##`git-pull`)
-  - [`git revert`](##`git-revert`)
-  - [`git merge`](##`git-merge`)
-
-
 # Programacion orientada a objetos (POO)
 
 Es un paradigma de programacion con lenguaje descriptivo y funcional, cercano al mundo real. En este metodo de programacion el codigo se organiza unidades llamadas **clases** (como tu molde), de las cuales se crean **objetos** que contienen su datos en forma de atributos y sus funcionalidades (o procesos) en forma de metodos, los objetos los relacionamos entre si para consegir las funcionalidades que requerimos de nuestras aplicaciones.
@@ -687,7 +652,7 @@ Es el poder colocar funciones en cadena para que se ejecuten en serie, para obte
 
 Esta herramienta fue desarrollada por Linus Torvadls y su funcion es tener control de las versiones del codigo de forma distribuida. Parte de los comandos usados son:
 
-## Git clone
+## git clone
 
  Se usa para descargarte a tu ordenador la ultima version del codigo fuente de un repositorio remoto (gitlab / github) , puede descargarse a traves del metodo SSH o HTTPS.
 
