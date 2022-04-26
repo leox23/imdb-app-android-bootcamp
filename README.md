@@ -44,7 +44,7 @@ class Humano {
 
 ## Herencia:
 
-Es una mecanica de POO que como hemos hablado se basa en clases, la cual equivale a un molde, y con la herencia podemos extender su funcionalidad a otras clases. Comunmente se le llama **Clase Padre** (con sus atributos y metodos "genericos"), clase de la cual se esta heredando, y **Clase Hija** la que esta recibiendo los atributos y metodos de la clase padre, la cual tendra los comportamientos de la clase padre, como si hubieran sido escrito dentro de si misma, y apartir de alli extender su funcionalidad, modificarla, o ambas, aqui el potencial de reutilizacion de codigo de la programacion Orientada a objetos. En sintesis: **Herencia = Copy paste**.
+Es una mecanica de POO que como hemos hablado se basa en clases, la cual equivale a un molde, y con la herencia podemos extender su funcionalidad a otras clases. Comunmente se le llama **Clase Padre** (con sus atributos y metodos "genericos") a la clase que extiende, y **Clase Hija** la que esta recibiendo los atributos y metodos (la herencia) de la clase padre, la cual tendra los comportamientos de la clase padre, como si hubieran sido escrito dentro de si misma, y apartir de alli extender su funcionalidad, modificarla, o ambas, aqui el potencial de reutilizacion de codigo de la programacion Orientada a objetos. En sintesis: **Herencia = Copy paste**.
 
 ```kotlin
 //Kotlin
@@ -83,7 +83,7 @@ Partiendo de descomponer el termino, tenemos **Poli** = Muchos, y **Morfismo** =
 **Primero creamos una clase padre:**
 
 ```kotlin
-abstract class serVivo(var name: String) {
+abstract class SerVivo(var name: String) {
     // aqui definimos las acciones de la clase
     abstract fun darCamisa()
 }
@@ -95,7 +95,7 @@ Hombre
 
 ```kotlin
 // Hombre
-class hombre(name:String) :serVivo(name){
+class Hombre(name:String) :SerVivo(name){
     // reescribe el método de dar camisa
     override fun darCamisa() {
         println("${name} viste esta camisa azul.")
@@ -107,7 +107,7 @@ Mujeres
 
 ```kotlin
 // Mujer
-class mujer(name:String) :serVivo(name) {
+class Mujer(name:String) :SerVivo(name) {
     // reescribe el método de dar camisa
     override fun darCamisa() {
         println("${name} viste esta camisa rosa.")
@@ -130,7 +130,7 @@ Existen tres principales modificadores de acceso, que son:
 **Private:** solo la clase principal tendra permitido el acceso.
 
 ```kotlin
-class cocina {
+class Cocina {
     // tiempos de coccion (min)
     var arroz : Int = 25
     var pollo : Int = 35
@@ -148,7 +148,6 @@ class cocina {
             println("El arroz aun esta crudo, dejalo mas tiempo")
         }
     }
-
     fun Pollo() {
         println("El pollo se cocino durante ${pollo} minutos, esta bien.")
     }
@@ -159,7 +158,7 @@ class cocina {
 }
 
 fun main() {
-    val cocinarDeInmediato = cocina()
+    val cocinarDeInmediato = Cocina()
 
     // en ocaciones no queremos que se nos cambie el valor de nuetras variables
     // aqui no queda comestible ni el pegado
@@ -173,7 +172,7 @@ fun main() {
 Usando los modificadores de acceso (encapsulando) evitamos que cambie, probemos:
 
 ```kotlin
-class cocina {
+class Cocina {
     // tiempos de coccion (min)
     private var arroz : Int = 25
     private var pollo : Int = 35
@@ -186,20 +185,16 @@ class cocina {
         if ( arroz > 24 ) {
             println("El arroz se cocino durante ${arroz} minutos o un poco mas, quedo bueno.")
         } 
-        /*
-        ...
-        */
+        /*...*/
     }
-    /*
-    ...
-    */
+    /*...*/
 }
 
 fun main() {
-    val cocinarDeInmediato = cocina()
+    val cocinarDeInmediato = Cocina()
 
     // arroz, por estar privado, arrojara una excepsion y no dejara compilar
-    cocinarDeInmediato.arroz = 60 //Cannot access 'arroz': it is private in 'cocina'
+    cocinarDeInmediato.arroz = 60 //❌Cannot access 'arroz': it is private in 'cocina'
 
     // cocinamos el arroz
     cocinarDeInmediato.Arroz()
@@ -211,7 +206,7 @@ Te diras, ok, ya nadie profanara mi codigo del olimpo, pero... ¿y si es necesar
 Los metodos getters son usados para obtener el valor de un atributo, y los setters para fijarles valores:
 
 ```kotlin
-class cocina {
+class Cocina {
     // tiempos de coccion (min)
     private var arroz : Int = 25
     private var pollo : Int = 35
@@ -233,17 +228,13 @@ class cocina {
         if ( arroz > 24 ) {
             println("El arroz se cocino durante ${arroz} minutos o un poco mas, quedo bueno.")
         }
-        /*
-        ...
-        */
+        /*...*/
     }
-    /*
-    ...
-    */
+    /*...*/
 }
 
 fun main() {
-    val cocinarDeInmediato = cocina()
+    val cocinarDeInmediato = Cocina()
 
     // cambiamos el valor con el metodo set
     cocinarDeInmediato.setArroz(26)
@@ -264,23 +255,82 @@ Estos 5 principios son:
 
 ## S – Single Responsibility Principle (SRP)
 
-Este principio establece que una clase debe tener una sola responsabilidad, sin complejidades, que sea concreta, con el fin de hacer el codigo sencillo al evitar que hayan clases que cumplan con multiples funciones, lo que a veces es dificil recordar, y resulta en retrasos al revisar continuamente la clase para revisar que hace X cosa. 
+El **Principio de Responsabilidad Unica** fija la idea de que cada módulo de software de un sistema debe ser responsabilidad de un único actor (*stakeholder*). Si vamos creando el sistema basandonos en los limites que en que obran los actores, obtenemos un sistema más robusto en el que los cambios asociados a un área, no afectara al resto del codigo. Al ver el panorama de unica responsabilidad bajo el punto de su creador, vemos que va mas alla de responsabilidades en clases y funciones, sino que lo hace a nivel de componentes y arquitectura de software.
+
+Una buena manera de resumirlo es como lo dijo el mismo **Robert C. Martin** (~voz Oogway 🐢~):
+
+> Justa las cosas que cambian por las mismas razones. Separa las cosas que cambian por diferentes razones.
+
+Bueno, cada caso es unico, por lo que es dificil generalizar, parece ser algo mas profundo, seria bueno revisar a detalle su libro Clean Architecture.
+
+```kotlin
+    class RegistroDeUsuario(email : String , password : String){
+        fun crearUsuario(email : String, password : String){
+            /*
+                codigo de encriptacion de contraseña - ❌ - colocar en otra clase
+             */
+
+            /*
+            	para luego hacer...
+                codigo de creacion del usuario
+             */
+        }
+    }
+```
+
+En este caso tenemos dos responsabilidades en la misma clase, por lo que lo ideal esas responsabilidades en clases separadas.
 
 ## O – Open/Closed Principle (OCP)
 
-Este afirma que cada parte del software debe ser cerrado para la modificacion, pero que debe estar abierto para poder extender funcionalidades.
+Este afirma que cada parte del software debe ser cerrado para la modificacion, pero que debe estar abierto para poder extender funcionalidades. La idea es escribir codigo que no se tenga que cambiar cada vez que cambien los requerimientos, lo podemos conseguir usando la herencia y el polimorfismo.
 
 ## L – Liskov Substitution Principle (LSP)
 
-Este establece toda clase que es hija de otra clase, debe poder utiliazarse como el mismo padre, y los metodos de la clase padre extendidos dentro de la clase hija sin que lanze un excepsion, es decir que este tipo de cambios no debe generar errores.
+Este establece toda clase que es hija de otra clase, debe poder utiliazarse como la clase padre misma sin que lanze un excepsion, es decir que este tipo de cambios no debe generar errores, lo logramos usando **herencia** y **polimorfismo**.
 
 ## I – Interface Segregation Principle (ISP)
 
-...
+Este principio define que se debe evitar que las interfases sean muy grandes, y que tambien se eviten aplicar caracteristicas extras que el objeto no debe poseer. Es mejor tener clases pequeñas y especializadas, que una clase enorme, porque con una clase pequeña solo se utilizan partes pequeñas en todo nuestro codigo. Con clases mas pequeñas y especificas es mucho mas facil apuntar a las necesidades.
 
 ## D – Dependency Inversion Principle (DIP)
 
-...
+El **Principio de inversion de dependencia** hace el mayor enfasis en la abstraccion, nos quiere decir que implementaciones concretas, no deben depender de otras implementaciones concretas, sino que debe depender de **capas de abstraccion**.  Esto nos permite por ejemplo de si nuestra base de datos usa tecnologia o otra, no nos debe importar que pueda afectar nuestro codigo, sino que eso lo soluciona una capa de abstraccion que esta construida entre medio de ambos, en este caso hipotetico, nuestro codigo, y cualquier base de datos. 
+
+Siendo asi, la comunicacion de un componente u otro componente de nuestro sistema serian simplemente interfaces, que manejaria los cambios de ambas partes, lo que hara nuestro codigo mas irrompible. 
+
+```JavaScript
+// JavaScript
+
+class Controlador {
+  // El codigo no tiene ni idea si esto es SQL, MongoDB, HTTP...
+  let datos = Repositorio.obtenerDatos() // sea cual sea se conecta
+	manipularData(datos)
+}
+
+```
+
+Este condigo de arriba trabaja sin problemas con cualquiera de las 2 interfases de abajo, segun fuera necesario se modifica, solo que nuestro componente principal sigue estando en su estado original, ahora y siempre.
+
+``` javascript
+// Aqui la interfaz (1) que esta conectando con una base de datos
+// de mongoDB
+class Repositorio {
+  function obtenerDatos(){
+    let datos = MongoDB.Find({})
+    return datos
+  }
+}
+
+//=========================
+
+// Aqui la interfaz (2) en caso que la base de datos fuera SQLite
+class Repository {
+  function obtenerDatos(){
+    let datos = SQLite.query('SELECT * FROM datos')
+    return datos
+  }
+}
+```
 
 # Paradigma Funcional:
 
