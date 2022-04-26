@@ -68,7 +68,7 @@ open class GraduateStudent : Student() {
     }
  
     private fun calculateSchoolFees(): BigDecimal {
-        // calculate and return school fees
+        // calcular y retornar
     }
 }
 
@@ -255,16 +255,18 @@ Estos 5 principios son:
 
 ## S – Single Responsibility Principle (SRP)
 
-El **Principio de Responsabilidad Unica** fija la idea de que cada módulo de software de un sistema debe ser responsabilidad de un único actor (*stakeholder*). Si vamos creando el sistema basandonos en los limites que en que obran los actores, obtenemos un sistema más robusto en el que los cambios asociados a un área, no afectara al resto del codigo. Al ver el panorama de unica responsabilidad bajo el punto de su creador, vemos que va mas alla de responsabilidades en clases y funciones, sino que lo hace a nivel de componentes y arquitectura de software.
+El **Principio de Responsabilidad Unica** fija la idea de que cada módulo de software de un sistema debe tener la  responsabilidad de un único actor (*stakeholder*). Si vamos creando el sistema basandonos en los limites que en que obran los actores, obtenemos un sistema más robusto en el que los cambios asociados a un área, no afectara al resto del codigo. Al ver el panorama de unica responsabilidad bajo el punto de su creador, vemos que va mas alla de responsabilidades en clases y funciones, sino las responsabilidades a nivel de componentes y arquitectura de software.
 
 Una buena manera de resumirlo es como lo dijo el mismo **Robert C. Martin** (~voz Oogway 🐢~):
 
-> Justa las cosas que cambian por las mismas razones. Separa las cosas que cambian por diferentes razones.
+> Junta las cosas que cambian por las mismas razones. Separa las cosas que cambian por diferentes razones.
 
 Bueno, cada caso es unico, por lo que es dificil generalizar, parece ser algo mas profundo, seria bueno revisar a detalle su libro Clean Architecture.
 
 ```kotlin
-    class RegistroDeUsuario(email : String , password : String){
+// kotlin, pequeño ejemplo
+
+class RegistroDeUsuario(email : String , password : String){
         fun crearUsuario(email : String, password : String){
             /*
                 codigo de encriptacion de contraseña - ❌ - colocar en otra clase
@@ -282,21 +284,263 @@ En este caso tenemos dos responsabilidades en la misma clase, por lo que lo idea
 
 ## O – Open/Closed Principle (OCP)
 
-Este afirma que cada parte del software debe ser cerrado para la modificacion, pero que debe estar abierto para poder extender funcionalidades. La idea es escribir codigo que no se tenga que cambiar cada vez que cambien los requerimientos, lo podemos conseguir usando la herencia y el polimorfismo.
+El **Principio de Abierto Cerrado** afirma que cada parte del software debe ser cerrado para la modificacion, pero que debe estar abierto para poder extender funcionalidades. La idea es escribir codigo que no se tenga que cambiar cada vez que cambien los requerimientos, lo mas comun es resolverlo con la **herencia** y el **polimorfismo**.
+
+```kotlin
+data class Rectangulo(var ancho: Double, var alto : Double)
+data class triangulo(var ancho: Double, var alto : Double)
+
+    class CalculadorDeArea {
+        fun computarArea( forma : Any) : Double? {
+
+            return when (forma) {
+                "Rectangulo" -> forma.ancho * forma.alto
+                "triangulo" -> (forma.ancho * forma.alto)/2
+                else -> null
+            }
+```
+
+Podemos calcular areas de rectangulos y triangulos, que sucederia si quisieramos calcular areas de circuloso otros? Pues tendriamos que modificar nuestra clase padre `CalculadorDeArea` si nos basamos en este modelo, estariamos pisotearamos este segundo principio. Si lo resolvemos asi, el *pecadote* se veria asi mas o menos:
+
+```kotlin
+data class Rectangulo(var ancho: Double, var alto : Double)
+data class Triangulo(var ancho: Double, var alto : Double)
+data class Circulo(var radio: Double)
+
+    class CalculadorDeArea {
+        fun computarArea( forma : Any) : Double? {
+
+            return when (forma) {
+                "Rectangulo" -> forma.ancho * forma.alto
+                "Triangulo" -> (forma.ancho * forma.alto)/2
+                "Circulo" -> Math.PI * (forma.radio * forma.radio)
+                else -> null
+            }
+```
+
+Una solucion ideal seria poder usar una interface, quedaria algo asi:
+
+```kotlin
+interface FormaInterface {
+    fun area() : Double
+}
+data class Rectangulo(var ancho: Double, var alto : Double) : FormaInterface {
+    override fun area(): Double {
+        return alto * ancho
+    }
+}
+
+data class Triangulo(var ancho: Double, var alto : Double) : FormaInterface {
+    override fun area():Double {
+        return (alto * ancho)/2
+    }
+}
+
+data class Circulo(var radio: Double) : FormaInterface {
+    override fun area():Double {
+        return Math.PI * (forma.radio * forma.radio)
+    }
+}
+
+class CalculadorDeArea {
+    fun computarArea( forma : FormaInterface) : Double? {
+        return forma.area()
+    }
+}
+```
+
+De esta forma podemos facilmente mantener la clase padre intacta, sin ningun tipo de errores futuros, y con facilidad para extender funcionalidades.
 
 ## L – Liskov Substitution Principle (LSP)
 
-Este establece toda clase que es hija de otra clase, debe poder utiliazarse como la clase padre misma sin que lanze un excepsion, es decir que este tipo de cambios no debe generar errores, lo logramos usando **herencia** y **polimorfismo**.
+El **Principio de Sustitucion de Liskov** establece toda clase que es hija de otra clase, debe poder utiliazarse como la clase padre misma sin que lanze un excepsion, es decir que este tipo de cambios no debe generar errores, lo logramos usando **herencia** y **polimorfismo**.
+
+```kotlin
+abstract class Pato {
+    fun moverse() {
+        println("Se mueve")
+    }
+    fun nadar() {
+        println("Nada")
+    }
+    fun flotar(){
+        println("Flota")
+    }
+    fun volar() {
+        println("Vuela")
+    }
+}
+
+class PatoAdulto : Pato() {...}
+class PatoDeHule : Pato() {...}
+class Patito : Pato() {...}
+
+fun main(){
+    // en esta forma nuestro codigo, nos presentara diversos problemas
+    val patoDeHule = PatoDeHule()
+    patoDeHule.nadar()  // ❌ no es posible 
+    patoDeHule.flotar() // ✅ posible
+    
+    val patito = Patito()
+    patito.nadar() // ✅ posible
+    patito.volar() // ❌ no es posible 
+}
+
+// dara inconsistencias a nuestro soft
+```
+
+Al trabajar de esta manera lo podemos resolver cambiando esas funciones que presentaran error dentro de cada extension de clase:
+
+```kotlin
+// codigo diabolico, de ahora en adelante, no hacer ni en casa
+
+class PatoDeHule : Pato() {
+    override fun volar() {
+        // No puede volar
+    }
+    override fun nadar() {
+        // No puede nadar
+    }
+    override fun mover() {
+        // No puede movese
+    }
+}
+// y asi tocaria hacer con todas las funciones de todas las clases que presenten problemas
+```
+
+Para desarrollar el codigo con buena practica, respetando este principio lo ideal es trabajar la clase como abierta y extenderla, en este caso, modificamos un poco el ejemplo para hacerlo mas visible:
+
+```kotlin
+open class Pato {
+    fun flotar(){
+        println("Flota")
+    }
+    fun moverse() {
+        println("Se mueve")
+    }
+    fun nadar() {
+        println("Nada")
+    }
+}
+class Patito : Pato() {
+    // lo basico de un pato
+    // mas detalles especificos que se quiera
+    // agregar de un pato pequeño
+    // tamaño, lo que come, etc.
+}
+
+class PatoAdulto : Pato() {
+    // lo basico de un pato + volar
+    fun volar() {
+        println("Vuela")
+    }
+    // mas todo lo demas que se necesite
+}
+
+fun main(){
+    val patito = Patito()
+    patito.nadar()  // ✅ posible
+    patito.flotar() // ✅ posible
+	
+    val patoAdulto = PatoAdulto()
+    // aqui podemos acceder a las operaciones de la clase padre 
+    // desde una clase hija sin errores, podemos usar:
+    // flotar | moverse | nadar
+    patoAdulto.nadar() // ✅ posible
+    patoAdulto.volar() // ✅ posible
+    // este es la forma correcta de jugar con 
+    // la Herencia y el Polimorfismo
+}
+```
+
+Asi nuestro codigo no tendra comportamientos inesperados.
 
 ## I – Interface Segregation Principle (ISP)
 
-Este principio define que se debe evitar que las interfases sean muy grandes, y que tambien se eviten aplicar caracteristicas extras que el objeto no debe poseer. Es mejor tener clases pequeñas y especializadas, que una clase enorme, porque con una clase pequeña solo se utilizan partes pequeñas en todo nuestro codigo. Con clases mas pequeñas y especificas es mucho mas facil apuntar a las necesidades.
+El **Principio de Segregacion de Interface** define que se debe evitar que las interfaces sean muy grandes, en especifico que se eviten aplicar caracteristicas extras que al objeto en realidad no deben corresponder. Es mejor tener interfaces pequeñas y especializadas, que una interface enorme, porque con una interface grandes solo se utilizan partes pequeñas en todo nuestro codigo. Con clases mas pequeñas y especificas es mucho mas facil apuntar a las necesidades.
+
+```kotlin
+// Kotlin
+// veamos una interfaz cargada y sus consecuencias (ya habiamos visto malas clases parecidas)
+
+interface Pato {
+    fun flotar(){
+        println("Flota")
+    }
+    fun moverse() {
+        println("Se mueve")
+    }
+    fun nadar() {
+        println("Nada")
+    }
+    fun volar() {
+        println("Vuela")
+    }
+}
+
+// si cargamos la interfaz con caracteristicas que no tienen que ver una con la otra, luego tendremos que remover ciertas caracteristicas porque en todas las subclases no pueden ser usadas, o peor aun, que por razones obvias no deben ser usadas:
+class PatoDeHule : Pato() {
+    override fun moverse(){
+        // No se mueve
+    }
+    override fun nadar(){
+        // No vuela
+    }
+    override fun volar(){
+        // No vuela
+    }
+}
+class PatoBebe : Pato() {
+    override fun volar(){
+        // No vuela
+    }
+}
+```
+
+En cambio, en el siguiente ejemplo seleccionamos caracteristicas especificas para cada clase hija:
+
+```kotlin
+interface CriaturaOCosaQueFlota {
+    fun flotar(){
+        println("Flota")
+    }
+}
+interface CriaturaQueSeMueve {
+    fun moverse() {
+        println("Se mueve")
+    }
+}
+interface CriaturaQueNada {
+    fun nadar() {
+        println("Nada")
+    }
+}
+interface CriaturaQueVuela {
+    fun volar() {
+        println("Vuela")
+    }
+}
+
+class PatoDeHule : CriaturaOCosaQueFlota {
+    /* ... */
+}
+class PatoBebe : CriaturaOCosaQueFlota, CriaturaQueSeMueve, CriaturaQueNada {
+    /* ... */
+}
+
+class PatoAdulto : CriaturaOCosaQueFlota, CriaturaQueSeMueve, CriaturaQueNada, CriaturaQueVuela {
+    /* ... */
+}
+// como vemos, cada clase implementa lo que necesita en realidad.
+```
+
+
 
 ## D – Dependency Inversion Principle (DIP)
 
-El **Principio de inversion de dependencia** hace el mayor enfasis en la abstraccion, nos quiere decir que implementaciones concretas, no deben depender de otras implementaciones concretas, sino que debe depender de **capas de abstraccion**.  Esto nos permite por ejemplo de si nuestra base de datos usa tecnologia o otra, no nos debe importar que pueda afectar nuestro codigo, sino que eso lo soluciona una capa de abstraccion que esta construida entre medio de ambos, en este caso hipotetico, nuestro codigo, y cualquier base de datos. 
+El **Principio de inversion de dependencia** hace el mayor enfasis en la abstraccion, nos quiere decir que implementaciones concretas, no deben depender de otras implementaciones concretas, sino que debe depender de **capas de abstraccion**.  Esto nos permite por ejemplo que si nuestra base de datos usa una tecnologia o otra, no nos debe importar que pueda afectar nuestro codigo, sino que esto lo soluciona una capa de abstraccion que esta construida en medio de ambos, en este caso hipotetico, hablamos de nuestro codigo, y cualquier base de datos. 
 
-Siendo asi, la comunicacion de un componente u otro componente de nuestro sistema serian simplemente interfaces, que manejaria los cambios de ambas partes, lo que hara nuestro codigo mas irrompible. 
+Siendo asi, la comunicacion de un componente u otro componente de nuestro sistema serian simplemente interfaces, que manejaria los cambios, lo que hara nuestro codigo mas irrompible. 
 
 ```JavaScript
 // JavaScript
@@ -309,14 +553,14 @@ class Controlador {
 
 ```
 
-Este condigo de arriba trabaja sin problemas con cualquiera de las 2 interfases de abajo, segun fuera necesario se modifica, solo que nuestro componente principal sigue estando en su estado original, ahora y siempre.
+Este codigo de arriba trabaja sin problemas con cualquiera de las 2 interfases de abajo, segun fuera necesario se modifica, solo que nuestro componente principal sigue estando en su estado original.
 
 ``` javascript
 // Aqui la interfaz (1) que esta conectando con una base de datos
 // de mongoDB
 class Repositorio {
   function obtenerDatos(){
-    let datos = MongoDB.Find({})
+    let datos = MongoDB.find({})
     return datos
   }
 }
