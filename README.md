@@ -27,7 +27,7 @@ class Humano {
   }
 
     darComida() {
-    alimentarlo.comida(this.edad);
+    alimentarlo.darComida(this.edad);
     /* Qué es lo que hace el alimentarlo? ps ni idea. Y no me importa.
      Me importa que lo hace, el resultado que me da, no el CÓMO lo hace.
      Yo solo sé que le paso la edad a ese método y el ser vivo se alimenta 
