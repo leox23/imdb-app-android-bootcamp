@@ -88,3 +88,71 @@ El metodo para para pasar una funcion nombrada a otra funcion es usando `::` (el
 
 
 <hr/>
+
+# [4: Object-oriented programming](https://developer.android.com/codelabs/kotlin-bootcamp-classes)
+
+## **Question 1**
+
+Classes have a special method that serves as a blueprint for creating objects of that class. What is the method called?
+
+- [ ] A builder
+- [ ] An instantiator
+- [x] A constructor
+- [ ] A blueprint
+
+Los constructores en las clases son los que sirven de patron para crear objetos, son los que marcan las propiedades y tipos y inicializaciones adicionales que tendra el objeto.
+
+<hr/>
+
+### **Question 2**
+
+Which of the following statements about interfaces and abstract classes is NOT correct?
+
+- [ ] Abstract classes can have constructors.
+- [ ] Interfaces can't have constructors.
+- [x] Interfaces and abstract classes can be instantiated directly.
+- [ ] Abstract properties must be implemented by subclasses of the abstract class.
+
+Las clases abstractas sirven para definir propiedades que van a ser comunes para las clases que la heredaran, y en caso de ser posible tambien agrupar comportamientos(metodos) en caso de que vaya a ser comun para las subclases;  y las interfaces tienen la funcion de definir comportamientos comunes mas especificos que puedan ser compartidos a clases relacionadas. Pero ambos no pueden crear objetos directamente, para eso se deben usar a travez de una subclase.
+
+<hr/>
+
+### **Question 3**
+
+Which of the following is NOT a Kotlin visibility modifier for properties, methods, etc.?
+
+- [ ] `internal`
+- [x] `nosubclass`
+- [ ] `protected`
+- [ ] `private`
+
+En Kotlin existen 4 modificadores de visibilidad y son: `public`, `private`, `internal` y `protected`.
+
+<hr/>
+
+### **Question 4**
+
+Consider this data class: `data class Fish(val name: String, val species:String, val colors:String)` Which of the following is NOT valid code to create and destructure a `Fish` object?
+
+- [ ] `val (name1, species1, colors1) = Fish("Pat", "Plecostomus", "gold")`
+- [ ] `val (name2, _, colors2) = Fish("Bitey", "shark", "gray")`
+- [ ] `val (name3, species3, _) = Fish("Amy", "angelfish", "blue and black stripes")`
+- [x] `val (name4, species4, colors4) = Fish("Harry", "halibut")`
+
+Las propiedades de `data class`  no tienen valores asignados por defecto. La cuarta desestructuracion* esta pidiendo asignar las 3 propiedades de `Fish` a las 3 variables respectivamente, a `fish`  se le estan pasando 2 strings, pero falta  el string perteneciente a `colors`,  como esa propiedad se esperaba y no fue asignada, presentará un gran error.
+
+<hr/>
+
+### **Question 5**
+
+Let's say you own a zoo with lots of animals that all need to be  taken care of. Which of the following would NOT be part of implementing  caretaking?
+
+- [x] An `interface` for different types of foods animals eat.
+- [ ] An `abstract Caretaker` class from which you can create different types of caretakers.
+- [ ] An `interface` for giving clean water to an animal.
+- [ ] A `data` class for an entry in a feeding schedule.
+
+Serian muchas interfaces que solo se vas a usar seguramente una ves por cada clase hija que extendamos de la clase `abstract Caretaker`, mejor queda haciendo una interfaz `eat`, ya que todos los animales van a comer, y la reutilizamos detallando que comida van a comer en cada una, es mas legible y eficiente.
+
+<hr/>
+
