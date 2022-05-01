@@ -139,7 +139,7 @@ Consider this data class: `data class Fish(val name: String, val species:String,
 - [ ] `val (name3, species3, _) = Fish("Amy", "angelfish", "blue and black stripes")`
 - [x] `val (name4, species4, colors4) = Fish("Harry", "halibut")`
 
-Las propiedades de `data class`  no tienen valores asignados por defecto. La cuarta desestructuracion* esta pidiendo asignar las 3 propiedades de `Fish` a las 3 variables respectivamente, a `fish`  se le estan pasando 2 strings, pero falta  el string perteneciente a `colors`,  como esa propiedad se esperaba y no fue asignada, presentará un gran error.
+Las propiedades de `data class`  no tienen valores asignados por defecto. La cuarta desestructuracion* esta pidiendo asignar las 3 propiedades de `Fish` a las 3 variables respectivamente, a `Fish`  se le estan pasando 2 strings, pero falta  el string perteneciente a `colors`,  como esa propiedad se esperaba y no fue asignada, presentará un gran error.
 
 <hr/>
 
@@ -156,3 +156,43 @@ Serian muchas interfaces que solo se vas a usar seguramente una ves por cada cla
 
 <hr/>
 
+# 5.1: Extensions
+
+### **Question 1**
+
+Which one of the following returns a copy of a list?
+
+- [ ] `add()`
+- [ ] `remove()`
+- [x] `reversed()`
+- [ ] `contains()`
+
+En la vida, cuando me encuentro con preguntas que no tienen 100% encaje con una de las opciones, mi cabeza implota. La funcion `reversed()` devuelve una copia de la lista, **pero esa "copia" la devuelve al revez**, la dejo como respuesta, pero si tomara la pregunta en un sentido completamente estricta, no seleccionaria ninguna, porque la funcion no simplemente copia la lista, quiza me la coloquen mala por haberla seleccionado 😬.
+
+<hr/>
+
+### **Question 2**
+
+Which one of these extension functions on `class AquariumPlant(val color: String, val size: Int, private val cost: Double, val leafy: Boolean)` will give a compiler error?
+
+- [ ] `fun AquariumPlant.isRed() = color == "red"`
+- [ ] `fun AquariumPlant.isBig() = size > 45`
+- [x] `fun AquariumPlant.isExpensive() = cost > 10.00`
+- [ ] `fun AquariumPlant.isNotLeafy() = leafy == false`
+
+Al intentar usar la propiedad `cost` nos dara un error de compilacion, porque `cost` esta en modo de visibilidad `privado`, lo que quiere decir que esa variable solo puede ser accedida desde dentro de la clase. 
+
+<hr/>
+
+### **Question 3**
+
+Which one of the following is not a place where you can define constants with `const val`?
+
+- [ ] at the top level of a file
+- [x] in regular classes
+- [ ] in singleton objects
+- [ ] in companion objects
+
+En kotlin las constantes `const val` no se pueden declarar en las clases normales, solo se puede declarar en la parte de arriba del achivo, en los objetos singleton, y en objetos complementarios(como un objeto singleton dentro de una clase).
+
+<hr/>
