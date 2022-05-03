@@ -89,7 +89,7 @@ El metodo para para pasar una funcion nombrada a otra funcion es usando `::` (el
 
 <hr/>
 
-# [4: Object-oriented programming](https://developer.android.com/codelabs/kotlin-bootcamp-classes)
+# [4: Object-oriented programming (Clases)](https://developer.android.com/codelabs/kotlin-bootcamp-classes)
 
 ## **Question 1**
 
@@ -167,7 +167,7 @@ Which one of the following returns a copy of a list?
 - [x] `reversed()`
 - [ ] `contains()`
 
-En la vida, cuando me encuentro con preguntas que no tienen 100% encaje con una de las opciones, mi cabeza implota. La funcion `reversed()` devuelve una copia de la lista, **pero esa "copia" la devuelve al revez**, la dejo como respuesta, pero si tomara la pregunta en un sentido completamente estricta, no seleccionaria ninguna, porque la funcion no simplemente copia la lista, quiza me la coloquen mala por haberla seleccionado 😬.
+En la vida, cuando me encuentro con preguntas que no tienen 100% encaje con una de las opciones, mi cabeza implota. La funcion `reversed()` devuelve una copia de la lista, no es una simple copia, **esa "copia" la devuelve al revez**, por lo que no es una replica. La dejo como respuesta, pero si tomara la pregunta en un sentido completamente estricta, no seleccionaria ninguna, porque la funcion no simplemente copia la lista, quiza me la coloquen mala por haberla seleccionado 😬.
 
 <hr/>
 
@@ -194,5 +194,50 @@ Which one of the following is not a place where you can define constants with `c
 - [ ] in companion objects
 
 En kotlin las constantes `const val` no se pueden declarar en las clases normales, solo se puede declarar en la parte de arriba del achivo, en los objetos singleton, y en objetos complementarios(como un objeto singleton dentro de una clase).
+
+<hr/>
+
+# [5.2: Generics](https://developer.android.com/codelabs/kotlin-bootcamp-generics)
+
+### **Question 1**
+
+Which of the following is the convention for naming a generic type?
+
+- [ ] `<Gen>`
+- [ ] `<Generic>`
+- [x] `<T>`
+- [ ] `<X>`
+
+Para los tipos genericos se usa `<T>` como convencion, colocandolo como "sufijo" del nombre de nuestra clase generica: `class MiClaseGenerica<T>`, es necesario seguir las convenciones para mejor lectura del codigo, nuestro yo del futuro y nuestros compañeros lo agradeceran.
+
+<hr/>
+
+### **Question 2**
+
+A restriction on the types allowed for a generic type is called:
+
+- [ ] a generic restriction
+- [x] a generic constraint
+- [ ] disambiguation
+- [ ] a generic type limit
+
+Las clases genericas por defecto recibiran cualquier tipo. La clase generica del ejemplo de la pregunta anterior, impicitamente se declaro asi `class MiClaseGenerica<T: Any?>`, siendo el tipo `Any` cualquier tipo, y `?` que puede ser nullable.
+
+Para hacer mas especificos en cuanto a los tipos que se permitiran recibir en una clase generica se usan los **generic constraint**(restricciones genericas). Se colocaria el tipo que quieras recibir: 
+
+`class MiClaseGenerica<T: [TuTipoARecibir]>`
+
+<hr/>
+
+### **Question 3**
+
+Reified means:
+
+- [ ] The real execution impact of an object has been calculated.
+- [ ] A restricted entry index has been set on the class.
+- [x] The generic type parameter has been made into a real type.
+- [ ] A remote error indicator has been triggered.
+
+Reified (o Real types) en Kotlin se refiere a acceder a la informacion del tipo de clase, y para poder usarlas deber ser a traves de las funciones `inline`, de lo contrario marcara error.
 
 <hr/>
