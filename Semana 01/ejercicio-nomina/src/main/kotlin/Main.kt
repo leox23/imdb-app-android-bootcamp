@@ -1,50 +1,42 @@
 /*
-Luego de terminar los codelabs, por favor solucionen este ejercicio
-aplicando los conceptos de POO y principios de diseño que prendieron esta semana.
-No hagan nada sobre este ejercicio hasta no terminar los codelabs por completo.
-A continuación el enunciado:
-
-Escribir un programa que calcule el salario para estos tres roles:
-* Gerente se gana 200 por hora y trabaja 200 horas al mes
-* Operador se gana 10 por hora y trabaja 230 horas al mes
-* Contador se gana 50 por hora y trabaja 200 horas al mes
-
-Cada puesto puede tener un bonus que se calcula con base al valor de 10 horas
-adicionales de trabajo de acuerdo con el valor de la hora de cada puesto, para este caso,
-Solo el operador se ha ganado el bono y el gerente y el contador no.
+######################################################################
+  Game rule:
+  No try / catch
+######################################################################
 */
-// Gran rule:
-// No try catch, No NullPointerException
-
 fun main(args: Array<String>) {
-    leerDatos()
+    LiquidacionNomina(leerDatos() as Triple<Int, String, Double>).imprimirColillaDePago()
 }
 
-fun leerDatos() {
-    var cargoEmpleado = leerTipoDeEmpleado()
-    println("desde dentro de leerDatos, soy empleado $cargoEmpleado")
-    var horasTrabajadas = leerHorasTrabajadas()
-    println("Y trabajo $horasTrabajadas horas este mes que paso")
+
+fun leerDatos(): Triple<Int, String, Any> {
+    val cargoEmpleado = leerTipoDeEmpleado() //par
+    val horasTrabajadas = leerHorasTrabajadas()
+    var empleado = Triple(cargoEmpleado.first, cargoEmpleado.second, horasTrabajadas)
+    return empleado
 }
 
-fun leerTipoDeEmpleado(): String? {
+
+fun leerTipoDeEmpleado(): Pair<Int, String> {
         println("\nhola!\n" +
                 "Cual tipo de empleado que desea calcular nomina:\n" +
                 "1.Gerente\n" +
                 "2.Operador\n" +
                 "3.Contador\n" +
                 "Por favor ingresa el numero correspondiente:")
-        var numTipoDeEmpleado : String? = readLine()
+        val numTipoDeEmpleado : String? = readLine()
         return validaCargoEmpleado(validadorMissInput(numTipoDeEmpleado))
 }
 
 fun validadorMissInput (
     valor: String?,
     letters: Regex = Regex("[a-zA-Z]"),
-    // este siguiente busca todos los simbolos menos el punto "." que este dentro de cadena
-    simbolos: Regex = Regex("[|¬°\\\"\\'!#\$%&/\\(\\)=?¿¡+¨´*~\\{\\}\\[\\]\\^\\`\\-,;:_\\<\\>]|^\\.|\\.")
+    // este regex busca todos los simbolos (teclas fisicas normales).
+    // Menos el punto "." que este dentro de cadena.
+    // o que empieze y finalize en punto
+    simbolos: Regex = Regex("[|¬°\\\"\\'!#\$%&/\\(\\)=?¿¡+¨´*~\\{\\}\\[\\]\\^\\`\\-,;:_\\<\\>]^\\.|\\.\$")
 ): String? {
-
+    // me falta uno donde detecte mas de un punto dentro de la cadena, no hay tiempo
     if (valor == null) {
         print("Campo no puede quedar vacio (desde validador).")
         reiniciar()
@@ -62,27 +54,36 @@ fun validadorMissInput (
     return valor
 }
 
-fun validaCargoEmpleado(validadorMissInput: String?): String? {
-    return when(validadorMissInput!!.toInt()) {
-        1 -> "Gerente"
-        2 -> "Operador"
-        3 -> "Contador"
-        else -> {println("Debe ser un numero del 1 al 3").toString(); reiniciar().toString()}
-    }
+fun validaCargoEmpleado(validadorMissInput: String?): Pair<Int, String> {
+    var cargoEmpleado : Pair<Int, String> = 0 to ""
+    if (validadorMissInput!!.toInt() == 1) cargoEmpleado = 0 to "Gerente"
+    else if (validadorMissInput!!.toInt() == 2) cargoEmpleado = 1 to "Operador"
+    else if (validadorMissInput!!.toInt() == 3) cargoEmpleado = 2 to "Contador"
+    else {println("Debe ser un numero del 1 al 3").toString(); reiniciar().toString()}
+    return cargoEmpleado
 }
 
-fun leerHorasTrabajadas() {
+fun leerHorasTrabajadas(): Any {
     println("Ingresa la cantidad de horas que trabajo el empleado:")
-    var horastrabajadas : String? = readLine()
-    validarHorasTrabajadas(validadorMissInput(horastrabajadas))
+    return validarHorasTrabajadas(validadorMissInput(readLine())!!.toDouble())
 }
 
-fun validarHorasTrabajadas(validadorMissInput: String?): Any {
-    return when(validadorMissInput!!.toInt()) {
-        in 100..300 -> validadorMissInput.toDouble()
-        in 1..99 -> {validadorMissInput.toDouble(); println("Muy pocas horas, validar alguna novedad con recursos humanos")}
-        else -> {print("No esta permitido trabajar mas de 300 horas al mes.").toString(); reiniciar().toString()}
+fun validarHorasTrabajadas(validadorMissInput: Double): Double {
+    var temp: Double = 0.0
+    when (validadorMissInput!!.toDouble()) {
+        in 0.0..99.0 -> {
+            temp = validadorMissInput.toDouble()
+            println("Muy pocas horas, validar alguna novedad con recursos humanos")
+        }
+        in 100.0..300.0 -> {
+            temp = validadorMissInput.toDouble()
+        }
+        else -> {
+            println("No esta permitido trabajar mas de 300 horas al mes.").toString()
+            leerHorasTrabajadas().toString()
+        }
     }
+    return temp
 }
 
 
