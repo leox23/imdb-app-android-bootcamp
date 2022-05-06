@@ -6,8 +6,8 @@ data class ValoresNominasSegunContratos(
      val horasPagadasPorBono : Int = 10
 )
 
-class LiquidacionNomina(
-    open var infoParaCalculoDeNomina : Triple<Int, String, Double>
+open class LiquidacionNomina(
+    infoParaCalculoDeNomina : Triple<Int, String, Double>
 ) {
     // ni idea de porque no funciona la desestructuración aqui  D:
     //var (tipoDeCargo, _, horasTrabajadas) = infoParaCalculoDeNomina
@@ -26,9 +26,9 @@ class LiquidacionNomina(
     }
     fun imprimirColillaDePago(){
         return println("---------------------------------------------------------------\n" +
-                "Cargo del empleado: ${nombreCargo}\n" +
+                "Cargo del empleado: $nombreCargo\n" +
                 "Horas Trabajadas | Valor por hora | Salario Bruto | Bono\n" +
-                "${horasTrabajadas}            | ${valorDeLaHora}             | ${salarioBruto()} y bono de: $bono \n" +
+                "$horasTrabajadas            | $valorDeLaHora             | ${salarioBruto()} y bono de: $bono \n" +
                 "---------------------------------------------------------------\n" +
                 "Salario Neto a pagar: | \uD83D\uDCB8\$${salarioNeto()} |\n" +
                 "---------------------------------------------------------------\n")
@@ -42,7 +42,7 @@ class LiquidacionNomina(
 // pero se que hay muchos casos de revisiones
 // de muchos tipos de metricas
 // por eso conviene tenerlo aparte
-class Bono(var tipoDeCargo : Int, var horasTrabajadas : Double){
+class Bono(tipoDeCargo : Int, private var horasTrabajadas : Double){
     private val horasPagadasPorBono = ValoresNominasSegunContratos().horasPagadasPorBono
     private val horasParaPoderGanarBono = ValoresNominasSegunContratos().horasParaPoderGanarBono[tipoDeCargo]
     private val valorDeLaHora = ValoresNominasSegunContratos().valorDeHoraEmpleados[tipoDeCargo]
