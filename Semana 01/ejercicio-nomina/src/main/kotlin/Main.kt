@@ -36,32 +36,42 @@ fun validadorMissInput (
     // o que empieze y finalize en punto
     simbolos: Regex = Regex("[|¬°\"\'!#\$%&/()=?¿¡+¨´*~{}\\[\\]^`\\-,;:_<>]|^\\.|\\.\$")
 ): String? {
-    if (valor == null) {
-        print("Campo no puede quedar vacio (desde validador).")
-        reiniciar()
-    } else if (letters.containsMatchIn(valor.toString())) {
-        print("No debe contener letras, ingrese un numero valido.")
-        reiniciar()
-    } else if (simbolos.containsMatchIn(valor.toString())) {
-        print("No puede llevar simbolos, solo el punto para valores con decimas.\n" +
-                "no puede comenzar o terminar en punto.")
-        reiniciar()
-    } else if ( valor.count{ ".".contains(it)} > 1) {
-        print("Solo debe llevar un punto para ser double.")
-        reiniciar()
-    } else if ( " " in valor) {
-        print("No puede contener espacios, ingresar un numero valido")
-        reiniciar()
+    when {
+        valor == null -> {
+            print("Campo no puede quedar vacio (desde validador).")
+            reiniciar()
+        }
+        letters.containsMatchIn(valor.toString()) -> {
+            print("No debe contener letras, ingrese un numero valido.")
+            reiniciar()
+        }
+        simbolos.containsMatchIn(valor.toString()) -> {
+            print("No puede llevar simbolos, solo el punto para valores con decimas.\n" +
+                    "no puede comenzar o terminar en punto.")
+            reiniciar()
+        }
+        valor.count{ ".".contains(it)} > 1 -> {
+            print("Solo debe llevar un punto para ser double.")
+            reiniciar()
+        }
+        " " in valor -> {
+            print("No puede contener espacios, ingresar un numero valido")
+            reiniciar()
+        }
     }
     return valor
 }
 
 fun validaCargoEmpleado(validadorMissInput: String?): Pair<Int, String> {
     var cargoEmpleado : Pair<Int, String> = 0 to ""
-    if (validadorMissInput!!.toInt() == 1) cargoEmpleado = 0 to "Gerente"
-    else if (validadorMissInput.toInt() == 2) cargoEmpleado = 1 to "Operador"
-    else if (validadorMissInput.toInt() == 3) cargoEmpleado = 2 to "Contador"
-    else {println("Debe ser un numero del 1 al 3").toString(); reiniciar().toString()}
+    when(validadorMissInput!!.toInt()) {
+        1 -> cargoEmpleado = 0 to "Gerente"
+        2 -> cargoEmpleado = 1 to "Operador"
+        3 -> cargoEmpleado = 2 to "Contador"
+        else -> {
+            println("Debe ser un numero del 1 al 3").toString()
+            reiniciar().toString()}
+        }
     return cargoEmpleado
 }
 
