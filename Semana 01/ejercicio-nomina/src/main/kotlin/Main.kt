@@ -6,16 +6,8 @@
 ######################################################################
 */
 fun main() {
-    LiquidacionNomina(leerDatos() as Triple<Int, String, Double>).imprimirColillaDePago()
+    LiquidacionNomina(leerTipoDeEmpleado()).imprimirColillaDePago()
 }
-
-
-fun leerDatos(): Triple<Int, String, Any> {
-    val cargoEmpleado = leerTipoDeEmpleado() //par
-    val horasTrabajadas = leerHorasTrabajadas()
-    return Triple(cargoEmpleado.first, cargoEmpleado.second, horasTrabajadas)
-}
-
 
 fun leerTipoDeEmpleado(): Pair<Int, String> {
         println("\nhola!\n" +
@@ -31,10 +23,7 @@ fun leerTipoDeEmpleado(): Pair<Int, String> {
 fun validadorMissInput (
     valor: String?,
     letters: Regex = Regex("[a-zA-Z]"),
-    // este regex busca todos los simbolos (teclas fisicas normales).
-    // Menos el punto "." que este dentro de cadena.
-    // o que empieze y finalize en punto
-    simbolos: Regex = Regex("[|¬°\"\'!#\$%&/()=?¿¡+¨´*~{}\\[\\]^`\\-,;:_<>]|^\\.|\\.\$")
+    simbolos: Regex = Regex("[|¬°\"\'!#\$%&/().=?¿¡+¨´*~{}\\[\\]^`\\-,;:_<>]|\\s")
 ): String? {
     when {
         valor == null -> {
@@ -46,16 +35,7 @@ fun validadorMissInput (
             reiniciar()
         }
         simbolos.containsMatchIn(valor.toString()) -> {
-            print("No puede llevar simbolos, solo el punto para valores con decimas.\n" +
-                    "no puede comenzar o terminar en punto.")
-            reiniciar()
-        }
-        valor.count{ ".".contains(it)} > 1 -> {
-            print("Solo debe llevar un punto para ser double.")
-            reiniciar()
-        }
-        " " in valor -> {
-            print("No puede contener espacios, ingresar un numero valido")
+            print("No puede llevar simbolos ni espacios!")
             reiniciar()
         }
     }
@@ -69,33 +49,11 @@ fun validaCargoEmpleado(validadorMissInput: String?): Pair<Int, String> {
         2 -> cargoEmpleado = 1 to "Operador"
         3 -> cargoEmpleado = 2 to "Contador"
         else -> {
-            println("Debe ser un numero del 1 al 3").toString()
-            reiniciar().toString()}
-        }
-    return cargoEmpleado
-}
-
-fun leerHorasTrabajadas(): Any {
-    println("Ingresa la cantidad de horas que trabajo el empleado:")
-    return validarHorasTrabajadas(validadorMissInput(readLine())!!.toDouble())
-}
-
-fun validarHorasTrabajadas(validadorMissInput: Double): Double {
-    var temp = 0.0
-    when (validadorMissInput) {
-        in 0.0 .. 99.9 -> {
-            temp = validadorMissInput
-            println("Muy pocas horas, validar alguna novedad con recursos humanos")
-        }
-        in 100.0 .. 300.0 -> {
-            temp = validadorMissInput
-        }
-        else -> {
-            println("No esta permitido trabajar mas de 300 horas al mes.").toString()
-            leerHorasTrabajadas().toString()
+            println("Debe ser un numero del 1 al 3")
+            reiniciar()
         }
     }
-    return temp
+    return cargoEmpleado
 }
 
 
@@ -106,6 +64,6 @@ fun reiniciar() {
         print(" .")
     }
     Thread.sleep(400)
-    leerDatos()
+    main()
 }
 
