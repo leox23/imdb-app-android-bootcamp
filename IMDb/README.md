@@ -1,15 +1,28 @@
 # IMDb app
 
-🚧Vista login en construccion🚧
+🚧Vista Login en construccion🚧
 
 ### Pendientes:
 
-1. Splash intro pendiente
-2. Logo en login
-3. Social, register, iniciar tipo initado
-4. Averiguar como se usan las fuentes correctamente
+- [ ] Splash intro pendiente
+- [ ] Llenar el manifest
+- [ ] Logo en login
+- [ ] Averiguar como se usan las fuentes correctamente
+- [ ] Aplicar todos los estilos
 
-🐞 Colores de los textField no se reflejan correctamente. 
+<hr/>
+
+### Bugs
+
+<hr/>
+
+### Done
+
+- [x] Social, register, iniciar tipo invitado (estructura), archivos de logos.
+
+### Fixed
+
+~~🐞 Colores de los textField no se reflejan correctamente.~~
 
 
 

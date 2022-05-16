@@ -11,6 +11,7 @@
     -->
 
     <!-- colores propios de la app-->
+    <!-- al parecer solo son necesariosn en ui.theme-->
     <color name="mustard">#FFF6C700</color>
     <color name="black">#FF000000</color>
     <color name="grey">#FF9D9C9C</color>

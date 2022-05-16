@@ -1,6 +1,19 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+
+    /* estos dos son los adecuados para la acceder a las cosas de los xml
+    por el nombre, pero parece no funcionarme con los colores, tengo que usar desde ui.theme
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+*/
+
+    /*
+    apply plugin: 'com.android.application'
+    apply plugin: 'kotlin-android'
+    apply plugin: 'kotlin-android-extensions'
+    */
+
 }
 
 android {
