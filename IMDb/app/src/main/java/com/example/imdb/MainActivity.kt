@@ -18,14 +18,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.imdb.ui.theme.IMDbTheme
 
 class MainActivity : ComponentActivity() {
@@ -48,15 +44,8 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-val robotoFamily = FontFamily(
-    Font(R.font.roboto_bold, FontWeight.Bold),
-    Font(R.font.roboto_medium, FontWeight.Medium),
-    Font(R.font.roboto_regular, FontWeight.W400), // Regular
-    Font(R.font.roboto_light_italic, FontWeight.Light) // Light Italic
-)
-
 @Composable
-fun Greeting() {
+fun Greeting() { // todo aun pendiente el splash
     Text(text = "IMDb")
 }
 
@@ -77,24 +66,21 @@ fun StandartLogin(){
     Column (
         Modifier
             .fillMaxHeight()
-            .background(Color(0xFFF6C700)) //inconsistencia llamando mustard color de res
+            .background(Color(0xFFF6C700)) // inconsistencia llamando mustard color de res
             .padding(  // todo colocar como variable accesible luego, para reutilizar en otros bloques de diseño
                 50.dp,
                 0.dp
             ),
         verticalArrangement = Arrangement.Center)
     {
-        Text(
-            text = "IMDb",// todo aqui tengo que reutilizar el componente que voy a utilizar en el splash
-            fontSize = 72.sp, // todo falta solucionar los de las fuentes
-            textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth()
-        )
+        Logo()
 
         Column {
-            labelAndInput("Usuario")
-            labelAndInput("Constraseña")
-            forgotPass()
+            Label("Usuario")
+            TextField()
+            Label("Constraseña")
+            TextField()
+            ForgotPass()
             Spacer(modifier = Modifier.size(20.dp))
             LoginButton()
         }
@@ -103,23 +89,30 @@ fun StandartLogin(){
             Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Spacer(modifier = Modifier.size(40.dp))
-            Text(text = "Ó podes iniciar con")
-            Spacer(modifier = Modifier.size(30.dp))
+            //Spacer(modifier = Modifier.size(40.dp))
+            Text(text = "Ó podes iniciar con",
+                style = MaterialTheme.typography.subtitle1,
+                modifier = Modifier.padding(0.dp, 40.dp, 0.dp, 20.dp))
+            //Spacer(modifier = Modifier.size(20.dp))
             Row {
-                LoginAnotherAccount()
-                LoginAnotherAccount()
-                LoginAnotherAccount()
+                LoginAppleAccount()
+                LoginFacebookAccount()
+                LoginGoogleAccount()
             }
-            Row {
-                Text(text = "¿No tienes una cuenta")
+            Row (
+                Modifier.padding(0.dp, 20.dp)
+                    ){
+                Text(text = "¿No tienes una cuenta",
+                    style = MaterialTheme.typography.subtitle1)
                 Spacer(modifier =  Modifier.width(10.dp))
-                //todo este texto debe ser un textButton en negrita
-                Text(text = "Registrate")
+                //todo este texto debe ser un textButton
+                Text(text = "Registrate",
+                    color = Color(R.color.charcoal),
+                    style = MaterialTheme.typography.body2)
             }
-            //todo este texto debe ser un textButton en negrita
+            //todo este texto debe ser un textButton
             Text(text = "Continuar como invitado",
-                modifier = Modifier.padding(0.dp, 20.dp, 0.dp, 0.dp))
+                style = MaterialTheme.typography.body2)
         }
     }
 }
@@ -132,30 +125,43 @@ fun StandartLoginPreview() {
         StandartLogin()
         //labelAndInput("Usuario")
         //loginAnotherAccount()
+        //Logo()
     }
 }
 
+@Composable
+fun Logo(){ //no es roboto, buscar fuente correcta
+    Text(
+        text = "IMDb", // todo aqui tengo que reutilizar el componente que voy a utilizar en el splash
+        textAlign = TextAlign.Center,
+        modifier = Modifier.fillMaxWidth().height(100.dp),
+        style = MaterialTheme.typography.h1
+
+    )
+}
 
 @Composable
-fun labelAndInput(label : String) {
-    Column {
+fun Label(label : String) {
         Text(text = label,
-            Modifier.padding(0.dp, 3.dp)
+            Modifier.padding(0.dp, 17.dp, 0.dp, 8.dp),
+            color = Color(R.color.charcoal), //iel gris parece ser muy claro en conparacion al diseño, por modularizar el color
+            style = MaterialTheme.typography.body2
         )
-        TextFieldDemo()
-    }
 }
 
 @Composable
-fun TextFieldDemo() {
+fun TextField() {
     Column {
         val textState = remember { mutableStateOf(TextFieldValue()) }
         TextField(
             value = textState.value,
             onValueChange = { textState.value = it },
+            modifier = Modifier.fillMaxWidth().height(60.dp),
             shape = RoundedCornerShape(15.dp),
-            modifier = Modifier.border(BorderStroke(0.dp, Color.Red)),
             colors = TextFieldDefaults.textFieldColors(
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                disabledIndicatorColor = Color.Transparent,
                 // todo aca tengo que aplicar el manejo de Material Theming
                 // para que me reconosca los colores de recursos o de ui.theme
                 // y para poder reutilizar de una sola fuente
@@ -167,11 +173,12 @@ fun TextFieldDemo() {
 }
 
 @Composable
-fun forgotPass() {
-    TextButton(onClick = { /* Do something! */ })
+fun ForgotPass() {
+    TextButton(onClick = { /* aqui lo que colocare donde se recupera la contraseña*/ })
     {
         Text("¿Olvidaste tu contraseña?",
-            color = Color(R.color.grey)
+            color = Color(R.color.charcoal),
+            style = MaterialTheme.typography.subtitle2
             )
     }
 }
@@ -194,13 +201,27 @@ fun LoginButton() {
         ),
     ) {
         Text("Login",
-            fontSize = 20.sp
+            style = MaterialTheme.typography.body2
        )
     }
 }
 
 @Composable
-fun LoginAnotherAccount() {
+fun LoginAppleAccount() {
+    val image: Painter = painterResource(id = R.drawable.ic_apple_logo)
+    Image(painter = image,
+        contentDescription = "",
+        modifier = Modifier
+            .padding(9.dp)
+            .size(62.dp)
+            .clip(CircleShape)
+            .background(Color(0xFFFFFFFF))
+            .padding(14.dp)
+    )
+}
+
+@Composable
+fun LoginFacebookAccount() {
     val image: Painter = painterResource(id = R.drawable.ic_facebook_logo)
     Image(painter = image,
         contentDescription = "",
@@ -213,3 +234,16 @@ fun LoginAnotherAccount() {
     )
 }
 
+@Composable
+fun LoginGoogleAccount() {
+    val image: Painter = painterResource(id = R.drawable.ic_google_logo)
+    Image(painter = image,
+        contentDescription = "",
+        modifier = Modifier
+            .padding(9.dp)
+            .size(62.dp)
+            .clip(CircleShape)
+            .background(Color(0xFFFFFFFF))
+            .padding(14.dp)
+    ) // todo el icono de google se ve mas pequeño, porque parte del icono es relleno blanco
+}
