@@ -14,13 +14,17 @@ val Roboto = FontFamily(
     Font(R.font.roboto_regular, FontWeight.W400), // Regular
     Font(R.font.roboto_light_italic, FontWeight.Light) // Light Italic
 )
+
+val Milford = FontFamily(
+    Font(R.font.milford_black, FontWeight.Bold)
+)
 // Set of Material typography styles to start with
 val Typography = Typography(
     h1 = TextStyle( //logo parece no funcionar con este metodo
-        fontFamily = Roboto,
+        fontFamily = Milford,
         fontSize = 80.sp,
         fontWeight = FontWeight.Bold,
-        letterSpacing = -(5.sp)
+        letterSpacing = -(6.sp)
     ),
 
     body2 = TextStyle(

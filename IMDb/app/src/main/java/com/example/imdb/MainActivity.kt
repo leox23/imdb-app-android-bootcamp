@@ -37,7 +37,6 @@ class MainActivity : ComponentActivity() {
                 ) {
                     //Greeting()
                     StandartLoginPreview()
-
                 }
             }
         }
@@ -56,7 +55,6 @@ fun GreetingPreview() {
         Greeting()
     }
 }
-
 
 // El IDE me corrige de colocarlo camel case (no pascal case)
 // segun entiendo las convenciones debe ser no pascal case
