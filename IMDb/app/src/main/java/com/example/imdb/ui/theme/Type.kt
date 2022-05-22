@@ -22,11 +22,16 @@ val Milford = FontFamily(
 val Typography = Typography(
     h1 = TextStyle( //logo parece no funcionar con este metodo
         fontFamily = Milford,
+        fontSize = 125.sp,
+        fontWeight = FontWeight.Bold,
+        letterSpacing = -(8.sp)
+    ),
+    h2 = TextStyle( //logo parece no funcionar con este metodo
+        fontFamily = Milford,
         fontSize = 80.sp,
         fontWeight = FontWeight.Bold,
         letterSpacing = -(6.sp)
     ),
-
     body2 = TextStyle(
         fontFamily = Roboto,
         fontWeight = FontWeight.Bold,

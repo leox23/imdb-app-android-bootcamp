@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -23,6 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.imdb.ui.theme.IMDbTheme
+import com.example.imdb.ui.theme.Mustard
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +47,17 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting() { // todo aun pendiente el splash
-    Text(text = "IMDb")
+    Column (
+        Modifier.background(Mustard)
+            ) {
+        Text("IMDb",
+            Modifier.fillMaxWidth()
+                .fillMaxHeight()
+                .wrapContentSize(Alignment.Center),
+            style = MaterialTheme.typography.h1
+        )
+
+    }
 }
 
 //@Preview(showBackground = true)
@@ -56,15 +68,12 @@ fun GreetingPreview() {
     }
 }
 
-// El IDE me corrige de colocarlo camel case (no pascal case)
-// segun entiendo las convenciones debe ser no pascal case
-// en caso de que la funcion compuesta se muestre en pantalla
 @Composable
 fun StandartLogin(){
     Column (
         Modifier
             .fillMaxHeight()
-            .background(Color(0xFFF6C700)) // inconsistencia llamando mustard color de res
+            .background(Mustard) // inconsistencia llamando mustard color de res
             .padding(  // todo colocar como variable accesible luego, para reutilizar en otros bloques de diseño
                 50.dp,
                 0.dp
@@ -110,6 +119,7 @@ fun StandartLogin(){
             }
             //todo este texto debe ser un textButton
             Text(text = "Continuar como invitado",
+                modifier = Modifier.padding(0.dp,0.dp,0.dp, 30.dp), // trabajarlo general como una unidad para todos los elementos finales
                 style = MaterialTheme.typography.body2)
         }
     }
@@ -120,6 +130,7 @@ fun StandartLogin(){
 @Composable
 fun StandartLoginPreview() {
     IMDbTheme {
+        Greeting()
         StandartLogin()
         //labelAndInput("Usuario")
         //loginAnotherAccount()
@@ -132,8 +143,10 @@ fun Logo(){ //no es roboto, buscar fuente correcta
     Text(
         text = "IMDb", // todo aqui tengo que reutilizar el componente que voy a utilizar en el splash
         textAlign = TextAlign.Center,
-        modifier = Modifier.fillMaxWidth().height(100.dp),
-        style = MaterialTheme.typography.h1
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(100.dp),
+        style = MaterialTheme.typography.h2
 
     )
 }
@@ -154,7 +167,9 @@ fun TextField() {
         TextField(
             value = textState.value,
             onValueChange = { textState.value = it },
-            modifier = Modifier.fillMaxWidth().height(60.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(60.dp),
             shape = RoundedCornerShape(15.dp),
             colors = TextFieldDefaults.textFieldColors(
                 focusedIndicatorColor = Color.Transparent,
@@ -164,9 +179,9 @@ fun TextField() {
                 // para que me reconosca los colores de recursos o de ui.theme
                 // y para poder reutilizar de una sola fuente
                 // de momento solo lo dejare asi para entregar el martes
-                backgroundColor = Color(0xFFFFFFFF)),
+                backgroundColor = Color(0xFFF5F5F5))
         )
-        //Text("The textfield has this text: " + textState.value.text) // como obtener este valor
+        Text("The textfield has this text: " + textState.value.text) // como obtener este valor
     }
 }
 
@@ -197,7 +212,7 @@ fun LoginButton() {
             contentColor = Color(R.color.white_smoke),
             disabledContentColor = Color(0xFFFFFFFF), //inconsistencia al intentar recibir desde recursos
         ),
-    ) {
+    ){
         Text("Login",
             style = MaterialTheme.typography.body2
        )
