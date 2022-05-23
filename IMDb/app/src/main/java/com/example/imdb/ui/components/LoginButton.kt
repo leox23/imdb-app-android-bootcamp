@@ -15,7 +15,7 @@ import com.example.imdb.ui.theme.White_Smoke
 
 
 @Composable
-fun LoginButton() {
+fun LoginButton(label:String) {
     Button(
         onClick = { /*todo aqui toca lo que hara cuando sepa que toca*/ },
         Modifier
@@ -31,7 +31,7 @@ fun LoginButton() {
             disabledContentColor = White_Smoke, //inconsistencia al intentar recibir desde recursos
         ),
     ){
-        Text("Login",
+        Text(label,
             style = MaterialTheme.typography.body2
         )
     }

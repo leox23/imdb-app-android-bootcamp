@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.imdb">
+    package="com.example.imdb"
+    android:versionCode="1"
+    android:versionName="0.1">
 
+    <!-- pendiente por colocar custom icons-->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

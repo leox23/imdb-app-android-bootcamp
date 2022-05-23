@@ -32,6 +32,12 @@ val Typography = Typography(
         fontWeight = FontWeight.Bold,
         letterSpacing = -(6.sp)
     ),
+    h3 = TextStyle( //logo parece no funcionar con este metodo
+        fontFamily = Milford,
+        fontSize = 50.sp,
+        fontWeight = FontWeight.Bold,
+        letterSpacing = -(4.sp)
+    ),
     body2 = TextStyle(
         fontFamily = Roboto,
         fontWeight = FontWeight.Bold,

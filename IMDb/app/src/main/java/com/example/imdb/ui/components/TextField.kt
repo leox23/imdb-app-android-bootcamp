@@ -1,18 +1,20 @@
 package com.example.imdb.ui.components
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Text
-import androidx.compose.material.TextFieldDefaults
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import com.example.imdb.R
+import com.example.imdb.ui.theme.Charcoal
 
 
 @Composable
@@ -37,6 +39,59 @@ fun TextField() {
                 backgroundColor = Color(0xFFF5F5F5)
             )
         )
-        Text("The textfield has this text: " + textState.value.text) // como obtener este valor
+        //Text("The textfield has this text: " + textState.value.text) // como obtener este valor
     }
+}
+
+
+@Composable
+fun TextFieldOutline(label : String) {
+    var name by remember {
+        mutableStateOf("")
+    }
+
+    OutlinedTextField(
+        value = name,
+        onValueChange = { name = it },
+        Modifier
+            .fillMaxWidth()
+            .size(82.dp)
+            .padding(0.dp, 4.dp),
+        label = { Text(label) }
+    )
+}
+
+
+
+@Composable
+fun PassFieldOutline() {
+    var password by remember { mutableStateOf("") }
+    var hidden by remember { mutableStateOf(true) }
+
+    OutlinedTextField(
+        value = password,
+        onValueChange = { password = it },
+        Modifier
+            .fillMaxWidth()
+            .padding(0.dp, 8.dp, 0.dp, 0.dp),
+        label = { Text("Contraseña") },
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+        singleLine = true,
+        visualTransformation =
+        if (hidden) PasswordVisualTransformation() else VisualTransformation.None,
+        trailingIcon = {
+            IconButton(onClick = { hidden = !hidden }) {
+                val vector = painterResource(
+                    if (hidden) R.drawable.eye_invisible
+                    else R.drawable.eye
+                )
+                val description = if (hidden) "Ocultar contraseña" else "Revelar contraseña"
+                Icon(painter = vector, contentDescription = description)
+            }
+        }
+    )
+    Text("La contraseña debe contener 8 caracteres",
+        color = Charcoal,
+        style = MaterialTheme.typography.subtitle2)
+    Spacer(modifier = Modifier.size(40.dp))
 }

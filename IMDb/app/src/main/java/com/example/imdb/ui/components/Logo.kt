@@ -2,6 +2,7 @@ package com.example.imdb.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -27,7 +28,7 @@ fun Logo(){ //no es roboto, buscar fuente correcta
 
 
 @Composable
-fun Greeting() { // todo aun pendiente el splash
+fun Greeting() { // todo cambiar a otro nombre?
     Column (
         Modifier.background(Mustard)
     ) {
@@ -40,4 +41,19 @@ fun Greeting() { // todo aun pendiente el splash
 
     }
 }
+
+
+@Composable
+fun LogoSmall(){ //no es roboto, buscar fuente correcta
+    Text(
+        text = "IMDb", // todo aqui tengo que reutilizar el componente que voy a utilizar en el splash
+        textAlign = TextAlign.Start,
+        modifier = Modifier
+            .background(Mustard, shape = RoundedCornerShape(8.dp))
+            .padding(14.dp, 2.dp),
+        style = MaterialTheme.typography.h3
+
+    )
+}
+
 
