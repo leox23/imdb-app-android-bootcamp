@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">IMDb</string>
+
+    <!-- login -->
+    <string name="user">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="login">Login</string>
+    <string name="or_login_with">O podes iniciar con</string>
+    <string name="you_do_not_have_an_account">¿No tienes una cuenta?</string>
+    <string name="register">Registrate</string>
+    <string name="continue_as_a_guest">Continuar como invitado</string>
+
+    <!-- register -->
+    <string name="create_an_account">Crear una cuenta</string>
+    <string name="name">Nombre</string>
+    <string name="email">Correo Electronico</string>
+    <string name="hide_pass">Ocultar contraseña</string>
+    <string name="reveal_pass">Revelar contraseña</string>
+    <string name="password_must_contain_8_characters">La contraseña debe contener 8 caracteres</string>
+    <string name="accept">Aceptar</string>
+
 </resources>

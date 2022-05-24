@@ -8,7 +8,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.imdb.R
 import com.example.imdb.ui.components.LoginButton
 import com.example.imdb.ui.components.LogoSmall
 import com.example.imdb.ui.components.PassFieldOutline
@@ -23,11 +25,11 @@ fun Register(){
     ) {
         LogoSmall()
         Spacer(Modifier.height(38.dp))
-        Text("Crear una cuenta")
-        TextFieldOutline("Nombre")
-        TextFieldOutline("Correo Electronico")
+        Text(stringResource(R.string.create_an_account))
+        TextFieldOutline(stringResource(R.string.name))
+        TextFieldOutline(stringResource(R.string.email))
         PassFieldOutline()
-        LoginButton("Aceptar")
+        LoginButton(stringResource(R.string.accept))
     }
 }
 

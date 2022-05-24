@@ -8,6 +8,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
@@ -74,7 +75,7 @@ fun PassFieldOutline() {
         Modifier
             .fillMaxWidth()
             .padding(0.dp, 8.dp, 0.dp, 0.dp),
-        label = { Text("Contraseña") },
+        label = { Text(stringResource(R.string.password)) },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
         singleLine = true,
         visualTransformation =
@@ -85,12 +86,12 @@ fun PassFieldOutline() {
                     if (hidden) R.drawable.eye_invisible
                     else R.drawable.eye
                 )
-                val description = if (hidden) "Ocultar contraseña" else "Revelar contraseña"
+                val description = if (hidden) stringResource(R.string.hide_pass) else stringResource(R.string.reveal_pass)
                 Icon(painter = vector, contentDescription = description)
             }
         }
     )
-    Text("La contraseña debe contener 8 caracteres",
+    Text(stringResource(R.string.password_must_contain_8_characters),
         color = Charcoal,
         style = MaterialTheme.typography.subtitle2)
     Spacer(modifier = Modifier.size(40.dp))
