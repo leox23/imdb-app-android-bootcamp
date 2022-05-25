@@ -9,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.imdb.R
 import com.example.imdb.ui.components.*
@@ -19,7 +20,7 @@ fun StandartLogin(){
     Column (
         Modifier
             .fillMaxHeight()
-            .background(Mustard) // inconsistencia llamando mustard color de res
+            .background(Mustard)
             .padding(  // todo colocar como variable accesible luego, para reutilizar en otros bloques de diseño
                 50.dp,
                 0.dp
@@ -70,3 +71,12 @@ fun StandartLogin(){
         }
     }
 }
+
+@Preview(showBackground = true)
+@Composable
+fun StandartLoginPreview() {
+    IMDbTheme {
+        StandartLogin()
+    }
+}
+

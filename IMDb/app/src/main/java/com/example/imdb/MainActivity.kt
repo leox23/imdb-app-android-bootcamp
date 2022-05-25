@@ -1,5 +1,7 @@
 package com.example.imdb
 
+
+import android.app.ActionBar
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -27,21 +29,22 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-/* aqui la actividad de recycle view
+/*
+// aqui la actividad de recycle view
         setContentView(R.layout.activity_main)
         val recyclerView = recyclerMovies
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = MovieAdapter(MovieProvider.movieList)
-*/
 
+*/
         setContent {
             IMDbTheme {
                 Surface(
 
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    StandartLoginPreview()
-
+                    //StandartLoginPreview()
+                    MainScreen()
                     // otras vistas... (un no esta linkeada la navegacion)
                     //Greeting()
                     //Register()

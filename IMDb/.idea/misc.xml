@@ -5,8 +5,11 @@
       <map>
         <entry key="..\:/Users/Leonel/DevCode/Globant Ceiba RutaN/0-conceptos-fundamentales/leonel-android-bootcamp/IMDb/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.101" />
         <entry key="..\:/Users/Leonel/DevCode/Globant Ceiba RutaN/0-conceptos-fundamentales/leonel-android-bootcamp/IMDb/app/src/main/res/drawable/ic_launcher_background.xml" value="0.101" />
-        <entry key="..\:/Users/Leonel/DevCode/Globant Ceiba RutaN/0-conceptos-fundamentales/leonel-android-bootcamp/IMDb/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Leonel/DevCode/Globant Ceiba RutaN/0-conceptos-fundamentales/leonel-android-bootcamp/IMDb/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Leonel/DevCode/Globant Ceiba RutaN/0-conceptos-fundamentales/leonel-android-bootcamp/IMDb/app/src/main/res/layout/list_item_movie.xml" value="0.5" />
+        <entry key="..\:/Users/Leonel/DevCode/Globant Ceiba RutaN/0-conceptos-fundamentales/leonel-android-bootcamp/IMDb/app/src/main/res/menu/bottom_navigation.xml" value="0.209375" />
+        <entry key="..\:/Users/Leonel/DevCode/Globant Ceiba RutaN/0-conceptos-fundamentales/leonel-android-bootcamp/IMDb/app/src/main/res/menu/items.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/Leonel/DevCode/Globant Ceiba RutaN/0-conceptos-fundamentales/leonel-android-bootcamp/IMDb/app/src/main/res/menu/navigation.xml" value="0.209375" />
       </map>
     </option>
   </component>

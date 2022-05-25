@@ -48,4 +48,5 @@
         app:layout_constraintStart_toEndOf="@+id/movieFeaturedImage"
         app:layout_constraintTop_toBottomOf="@id/movieAge"
         tools:text="la pelicula trata de todo estos inventos no se que mas decir aqui..." />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
