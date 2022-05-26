@@ -1,7 +1,7 @@
-package com.example.imdb
+package com.example.imdb.lorem
 
 
-import com.example.imdb.R
+import com.example.imdb.lorem.Movie
 
 
 class MovieProvider {

@@ -3,7 +3,7 @@ package com.example.imdb.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.imdb.Movie
+import com.example.imdb.lorem.Movie
 import com.example.imdb.R
 
 class MovieAdapter(private val movieList: List<Movie>) : RecyclerView.Adapter<MovieViewHolder>() {

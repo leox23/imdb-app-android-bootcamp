@@ -1,7 +1,6 @@
 package com.example.imdb
 
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -14,6 +13,8 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.imdb.navigation.BottomBarScreen
+import com.example.imdb.navigation.BottomNavGraph
 import com.example.imdb.ui.theme.Charcoal
 import com.example.imdb.ui.theme.Mustard
 

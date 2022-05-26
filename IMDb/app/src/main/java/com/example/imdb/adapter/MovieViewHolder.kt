@@ -3,8 +3,7 @@ package com.example.imdb.adapter
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.imdb.Movie
-import kotlinx.android.synthetic.main.list_item_movie.*
+import com.example.imdb.lorem.Movie
 import kotlinx.android.synthetic.main.list_item_movie.view.*
 
 class MovieViewHolder( view : View):RecyclerView.ViewHolder(view) {

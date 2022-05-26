@@ -1,4 +1,4 @@
-package com.example.imdb.ui.start_app
+package com.example.imdb.ui.session
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -7,15 +7,12 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
-import com.example.imdb.BottomBar
 import com.example.imdb.R
 import com.example.imdb.ui.components.*
 import com.example.imdb.ui.theme.*
@@ -83,12 +80,13 @@ fun StandartLogin(navController: NavController){
         }
     }
 }
+
 /*
-@Preview(showBackground = true)
+@Preview()
 @Composable
 fun StandartLoginPreview() {
     IMDbTheme {
-        StandartLogin()
+        StandartLogin(navController = NavController)
     }
 }
 */

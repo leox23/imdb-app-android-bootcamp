@@ -1,4 +1,4 @@
-package com.example.imdb.ui.start_app
+package com.example.imdb.ui.session
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

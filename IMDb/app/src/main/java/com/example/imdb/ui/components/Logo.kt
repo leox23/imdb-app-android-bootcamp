@@ -16,13 +16,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.rememberNavController
-import com.example.imdb.BottomBarScreen
-import com.example.imdb.MainScreen
-import com.example.imdb.OthersViews
+import com.example.imdb.navigation.OthersViews
 import com.example.imdb.ui.theme.Mustard
 import kotlinx.coroutines.delay
 

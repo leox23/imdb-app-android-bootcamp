@@ -1,4 +1,4 @@
-package com.example.imdb
+package com.example.imdb.lorem
 
 data class Movie(
     val id: Int,
