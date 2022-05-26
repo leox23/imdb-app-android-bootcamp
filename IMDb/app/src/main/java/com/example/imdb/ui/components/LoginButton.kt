@@ -1,5 +1,6 @@
 package com.example.imdb.ui.components
 
+import android.service.autofill.OnClickAction
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.CircleShape
@@ -17,16 +18,16 @@ import com.example.imdb.ui.theme.White_Smoke
 
 
 @Composable
-fun LoginButton(label:String) {
+fun LoginButton(label:String, onClickAction: () -> Unit) {
     Button(
-        onClick = { /*todo aqui toca lo que hara cuando sepa que toca*/ },
-        Modifier
+       onClick = onClickAction,
+       modifier =  Modifier
             .fillMaxWidth()
             .height(60.dp)
             .shadow(
                 elevation = 15.dp,
             ),
-        false,
+        enabled = true,
         shape = RoundedCornerShape(20),
         colors = ButtonDefaults.textButtonColors(
             // en el momento no recuerdo como usar res/value/colors.xml
@@ -34,9 +35,9 @@ fun LoginButton(label:String) {
             contentColor = White_Smoke,
             disabledContentColor = White_Smoke, //inconsistencia al intentar recibir desde recursos
         ),
-    ){
-        Text(label,
-            style = MaterialTheme.typography.body2
-        )
-    }
+        ){
+            Text(label,
+                style = MaterialTheme.typography.body2
+            )
+        }
 }

@@ -32,4 +32,21 @@ sealed class BottomBarScreen (
         title = "User",
         icon = Icons.Default.Add
     )
+    /*
+    object  Login : BottomBarScreen (
+        route = "login",
+        title = "Login",
+        icon = Icons.Default.Add
+    )
+    object  Register : BottomBarScreen (
+        route = "register",
+        title = "Register",
+        icon = Icons.Default.Add
+    )
+    object  Splash : BottomBarScreen (
+        route = "splash",
+        title = "Splash",
+        icon = Icons.Default.Add
+    )
+    */
 }

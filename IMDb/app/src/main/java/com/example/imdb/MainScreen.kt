@@ -8,7 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -23,7 +22,6 @@ fun MainScreen() {
     val navController = rememberNavController()
     Scaffold(
         bottomBar = { BottomBar(navController = navController)},
-        modifier = Modifier.height(300.dp)
     ){
         BottomNavGraph(navController = navController)
     }

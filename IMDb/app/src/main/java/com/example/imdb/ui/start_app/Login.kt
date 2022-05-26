@@ -1,22 +1,27 @@
-package com.example.imdb.ui.login
+package com.example.imdb.ui.start_app
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.example.imdb.BottomBar
 import com.example.imdb.R
 import com.example.imdb.ui.components.*
 import com.example.imdb.ui.theme.*
 
 @Composable
-fun StandartLogin(){
+fun StandartLogin(navController: NavController){
     Column (
         Modifier
             .fillMaxHeight()
@@ -36,7 +41,7 @@ fun StandartLogin(){
             TextField()
             ForgotPass()
             Spacer(modifier = Modifier.size(20.dp))
-            LoginButton(stringResource(R.string.login))
+            LoginButton(stringResource(R.string.login), onClickAction = { navController.navigate("register") })
         }
 
         Column (
@@ -59,19 +64,26 @@ fun StandartLogin(){
                 Text(text = stringResource(R.string.you_do_not_have_an_account),
                     style = MaterialTheme.typography.subtitle1)
                 Spacer(modifier =  Modifier.width(10.dp))
-                //todo este texto debe ser un textButton lo cambiare cuando tenga la vista a la que va
+                //todo pendiente por crear recurso de texto clickable
                 Text(text = stringResource(R.string.register),
+                    modifier = Modifier
+                        .clickable(
+                            enabled = true,
+                            role = Role.Button
+                        ){
+                            navController.navigate("register")
+                        },
                     color = Charcoal,
                     style = MaterialTheme.typography.body2)
             }
-            //todo este texto debe ser un textButton lo cambiare cuando tenga la vista a la que va
+            //todo falta este por aplicarle el efecto del click
             Text(text = stringResource(R.string.continue_as_a_guest),
                 modifier = Modifier.padding(0.dp,0.dp,0.dp, 30.dp), // trabajarlo general como una unidad para todos los elementos finales
                 style = MaterialTheme.typography.body2)
         }
     }
 }
-
+/*
 @Preview(showBackground = true)
 @Composable
 fun StandartLoginPreview() {
@@ -79,4 +91,4 @@ fun StandartLoginPreview() {
         StandartLogin()
     }
 }
-
+*/
