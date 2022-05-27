@@ -1,40 +1,23 @@
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.0'
-    }
-}
-
-
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android-extensions'
-    // el error para acceder a las etiquetas era que tenia que borrar el cache de AE
-
 }
 
 android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.imdb"
+        applicationId "com.bootcamp.imdb"
         minSdk 21
         targetSdk 32
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary true
-        }
     }
 
     buildTypes {
-
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -44,25 +27,24 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
     buildFeatures {
         compose true
         viewBinding true
     }
+    viewBinding {
+        enabled = true
+    }
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
     }
-    packagingOptions {
+    packagingOptions { //si rompe el projecto quitarlo
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
-    viewBinding {
-        enabled = true
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
-
 }
 
 dependencies {
