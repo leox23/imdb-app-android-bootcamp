@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -17,6 +18,8 @@ import com.bootcamp.imdb.navigation.BottomBarScreen
 import com.bootcamp.imdb.navigation.BottomNavGraph
 import com.bootcamp.imdb.ui.theme.Charcoal
 import com.bootcamp.imdb.ui.theme.Mustard
+
+
 
 @Composable
 fun MainScreen() {
@@ -59,25 +62,25 @@ fun RowScope.AddItem(
 ) {
 
     BottomNavigationItem (
-            unselectedContentColor = Charcoal.copy(alpha = ContentAlpha.medium),
-            label = {
-                Text(text = screen.title)
-            },
-            icon = {
-                Icon (
-                    imageVector = screen.icon,
-                    contentDescription = "Navigation Icon"
-                )
-            },
-            selected = currentDestination?.hierarchy?.any {
-                it.route == screen.route
+        unselectedContentColor = Charcoal.copy(alpha = ContentAlpha.medium),
+        label = {
+            Text(text = screen.title)
+        },
+        icon = {
+            Icon (
+                imageVector = screen.icon,
+                contentDescription = "Navigation Icon"
+            )
+        },
+        selected = currentDestination?.hierarchy?.any {
+            it.route == screen.route
 
-            } == true,
-            onClick = {
-                navController.navigate(screen.route) {
-                    popUpTo(navController.graph.findStartDestination().id)
-                    launchSingleTop = true
-                }
-            },
+        } == true,
+        onClick = {
+            navController.navigate(screen.route) {
+                popUpTo(navController.graph.findStartDestination().id)
+                launchSingleTop = true
+            }
+        },
     )
 }

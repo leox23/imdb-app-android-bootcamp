@@ -1,4 +1,4 @@
-package com.bootcamp.imdb.screens
+package com.bootcamp.imdb.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column

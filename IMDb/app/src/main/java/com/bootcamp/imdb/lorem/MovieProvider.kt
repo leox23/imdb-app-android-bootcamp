@@ -1,9 +1,5 @@
 package com.bootcamp.imdb.lorem
 
-
-import com.bootcamp.imdb.lorem.Movie
-
-
 class MovieProvider {
     companion object {
 
