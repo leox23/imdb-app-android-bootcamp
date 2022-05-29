@@ -2,6 +2,7 @@ package com.bootcamp.imdb.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -14,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.bootcamp.imdb.ui.theme.White_Smoke
 
 @Composable
-fun LoginOtherAccount(logo : Painter, description : String) {
+fun LoginOtherAccount(logo : Painter, description : String, onClick: () -> Unit = {}) {
     Image(painter = logo,
         contentDescription = description,
         modifier = Modifier
@@ -24,5 +25,6 @@ fun LoginOtherAccount(logo : Painter, description : String) {
             .clip(CircleShape)
             .background(White_Smoke)
             .padding(14.dp)
+            .clickable {onClick()},
     )
 }

@@ -12,6 +12,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.bootcamp.imdb.R
+import com.bootcamp.imdb.navigation.BottomBarScreen
 import com.bootcamp.imdb.ui.components.LoginButton
 import com.bootcamp.imdb.ui.components.LogoSmall
 import com.bootcamp.imdb.ui.components.PassFieldOutline
@@ -30,7 +31,8 @@ fun Register(navController: NavController){
         TextFieldOutline(stringResource(R.string.name))
         TextFieldOutline(stringResource(R.string.email))
         PassFieldOutline()
-        LoginButton(stringResource(R.string.accept), onClickAction = { navController.navigate("register") })
+        LoginButton(stringResource(R.string.accept), onClickAction = {
+            navController.navigate(BottomBarScreen.Home.route) })
     }
 }
 

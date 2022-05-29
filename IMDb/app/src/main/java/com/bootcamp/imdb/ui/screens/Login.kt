@@ -1,5 +1,6 @@
 package com.bootcamp.imdb.ui.session
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -10,10 +11,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.bootcamp.imdb.R
+import com.bootcamp.imdb.navigation.BottomBarScreen
+import com.bootcamp.imdb.navigation.OthersViews
 import com.bootcamp.imdb.ui.components.*
 import com.bootcamp.imdb.ui.theme.*
 
@@ -38,7 +40,11 @@ fun StandartLogin(navController: NavController){
             TextField()
             ForgotPass()
             Spacer(modifier = Modifier.size(20.dp))
-            LoginButton(stringResource(R.string.login), onClickAction = { navController.navigate("register") })
+            LoginButton(
+                stringResource(R.string.login),
+                onClickAction = {
+                    navController.navigate(BottomBarScreen.Home.route)
+                })
         }
 
         Column (
@@ -53,7 +59,9 @@ fun StandartLogin(navController: NavController){
             Row {
                 LoginOtherAccount(painterResource(R.drawable.ic_apple_logo), "Cuenta de Apple")
                 LoginOtherAccount(painterResource(R.drawable.ic_facebook_logo), "Cuenta de Facebook")
-                LoginOtherAccount(painterResource(R.drawable.ic_google_logo), "Cuenta de Google")
+                LoginOtherAccount(painterResource(R.drawable.ic_google_logo), "Cuenta de Google"){
+                    navController.navigate(OthersViews.Register.route)
+                }
             }
             Row (
                 Modifier.padding(0.dp, 20.dp)
@@ -68,7 +76,7 @@ fun StandartLogin(navController: NavController){
                             enabled = true,
                             role = Role.Button
                         ){
-                            navController.navigate("register")
+                            navController.navigate(OthersViews.Register.route)
                         },
                     color = Charcoal,
                     style = MaterialTheme.typography.body2)
@@ -80,13 +88,3 @@ fun StandartLogin(navController: NavController){
         }
     }
 }
-
-/*
-@Preview()
-@Composable
-fun StandartLoginPreview() {
-    IMDbTheme {
-        StandartLogin(navController = NavController)
-    }
-}
-*/
