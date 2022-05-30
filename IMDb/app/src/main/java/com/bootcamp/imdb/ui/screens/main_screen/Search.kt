@@ -1,4 +1,4 @@
-package com.bootcamp.imdb.ui.screens
+package com.bootcamp.imdb.ui.screens.main_screen
 
 import android.content.Context
 import android.view.LayoutInflater

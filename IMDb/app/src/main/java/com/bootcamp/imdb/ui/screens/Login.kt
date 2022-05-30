@@ -1,6 +1,5 @@
-package com.bootcamp.imdb.ui.session
+package com.bootcamp.imdb.ui.screens
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -11,8 +10,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.bootcamp.imdb.R
 import com.bootcamp.imdb.navigation.BottomBarScreen
 import com.bootcamp.imdb.navigation.OthersViews
@@ -60,7 +61,8 @@ fun StandartLogin(navController: NavController){
                 LoginOtherAccount(painterResource(R.drawable.ic_apple_logo), "Cuenta de Apple")
                 LoginOtherAccount(painterResource(R.drawable.ic_facebook_logo), "Cuenta de Facebook")
                 LoginOtherAccount(painterResource(R.drawable.ic_google_logo), "Cuenta de Google"){
-                    navController.navigate(OthersViews.Register.route)
+                    //navController.navigate(OthersViews.Register.route)
+                    //aqui el login de google
                 }
             }
             Row (
@@ -83,8 +85,25 @@ fun StandartLogin(navController: NavController){
             }
             //todo falta este por aplicarle el efecto del click
             Text(text = stringResource(R.string.continue_as_a_guest),
-                modifier = Modifier.padding(0.dp,0.dp,0.dp, 30.dp), // trabajarlo general como una unidad para todos los elementos finales
-                style = MaterialTheme.typography.body2)
+                modifier = Modifier
+                    .padding(0.dp,0.dp,0.dp, 30.dp) // trabajarlo general como una unidad para todos los elementos finales
+                    .clickable(
+                        enabled = true,
+                        role = Role.Button
+                    ){
+                        navController.navigate(BottomBarScreen.Home.route)
+                    },
+                    style = MaterialTheme.typography.body2,
+            )
         }
     }
+}
+
+@Preview(
+    name = "StandartLogin component",
+    showBackground = true,
+)
+@Composable
+fun StandartLoginPreview() {
+    StandartLogin(navController = rememberNavController())
 }

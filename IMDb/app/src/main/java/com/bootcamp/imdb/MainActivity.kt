@@ -12,14 +12,12 @@ import com.bootcamp.imdb.ui.theme.IMDbTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContent {
             IMDbTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize()
                 ) {
                     AppNavigation()
-
                 }
             }
         }

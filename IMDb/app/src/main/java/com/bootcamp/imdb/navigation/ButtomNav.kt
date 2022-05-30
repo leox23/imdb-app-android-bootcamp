@@ -10,15 +10,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.bootcamp.imdb.ui.screens.HomeScreen
-import com.bootcamp.imdb.ui.screens.PlayScreen
-import com.bootcamp.imdb.ui.screens.SearchScreen
-import com.bootcamp.imdb.ui.screens.UserScreen
+import com.bootcamp.imdb.ui.screens.main_screen.HomeScreen
+import com.bootcamp.imdb.ui.screens.main_screen.PlayScreen
+import com.bootcamp.imdb.ui.screens.main_screen.SearchScreen
+import com.bootcamp.imdb.ui.screens.main_screen.UserScreen
 import com.bootcamp.imdb.ui.theme.Charcoal
 import com.bootcamp.imdb.ui.theme.Mustard
 

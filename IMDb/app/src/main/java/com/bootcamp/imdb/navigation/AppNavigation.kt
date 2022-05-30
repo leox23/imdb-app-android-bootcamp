@@ -9,8 +9,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import com.bootcamp.imdb.ui.components.SplashIntro
-import com.bootcamp.imdb.ui.session.Register
-import com.bootcamp.imdb.ui.session.StandartLogin
+import com.bootcamp.imdb.ui.screens.Register
+import com.bootcamp.imdb.ui.screens.StandartLogin
 
 @Composable
 fun AppNavigation(){
@@ -19,7 +19,9 @@ fun AppNavigation(){
         navController = navController,
         startDestination = "loginPath"
     ) {
+
        splashAndLogin(navController)
+
        composable(route = BottomBarScreen.Home.route){
            ButtomNav()
        }

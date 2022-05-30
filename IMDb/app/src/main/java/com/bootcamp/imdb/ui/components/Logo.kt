@@ -15,8 +15,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.bootcamp.imdb.navigation.OthersViews
 import com.bootcamp.imdb.ui.theme.Mustard
 import kotlinx.coroutines.delay
@@ -25,7 +27,6 @@ import kotlinx.coroutines.delay
 @Composable
 fun SplashIntro(navController : NavController) {
     val scaleAnimation: Animatable<Float, AnimationVector1D> = remember { Animatable(initialValue = 0f) }
-
     Animation(
         navController = navController,
         scaleAnimation = scaleAnimation,
@@ -64,6 +65,7 @@ fun Animation(
         }
     }
 }
+
 @Composable
 fun DesignSplashScreen(
     modifier: Modifier = Modifier,
@@ -83,13 +85,18 @@ fun DesignSplashScreen(
     }
 }
 
-
-
-
+@Preview(
+    name = "SplashIntro component",
+    showBackground = true,
+)
+@Composable
+fun SplashIntroPreview() {
+    SplashIntro(navController = rememberNavController())
+}
 
 
 @Composable
-fun Logo(){ //no es roboto, buscar fuente correcta
+fun Logo(){
     Text(
         text = "IMDb", // todo aqui tengo que reutilizar el componente que voy a utilizar en el splash
         textAlign = TextAlign.Center,
@@ -101,8 +108,18 @@ fun Logo(){ //no es roboto, buscar fuente correcta
     )
 }
 
+@Preview(
+    name = "Logo component",
+    showBackground = true,
+)
 @Composable
-fun LogoSmall(){ //no es roboto, buscar fuente correcta
+fun LogoPreview() {
+    Logo()
+}
+
+
+@Composable
+fun LogoSmall(){
     Text(
         text = "IMDb", // todo aqui tengo que reutilizar el componente que voy a utilizar en el splash
         textAlign = TextAlign.Start,
@@ -112,6 +129,15 @@ fun LogoSmall(){ //no es roboto, buscar fuente correcta
         style = MaterialTheme.typography.h3
 
     )
+}
+
+@Preview(
+    name = "LogoSmall component",
+    showBackground = true,
+)
+@Composable
+fun LogoSmallPreview() {
+    LogoSmall()
 }
 
 

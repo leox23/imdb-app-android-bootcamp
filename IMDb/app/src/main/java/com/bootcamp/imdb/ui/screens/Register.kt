@@ -1,4 +1,4 @@
-package com.bootcamp.imdb.ui.session
+package com.bootcamp.imdb.ui.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -9,20 +9,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.bootcamp.imdb.R
 import com.bootcamp.imdb.navigation.BottomBarScreen
-import com.bootcamp.imdb.ui.components.LoginButton
-import com.bootcamp.imdb.ui.components.LogoSmall
-import com.bootcamp.imdb.ui.components.PassFieldOutline
-import com.bootcamp.imdb.ui.components.TextFieldOutline
-
+import com.bootcamp.imdb.ui.components.*
 
 @Composable
 fun Register(navController: NavController){
-    Column (
-        Modifier.padding(50.dp,40.dp), // pendiente por colocar en dimen
+    Column ( //todo falta el boton de atras que va arriba a la izquierda
+        Modifier.padding(50.dp,40.dp), //todo pendiente por colocar en dimen
         horizontalAlignment = Alignment.Start
     ) {
         LogoSmall()
@@ -36,3 +34,11 @@ fun Register(navController: NavController){
     }
 }
 
+@Preview(
+    name = "Register component",
+    showBackground = true,
+)
+@Composable
+fun RegisterPreview() {
+    Register(navController = rememberNavController())
+}

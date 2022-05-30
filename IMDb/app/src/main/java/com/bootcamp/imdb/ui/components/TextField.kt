@@ -13,16 +13,17 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bootcamp.imdb.R
 import com.bootcamp.imdb.ui.theme.Charcoal
-
+import com.bootcamp.imdb.ui.theme.White_Smoke
 
 @Composable
 fun TextField() {
     Column {
         val textState = remember { mutableStateOf(TextFieldValue()) }
-        androidx.compose.material.TextField(
+        TextField(
             value = textState.value,
             onValueChange = { textState.value = it },
             modifier = Modifier
@@ -33,15 +34,19 @@ fun TextField() {
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent,
-                // todo aca tengo que aplicar el manejo de Material Theming
-                // para que me reconosca los colores de recursos o de ui.theme
-                // y para poder reutilizar de una sola fuente
-                // de momento solo lo dejare asi para entregar el martes
-                backgroundColor = Color(0xFFF5F5F5)
+                backgroundColor = White_Smoke
             )
         )
         //Text("The textfield has this text: " + textState.value.text) // como obtener este valor
     }
+}
+@Preview(
+    name = "TextField component",
+    showBackground = true,
+)
+@Composable
+fun TextFieldPreview() {
+    TextField()
 }
 
 
@@ -62,6 +67,14 @@ fun TextFieldOutline(label : String) {
     )
 }
 
+@Preview(
+    name = "TextFieldOutline component",
+    showBackground = true,
+)
+@Composable
+fun TextFieldOutlinePreview() {
+    TextFieldOutline("Lorem ipsum")
+}
 
 
 @Composable
@@ -95,4 +108,13 @@ fun PassFieldOutline() {
         color = Charcoal,
         style = MaterialTheme.typography.subtitle2)
     Spacer(modifier = Modifier.size(40.dp))
+}
+
+@Preview(
+    name = "PassFieldOutLine component",
+    showBackground = true,
+)
+@Composable
+fun PassFieldOutlinePreview() {
+    PassFieldOutline()
 }

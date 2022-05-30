@@ -7,13 +7,10 @@ import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.ui.graphics.vector.ImageVector
 
-
 sealed class OthersViews (val route : String){
     object Splash : OthersViews(route = "splash")
     object Login : OthersViews(route = "login")
     object Register : OthersViews(route = "register")
-    object Search : OthersViews(route = "search")
-
 }
 
 sealed class BottomBarScreen (
@@ -35,12 +32,12 @@ sealed class BottomBarScreen (
     object  Play : BottomBarScreen(
         route = "play",
         title = "Play",
-        icon = Icons.Default.PlayArrow
+        icon = Icons.Default.PlayArrow //todo buscar icono parecido
     )
     object  User : BottomBarScreen(
         route = "user",
         title = "User",
-        icon = Icons.Default.Add
+        icon = Icons.Default.Add //todo buscar icono parecido
     )
 }
 

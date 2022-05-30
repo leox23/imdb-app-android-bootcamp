@@ -11,7 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.bootcamp.imdb.R
 import com.bootcamp.imdb.ui.theme.White_Smoke
 
 @Composable
@@ -27,4 +30,13 @@ fun LoginOtherAccount(logo : Painter, description : String, onClick: () -> Unit 
             .padding(14.dp)
             .clickable {onClick()},
     )
+}
+
+@Preview(
+    name = "LoginOtherAccount component",
+    showBackground = true,
+)
+@Composable
+fun LoginOtherAccountPreview() {
+    LoginOtherAccount(painterResource(R.drawable.ic_google_logo), "Cuenta de Google")
 }
