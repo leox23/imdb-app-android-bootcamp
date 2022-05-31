@@ -35,7 +35,7 @@ fun StandartLogin(navController: NavController){
         Logo()
 
         Column {
-            Label(stringResource(R.string.user))
+            Label(stringResource(R.string.user)) //todo debe ser un componente unido al campo de texto
             TextField()
             Label(stringResource(R.string.password))
             TextField()
