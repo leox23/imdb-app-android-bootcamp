@@ -7,8 +7,8 @@ import com.bootcamp.imdb.lorem.Movie
 import com.bootcamp.imdb.R
 import com.bootcamp.imdb.databinding.ActivityMainBinding
 
-class MovieAdapter(val movieList: List<Movie> ): RecyclerView.Adapter<MovieViewHolder>() {
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) { // llama a cada uno de los item y usan fun render
+class MovieAdapter( val movieList: List<Movie> ): RecyclerView.Adapter<MovieViewHolder>() {
+    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val item = movieList[position]
         holder.render(item)
     }
@@ -19,6 +19,6 @@ class MovieAdapter(val movieList: List<Movie> ): RecyclerView.Adapter<MovieViewH
         return MovieViewHolder(layoutInflater.inflate(R.layout.list_item_movie,parent,false))
     }
 
-    override fun getItemCount() = movieList.size //la cantidad de items que se mostraran
+    override fun getItemCount() = movieList.size
 
 }

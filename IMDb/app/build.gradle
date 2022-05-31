@@ -68,6 +68,9 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.13.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
 
+    //https://coil-kt.github.io/coil/compose/   - uso de urlImages mas sencillo desde compose, por recomendacion https://stackoverflow.com/questions/66957702/how-to-load-image-from-url-in-jetpack-compose
+    implementation 'io.coil-kt:coil-compose:2.1.0'
+
     // por el recycleview (material)
     def material_version = "1.0.0"
     implementation "com.google.android.material:material:$material_version"

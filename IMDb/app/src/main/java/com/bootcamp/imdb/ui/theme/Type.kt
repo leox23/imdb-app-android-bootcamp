@@ -58,6 +58,18 @@ val Typography = Typography(
             blurRadius = 12f
         )
     ),
+    h4 = TextStyle(
+        fontFamily = Roboto,
+        fontSize = 24.sp,
+        fontWeight = FontWeight.Bold,
+        /*
+        shadow = Shadow(
+            color = shadowColor,
+            offset = Offset(8f, 8f),
+            blurRadius = 12f
+        )
+        */
+    ),
     body2 = TextStyle(
         fontFamily = Roboto,
         fontWeight = FontWeight.Bold,

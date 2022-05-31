@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.ui.Modifier
 import com.bootcamp.imdb.navigation.AppNavigation
+import com.bootcamp.imdb.ui.components.Carousel
 import com.bootcamp.imdb.ui.theme.IMDbTheme
 
 class MainActivity : ComponentActivity() {
