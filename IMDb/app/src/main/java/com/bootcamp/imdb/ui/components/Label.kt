@@ -57,7 +57,7 @@ fun ForgotPassPreview() {
 }
 
 @Composable
-fun TitleSection(){
+fun TitleSection(label : String){
     Row ( Modifier
         .padding(16.dp, 24.dp),
         verticalAlignment = Alignment.CenterVertically){
@@ -67,7 +67,7 @@ fun TitleSection(){
                 .clip(RoundedCornerShape(50.dp))
                 .background(Mustard))
         Text(
-            text = "Las Mejores Selecciones",
+            text = label,
             Modifier
                 .fillMaxWidth()
                 .padding(16.dp, 0.dp, 0.dp, 0.dp),
@@ -82,5 +82,5 @@ fun TitleSection(){
 )
 @Composable
 fun TitleSectionPreview() {
-    TitleSection()
+    TitleSection("Lorem Ipsun Dolor")
 }

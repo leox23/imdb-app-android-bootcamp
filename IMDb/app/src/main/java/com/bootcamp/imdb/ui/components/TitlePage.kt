@@ -21,36 +21,33 @@ import com.bootcamp.imdb.lorem.MovieProvider.Companion.movieList
 
 
 @Composable
-fun TitlePage(position : Int){//todo es el mismo tamaño que se usa en la portadaimagen del trailer
+fun TitlePage(position : Int){
+// todo es el mismo tamaño que se usa en la portadaimagen del trailer
     val title = movieList[position].title
     val urlImage = movieList[position].featuredImage
     val rating = movieList[position].rating.toString()
-    Column(Modifier
-        .shadow(2.dp)
-        .padding(12.dp)
-        .background(Color.White)
-        .width(124.dp)
-        .wrapContentHeight()){
+    Column(
+        Modifier
+            .shadow(1.dp)
+            .background(Color.White)
+            .width(124.dp)
+            .wrapContentHeight()){
         AsyncImage(
             model = urlImage,
             contentDescription ="imagen portada",
             modifier = Modifier
-                .size(124.dp, height = 186.dp)
-                .background(color = Color.Red))
+                .size(124.dp, height = 186.dp))
         Row(Modifier.padding(6.dp)) {
-            Image(painter =
-            painterResource(id = R.drawable.ic_launcher_foreground),
-                contentDescription ="texto de prueba",
+            AsyncImage(model = "https://upload.wikimedia.org/wikipedia/commons/1/18/Estrella_amarilla.png", // todo pendiente por colocar en recursos
+                contentDescription = "Img estrella",
                 modifier = Modifier
                     .size(20.dp)
                     .clip(CircleShape)
-                    .background(color = Color.Green)
             )
             Text(text = rating,
                 Modifier.padding(8.dp,0.dp,0.dp,2.dp))
         }
         Row(modifier = Modifier
-            .background(color = Color.Yellow)
             .padding(start = 8.dp)
             .height(22.dp)) {
             Text(title)
@@ -59,16 +56,11 @@ fun TitlePage(position : Int){//todo es el mismo tamaño que se usa en la portad
             .padding(0.dp, 2.dp, 6.dp, 10.dp)
             .size(20.dp)
             .clip(CircleShape)
-            .background(color = Color.Black)
             .align(Alignment.End)) {
-            Image(
-                painter =
-                painterResource(id = R.drawable.ic_launcher_foreground),
-                contentDescription = "texto de prueba",
+            Image(painter = painterResource(R.drawable.info_icon),
+                    contentDescription = null,
                 modifier = Modifier
                     .size(20.dp)
-                    .clip(RoundedCornerShape(20.dp))
-                    .background(Color.Black),
             )
 
         }

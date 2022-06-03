@@ -1,10 +1,7 @@
 package com.bootcamp.imdb.navigation
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.PlayArrow
-import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.*
 import androidx.compose.ui.graphics.vector.ImageVector
 
 sealed class OthersViews (val route : String){
@@ -37,7 +34,7 @@ sealed class BottomBarScreen (
     object  User : BottomBarScreen(
         route = "user",
         title = "User",
-        icon = Icons.Default.Add //todo buscar icono parecido
+        icon = Icons.Default.AccountBox //todo buscar icono parecido
     )
 }
 
