@@ -24,21 +24,22 @@ fun Actor(){
             contentDescription = "Actor de reparto",
             modifier = Modifier
                 .padding(0.dp)
-                .size(100.dp,140.dp)
-                .background(Color.Red))
+                .size(100.dp, 140.dp)
+                .background(Color.Red)
+        )
         Text(text = "Robert Downey Jr.",
              fontSize = 14.sp,
             textAlign = TextAlign.Center,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(10.dp,6.dp,6.dp,2.dp)) // todo unificar con estilos globales, ver con que esta alineado en terminos de diseño
+                .padding(10.dp, 6.dp, 6.dp, 2.dp)) // todo unificar con estilos globales, ver con que esta alineado en terminos de diseño
         Text(text = "Tony Stark",
             fontSize = 12.sp,
             textAlign = TextAlign.Center,
             color = Grey,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(10.dp,0.dp,6.dp,10.dp))
+                .padding(10.dp, 0.dp, 6.dp, 10.dp))
     }
 }
 

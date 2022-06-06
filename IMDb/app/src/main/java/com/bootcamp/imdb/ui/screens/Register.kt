@@ -18,9 +18,9 @@ import com.bootcamp.imdb.navigation.BottomBarScreen
 import com.bootcamp.imdb.ui.components.*
 
 @Composable
-fun Register(navController: NavController){
-    Column ( //todo falta el boton de atras que va arriba a la izquierda
-        Modifier.padding(50.dp,40.dp), //todo pendiente por colocar en dimen
+fun Register(navController: NavController) {
+    Column( //todo falta el boton de atras que va arriba a la izquierda
+        Modifier.padding(50.dp, 40.dp), //todo pendiente por colocar en dimen
         horizontalAlignment = Alignment.Start
     ) {
         LogoSmall()
@@ -30,7 +30,8 @@ fun Register(navController: NavController){
         TextFieldOutline(stringResource(R.string.email))
         PassFieldOutline()
         LoginButton(stringResource(R.string.accept), onClickAction = {
-            navController.navigate(BottomBarScreen.Home.route) })
+            navController.navigate(BottomBarScreen.Home.route)
+        })
     }
 }
 

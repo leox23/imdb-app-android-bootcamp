@@ -13,25 +13,25 @@ import com.bootcamp.imdb.ui.screens.Register
 import com.bootcamp.imdb.ui.screens.StandartLogin
 
 @Composable
-fun AppNavigation(){
+fun AppNavigation() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
         startDestination = "loginPath"
     ) {
 
-       splashAndLogin(navController)
+        splashAndLogin(navController)
 
-       composable(route = BottomBarScreen.Home.route){
-           ButtomNav()
-       }
+        composable(route = BottomBarScreen.Home.route) {
+            ButtomNav()
+        }
 
     }
 }
 
 
-fun NavGraphBuilder.splashAndLogin(navController: NavController){
-    navigation(startDestination = OthersViews.Splash.route, route="loginPath") {
+fun NavGraphBuilder.splashAndLogin(navController: NavController) {
+    navigation(startDestination = OthersViews.Splash.route, route = "loginPath") {
         composable(route = OthersViews.Splash.route) {
             SplashIntro(navController = navController)
         }

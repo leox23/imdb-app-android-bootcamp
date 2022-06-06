@@ -19,7 +19,8 @@ import com.bootcamp.imdb.ui.theme.White_Smoke
 
 @Composable
 fun LoginOtherAccount(logo : Painter, description : String, onClick: () -> Unit = {}) {
-    Image(painter = logo,
+    Image(
+        painter = logo,
         contentDescription = description,
         modifier = Modifier
             .padding(9.dp)
@@ -28,7 +29,7 @@ fun LoginOtherAccount(logo : Painter, description : String, onClick: () -> Unit 
             .clip(CircleShape)
             .background(White_Smoke)
             .padding(14.dp)
-            .clickable {onClick()},
+            .clickable { onClick() },
     )
 }
 

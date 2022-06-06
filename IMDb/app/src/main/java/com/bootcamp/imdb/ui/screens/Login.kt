@@ -21,8 +21,8 @@ import com.bootcamp.imdb.ui.components.*
 import com.bootcamp.imdb.ui.theme.*
 
 @Composable
-fun StandartLogin(navController: NavController){
-    Column (
+fun StandartLogin(navController: NavController) {
+    Column(
         Modifier
             .fillMaxHeight()
             .background(Mustard)
@@ -30,7 +30,8 @@ fun StandartLogin(navController: NavController){
                 50.dp,
                 0.dp
             ),
-        verticalArrangement = Arrangement.Center)
+        verticalArrangement = Arrangement.Center
+    )
     {
         Logo()
 
@@ -48,52 +49,71 @@ fun StandartLogin(navController: NavController){
                 })
         }
 
-        Column (
+        Column(
             Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
-        ){
+        ) {
             //Spacer(modifier = Modifier.size(40.dp))
-            Text(text = stringResource(R.string.or_login_with),
+            Text(
+                text = stringResource(R.string.or_login_with),
                 style = MaterialTheme.typography.subtitle1,
-                modifier = Modifier.padding(0.dp, 40.dp, 0.dp, 20.dp))
+                modifier = Modifier.padding(0.dp, 40.dp, 0.dp, 20.dp)
+            )
             //Spacer(modifier = Modifier.size(20.dp))
             Row {
-                LoginOtherAccount(painterResource(R.drawable.ic_apple_logo), "Cuenta de Apple")
-                LoginOtherAccount(painterResource(R.drawable.ic_facebook_logo), "Cuenta de Facebook")
-                LoginOtherAccount(painterResource(R.drawable.ic_google_logo), "Cuenta de Google"){
+                LoginOtherAccount(
+                    painterResource(R.drawable.ic_apple_logo),
+                    "Cuenta de Apple")
+                LoginOtherAccount(
+                    painterResource(R.drawable.ic_facebook_logo),
+                    "Cuenta de Facebook"
+                )
+                LoginOtherAccount(
+                    painterResource(R.drawable.ic_google_logo),
+                    "Cuenta de Google") {
                     //navController.navigate(OthersViews.Register.route)
                     //aqui el login de google
                 }
             }
-            Row (
+            Row(
                 Modifier.padding(0.dp, 20.dp)
-            ){
-                Text(text = stringResource(R.string.you_do_not_have_an_account),
-                    style = MaterialTheme.typography.subtitle1)
-                Spacer(modifier =  Modifier.width(10.dp))
+            ) {
+                Text(
+                    text = stringResource(R.string.you_do_not_have_an_account),
+                    style = MaterialTheme.typography.subtitle1
+                )
+                Spacer(modifier = Modifier.width(10.dp))
                 //todo pendiente por crear recurso de texto clickable
-                Text(text = stringResource(R.string.register),
+                Text(
+                    text = stringResource(R.string.register),
                     modifier = Modifier
                         .clickable(
                             enabled = true,
                             role = Role.Button
-                        ){
+                        ) {
                             navController.navigate(OthersViews.Register.route)
                         },
                     color = Charcoal,
-                    style = MaterialTheme.typography.body2)
+                    style = MaterialTheme.typography.body2
+                )
             }
             //todo falta este por aplicarle el efecto del click
-            Text(text = stringResource(R.string.continue_as_a_guest),
+            Text(
+                text = stringResource(R.string.continue_as_a_guest),
                 modifier = Modifier
-                    .padding(0.dp,0.dp,0.dp, 30.dp) // trabajarlo general como una unidad para todos los elementos finales
+                    .padding(
+                        0.dp,
+                        0.dp,
+                        0.dp,
+                        30.dp
+                    ) // trabajarlo general como una unidad para todos los elementos finales
                     .clickable(
                         enabled = true,
                         role = Role.Button
-                    ){
+                    ) {
                         navController.navigate(BottomBarScreen.Home.route)
                     },
-                    style = MaterialTheme.typography.body2,
+                style = MaterialTheme.typography.body2,
             )
         }
     }

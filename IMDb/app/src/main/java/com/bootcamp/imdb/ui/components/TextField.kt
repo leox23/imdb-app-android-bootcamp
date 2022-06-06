@@ -40,6 +40,7 @@ fun TextField() {
         //Text("The textfield has this text: " + textState.value.text) // como obtener este valor
     }
 }
+
 @Preview(
     name = "TextField component",
     showBackground = true,
@@ -51,7 +52,7 @@ fun TextFieldPreview() {
 
 
 @Composable
-fun TextFieldOutline(label : String) {
+fun TextFieldOutline(label: String) {
     var name by remember {
         mutableStateOf("")
     }
@@ -99,14 +100,17 @@ fun PassFieldOutline() {
                     if (hidden) R.drawable.eye_invisible
                     else R.drawable.eye
                 )
-                val description = if (hidden) stringResource(R.string.hide_pass) else stringResource(R.string.reveal_pass)
+                val description =
+                    if (hidden) stringResource(R.string.hide_pass) else stringResource(R.string.reveal_pass)
                 Icon(painter = vector, contentDescription = description)
             }
         }
     )
-    Text(stringResource(R.string.password_must_contain_8_characters),
+    Text(
+        stringResource(R.string.password_must_contain_8_characters),
         color = Charcoal,
-        style = MaterialTheme.typography.subtitle2)
+        style = MaterialTheme.typography.subtitle2
+    )
     Spacer(modifier = Modifier.size(40.dp))
 }
 

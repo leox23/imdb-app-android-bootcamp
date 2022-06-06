@@ -62,13 +62,11 @@ val Typography = Typography(
         fontFamily = Roboto,
         fontSize = 24.sp,
         fontWeight = FontWeight.Bold,
-        /*
-        shadow = Shadow(
-            color = shadowColor,
-            offset = Offset(8f, 8f),
-            blurRadius = 12f
-        )
-        */
+    ),
+    body1 = TextStyle(
+        fontFamily = Roboto,
+        fontWeight = FontWeight.W400,
+        fontSize = 17.sp
     ),
     body2 = TextStyle(
         fontFamily = Roboto,
@@ -89,17 +87,18 @@ val Typography = Typography(
         fontFamily = Roboto,
         fontWeight = FontWeight.Light,
         fontSize = 14.sp
-    )
-    /* Other default text styles to override
-    button = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.W500,
-        fontSize = 14.sp
     ),
     caption = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp
     )
+    /*
+        Other default text styles to override
+        button = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.W500,
+        fontSize = 14.sp
+    ),
     */
 )

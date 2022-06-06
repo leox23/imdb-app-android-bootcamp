@@ -2,9 +2,9 @@ package com.bootcamp.imdb.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,6 +28,7 @@ fun TitlePage(position : Int){
     val rating = movieList[position].rating.toString()
     Column(
         Modifier
+            .clickable{ }
             .shadow(1.dp)
             .background(Color.White)
             .width(124.dp)
@@ -38,14 +39,17 @@ fun TitlePage(position : Int){
             modifier = Modifier
                 .size(124.dp, height = 186.dp))
         Row(Modifier.padding(6.dp)) {
-            AsyncImage(model = "https://upload.wikimedia.org/wikipedia/commons/1/18/Estrella_amarilla.png", // todo pendiente por colocar en recursos
+            AsyncImage(
+                model = "https://upload.wikimedia.org/wikipedia/commons/1/18/Estrella_amarilla.png", // todo pendiente por colocar en recursos
                 contentDescription = "Img estrella",
                 modifier = Modifier
                     .size(20.dp)
                     .clip(CircleShape)
             )
-            Text(text = rating,
-                Modifier.padding(8.dp,0.dp,0.dp,2.dp))
+            Text(
+                text = rating,
+                Modifier.padding(8.dp, 0.dp, 0.dp, 2.dp)
+            )
         }
         Row(modifier = Modifier
             .padding(start = 8.dp)

@@ -18,7 +18,7 @@ fun Carousel() {
                 modifier = Modifier.fillMaxWidth(),
                 state = rememberLazyListState()
             ) {
-                itemsIndexed(items) {index, item ->
+                itemsIndexed(items) { index, item ->
                     Row {
                         Spacer(Modifier.width(24.dp))
                         TitlePage(index)
@@ -31,6 +31,6 @@ fun Carousel() {
 
 @Preview
 @Composable
-fun HorizontalScrollScreenPreview() {
+fun CarouselPreview() {
     Carousel()
 }
