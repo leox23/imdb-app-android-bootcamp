@@ -2,7 +2,6 @@ package com.bootcamp.imdb.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font

@@ -3,9 +3,8 @@ package com.bootcamp.imdb.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bootcamp.imdb.lorem.Movie
 import com.bootcamp.imdb.R
-import com.bootcamp.imdb.databinding.ActivityMainBinding
+import com.bootcamp.imdb.lorem.Movie
 
 class MovieAdapter(val movieList: List<Movie>) : RecyclerView.Adapter<MovieViewHolder>() {
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {

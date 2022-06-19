@@ -23,7 +23,7 @@ import com.bootcamp.imdb.ui.components.FollowListButton
 import com.bootcamp.imdb.ui.components.SpacerGrey
 import com.bootcamp.imdb.ui.components.SpacerWhite
 import com.bootcamp.imdb.ui.components.TitleSection
-import com.bootcamp.imdb.ui.screens.main_screen.userThingsSavedProvider.Companion.thingsLists
+import com.bootcamp.imdb.ui.screens.main_screen.UserThingsSavedProvider.Companion.thingsLists
 import com.bootcamp.imdb.ui.theme.Black
 import com.bootcamp.imdb.ui.theme.Grey
 
@@ -83,7 +83,7 @@ fun UserScreen() {
         SpacerWhite()
         SpacerGrey()
 
-        Column() {
+        Column {
             TitleSection(stringResource(R.string.tracking_list))
             TextNormal(
                 stringResource(R.string.create_a_watchlist_so_you_dont_miss_any_movie_or_tv_series),
@@ -116,7 +116,7 @@ fun TextNormal(text: String, paddingBotton: Dp = 20.dp) {
 @Composable
 fun CarouselThings() {
     val items = (0..2).map { it } //solo de prueba, luego buscare que sea random
-    Box() {
+    Box {
         BoxWithConstraints(
             modifier =
             Modifier.fillMaxWidth()
@@ -174,7 +174,7 @@ fun CarouselCard(index: Int) {
                 style = MaterialTheme.typography.caption
             )
             Text(
-                amount.toString(),
+                amount,
                 style = MaterialTheme.typography.caption,
                 color = Grey,
             )
@@ -196,7 +196,7 @@ data class UserThingsSaved(
     val amount: Int
 )
 
-sealed class userThingsSavedProvider() {
+sealed class UserThingsSavedProvider {
     companion object {
         val thingsLists = listOf(
             UserThingsSaved(

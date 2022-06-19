@@ -1,9 +1,7 @@
 package com.bootcamp.imdb.navigation
 
 import androidx.activity.compose.BackHandler
-import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
@@ -14,7 +12,6 @@ import androidx.navigation.compose.rememberNavController
 import com.bootcamp.imdb.ui.components.SplashIntro
 import com.bootcamp.imdb.ui.screens.Register
 import com.bootcamp.imdb.ui.screens.StandartLogin
-import com.bootcamp.imdb.viewmodel.LoginViewModel
 
 @Composable
 fun AppNavigation() {
