@@ -3,6 +3,9 @@ package com.bootcamp.imdb.ui.screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -10,8 +13,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.bootcamp.imdb.R
@@ -19,12 +25,15 @@ import com.bootcamp.imdb.navigation.BottomBarScreen
 import com.bootcamp.imdb.navigation.OthersViews
 import com.bootcamp.imdb.ui.components.*
 import com.bootcamp.imdb.ui.theme.*
+import com.bootcamp.imdb.viewmodel.LoginViewModel
+
 
 @Composable
-fun StandartLogin(navController: NavController) {
+fun StandartLogin(navController: NavController, thisViewModel : LoginViewModel = viewModel()) {
     Column(
         Modifier
             .fillMaxHeight()
+            .verticalScroll(rememberScrollState())
             .background(Mustard)
             .padding(  // todo colocar como variable accesible luego, para reutilizar en otros bloques de diseño
                 50.dp,
@@ -34,14 +43,19 @@ fun StandartLogin(navController: NavController) {
     )
     {
         Logo()
-
         Column {
-            Label(stringResource(R.string.user)) //todo debe ser un componente unido al campo de texto
-            TextField()
-            Label(stringResource(R.string.password))
-            TextField()
-            ForgotPass()
-            Spacer(modifier = Modifier.size(20.dp))
+            TextInput(
+                label = stringResource(R.string.user),
+                value = thisViewModel.text,
+                onValueChanged = {thisViewModel.onTextChange(it)}
+            )
+            TextInput(
+                label = stringResource(R.string.password),
+                value = thisViewModel.password,
+                onValueChanged = {thisViewModel.onPasswordChange(it)},
+                visualTransformation = PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+            )
             LoginButton(
                 stringResource(R.string.login),
                 onClickAction = {
@@ -125,5 +139,5 @@ fun StandartLogin(navController: NavController) {
 )
 @Composable
 fun StandartLoginPreview() {
-    StandartLogin(navController = rememberNavController())
+    StandartLogin(navController = rememberNavController(),LoginViewModel())
 }

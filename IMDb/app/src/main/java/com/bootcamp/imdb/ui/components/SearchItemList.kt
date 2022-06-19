@@ -2,27 +2,47 @@ package com.bootcamp.imdb.ui.components
 
 import android.media.Image
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.bootcamp.imdb.R
+import com.bootcamp.imdb.ui.theme.Grey
+import com.bootcamp.imdb.ui.theme.Mustard
 
 @Composable
-fun SearchItemList(){
-    Row {
-        Image(painter = painterResource(R.drawable.info_icon),
+fun SearchItemList(image : String, title : String, year : String, description : String){
+    Row (modifier = Modifier.padding(14.dp)){
+        AsyncImage(image,
             contentDescription = null,
             modifier = Modifier
                 .size(100.dp, 140.dp)
+                .background(Mustard)
         )
 
-        Column() {
-
+        Column(modifier = Modifier.padding(14.dp, 0.dp,0.dp,0.dp)) {
+            Label(title)
+            Text(year,
+                style = MaterialTheme.typography.body1,
+                color = Grey,
+                fontSize = 18.sp
+                )
+            Text(description,
+                    Modifier.padding(0.dp,14.dp,0.dp, 0.dp),
+                    style = MaterialTheme.typography.body1,
+                    color = Grey,
+                    fontSize = 14.sp
+            )
         }
     }
 }
@@ -30,5 +50,10 @@ fun SearchItemList(){
 @Preview(showBackground = true)
 @Composable
 fun SearchItemListPreview(){
-    SearchItemList()
+    SearchItemList(
+        "https://image.tmdb.org/t/p/w185_and_h278_bestv2/bnuC6hu7AB5dYW26A3o6NNLlIlE.jpg",
+        "Godzilla vs Kong",
+        "2022",
+        "Godzilla es una pelicula que cuenta la pelea entre bla bla bla..."
+    )
 }

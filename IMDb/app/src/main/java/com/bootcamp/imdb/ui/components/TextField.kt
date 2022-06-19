@@ -11,7 +11,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -20,12 +19,21 @@ import com.bootcamp.imdb.ui.theme.Charcoal
 import com.bootcamp.imdb.ui.theme.White_Smoke
 
 @Composable
-fun TextField() {
-    Column {
-        val textState = remember { mutableStateOf(TextFieldValue()) }
+fun TextInput(
+    label :String,
+    value : String ,
+    onValueChanged : (String) -> Unit,
+    keyboardOptions : KeyboardOptions = KeyboardOptions.Default,
+    visualTransformation : VisualTransformation = VisualTransformation.None
+    ) {
+
+        Label(label)
+
         TextField(
-            value = textState.value,
-            onValueChange = { textState.value = it },
+            value = value,
+            onValueChange = onValueChanged,
+            keyboardOptions = keyboardOptions,
+            visualTransformation = visualTransformation,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(60.dp),
@@ -37,36 +45,56 @@ fun TextField() {
                 backgroundColor = White_Smoke
             )
         )
-        //Text("The textfield has this text: " + textState.value.text) // como obtener este valor
-    }
+        if (visualTransformation == PasswordVisualTransformation()){
+            ForgotPass()
+            Spacer(modifier = Modifier.size(20.dp))
+        }
 }
+
 
 @Preview(
     name = "TextField component",
     showBackground = true,
 )
 @Composable
-fun TextFieldPreview() {
-    TextField()
+fun TextInputPreview() {
+    TextInput("Nombre usuaruo","ingresa texto",{})
 }
 
 
 @Composable
-fun TextFieldOutline(label: String) {
-    var name by remember {
-        mutableStateOf("")
-    }
+fun TextInputOutlined(
+    label: String,
+    value : String ,
+    onValueChanged: (String) -> Unit,
+    isPass : Boolean = false,
+    hideText : Boolean = false,
+    hideTextSwitch : () -> Unit = {}
+) {
 
     OutlinedTextField(
-        value = name,
-        onValueChange = { name = it },
-        Modifier
+        label = { Text(label) },
+        value = value,
+        onValueChange = onValueChanged ,
+        keyboardOptions = FieldCheckIsPass().keyboardOptions(isPass),
+        visualTransformation = FieldCheckIsPass().visualTransformation(isPass,hideText),
+        trailingIcon = { FieldEyeIconHideText( isPass, hideText,hideTextSwitch ) },
+        modifier = Modifier
             .fillMaxWidth()
             .size(82.dp)
             .padding(0.dp, 4.dp),
-        label = { Text(label) }
     )
+
+    if (isPass){
+        Text(
+            stringResource(R.string.password_must_contain_8_characters),
+            color = Charcoal,
+            style = MaterialTheme.typography.subtitle2
+        )
+        Spacer(modifier = Modifier.size(40.dp))
+    }
 }
+
 
 @Preview(
     name = "TextFieldOutline component",
@@ -74,51 +102,42 @@ fun TextFieldOutline(label: String) {
 )
 @Composable
 fun TextFieldOutlinePreview() {
-    TextFieldOutline("Lorem ipsum")
+    TextInputOutlined("Nombre Usuario","",{})
 }
 
-
-@Composable
-fun PassFieldOutline() {
-    var password by remember { mutableStateOf("") }
-    var hidden by remember { mutableStateOf(true) }
-
-    OutlinedTextField(
-        value = password,
-        onValueChange = { password = it },
-        Modifier
-            .fillMaxWidth()
-            .padding(0.dp, 8.dp, 0.dp, 0.dp),
-        label = { Text(stringResource(R.string.password)) },
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-        singleLine = true,
-        visualTransformation =
-        if (hidden) PasswordVisualTransformation() else VisualTransformation.None,
-        trailingIcon = {
-            IconButton(onClick = { hidden = !hidden }) {
-                val vector = painterResource(
-                    if (hidden) R.drawable.eye_invisible
-                    else R.drawable.eye
-                )
-                val description =
-                    if (hidden) stringResource(R.string.hide_pass) else stringResource(R.string.reveal_pass)
-                Icon(painter = vector, contentDescription = description)
-            }
+class FieldCheckIsPass {
+    fun keyboardOptions(isPass : Boolean): KeyboardOptions {
+        return if (isPass){
+            KeyboardOptions(keyboardType = KeyboardType.Password)
+        } else {
+            KeyboardOptions.Default
         }
-    )
-    Text(
-        stringResource(R.string.password_must_contain_8_characters),
-        color = Charcoal,
-        style = MaterialTheme.typography.subtitle2
-    )
-    Spacer(modifier = Modifier.size(40.dp))
+    }
+
+    fun visualTransformation(isPass : Boolean, hideText : Boolean): VisualTransformation {
+        return if (isPass){
+            if (hideText) {
+                PasswordVisualTransformation()
+            }else {
+                VisualTransformation.None
+            }
+        } else {
+            VisualTransformation.None
+        }
+    }
 }
 
-@Preview(
-    name = "PassFieldOutLine component",
-    showBackground = true,
-)
 @Composable
-fun PassFieldOutlinePreview() {
-    PassFieldOutline()
+fun FieldEyeIconHideText(isPass : Boolean, hideText : Boolean, hideTextSwitch : () -> Unit = {}){
+    if (isPass) {
+        IconButton(onClick = { hideTextSwitch() }) {
+            val vector = painterResource(
+                if (hideText) R.drawable.eye_invisible
+                else R.drawable.eye
+            )
+            val description =
+                if (hideText) stringResource(R.string.hide_pass) else stringResource(R.string.reveal_pass)
+            Icon(painter = vector, contentDescription = description)
+        }
+    }
 }

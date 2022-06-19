@@ -19,4 +19,14 @@
     <string name="password_must_contain_8_characters">La contraseña debe contener 8 caracteres</string>
     <string name="accept">Aceptar</string>
 
+    <!-- user -->
+    <string name="image_user">Imagen Usuario</string>
+    <string name="name_user">Juan Perez</string>
+    <string name="user_config">Configuracion Usuario</string>
+    <string name="tracking_list">Lista de seguimiento</string>
+    <string name="create_a_watchlist_so_you_dont_miss_any_movie_or_tv_series">Crear una lista de seguimiento para no perderte nunguna pelicula o serie de TV.</string>
+    <string name="recent_views">Vistas recientes</string>
+    <string name="you_have_not_visited_any_pages_recently">No has visitado ninguna pagina recientemente</string>
+    <string name="favorite_people">Personas Favoritas</string>
+    <string name="you_dont_have_favorite_people_yet">Aun no tienes personas favoritas</string>
 </resources>

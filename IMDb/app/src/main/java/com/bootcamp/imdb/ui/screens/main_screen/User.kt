@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -48,17 +49,16 @@ fun UserScreen() {
             ) {
                 Image(
                     painter = painterResource(R.drawable.sample_user),
-                    contentDescription = "Image User",
+                    contentDescription = stringResource(R.string.image_user),
                     modifier = Modifier
                         .border(BorderStroke(1.dp, Black), RoundedCornerShape(20.dp))
                         .size(40.dp)
                         .clip(RoundedCornerShape(20.dp))
                 )
                 Text(
-                    text = "Juan Perez",
+                    text = stringResource(R.string.name_user),
                     Modifier.padding(20.dp, 0.dp, 0.dp, 0.dp),
                     style = MaterialTheme.typography.body2,
-
                     )
 
             }
@@ -67,7 +67,7 @@ fun UserScreen() {
                     .clickable { }
                     .size(32.dp)
                     .clip(RoundedCornerShape(16.dp)),
-                contentDescription = "Config User")
+                contentDescription = stringResource(R.string.user_config))
 
         }
 
@@ -78,30 +78,29 @@ fun UserScreen() {
                 .fillMaxWidth(),
             thickness = 2.dp
         )
+
         CarouselThings()
         SpacerWhite()
         SpacerGrey()
+
         Column() {
-            TitleSection(label = "Lista de seguimiento")
+            TitleSection(stringResource(R.string.tracking_list))
             TextNormal(
-                "Crear una lista de seguimiento para no perderte nunguna pelicula o serie de TV",
+                stringResource(R.string.create_a_watchlist_so_you_dont_miss_any_movie_or_tv_series),
                 0.dp
             )
             FollowListButton()
 
         }
 
+        SpacerGrey()
+        TitleSection(stringResource(R.string.recent_views))
+        TextNormal(stringResource(R.string.you_have_not_visited_any_pages_recently))
+        SpacerGrey()
 
+        TitleSection(stringResource(R.string.favorite_people))
+        TextNormal(stringResource(R.string.you_dont_have_favorite_people_yet))
         SpacerGrey()
-        TitleSection(label = "Vistas recientes")
-        TextNormal("No has visitado ninguna pagina recientemente")
-        SpacerGrey()
-
-        TitleSection("Vistas recientes")
-        TextNormal("No has visitado ninguna pagina recientemente")
-        SpacerGrey()
-        TitleSection(label = "Personas Favoritas")
-        TextNormal("Aun no tienes personas favoritas")
     }
 }
 
@@ -149,7 +148,7 @@ fun CarouselCard(index: Int) {
     val title = thingsLists[index].title
     val attr = thingsLists[index].attr
     val amount = thingsLists[index].amount.toString()
-    //todo no entiendo porque en el vista previa se ve bien, pero dentro de la app en el emulador se ve mal
+    //todo - no entiendo porque en el vista previa se ve bien, pero dentro de la app en el emulador se ve mal
     Card(
         modifier = Modifier
             .clickable { }
