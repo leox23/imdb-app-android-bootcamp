@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.bootcamp.imdb.R
-import com.bootcamp.imdb.lorem.MovieProvider
+import com.bootcamp.imdb.respository.MovieProvider
 
 
 @Composable
@@ -29,7 +29,7 @@ fun Trailer() {
     ) {
         Box(
             modifier = Modifier //el video
-                .clickable{ }
+                .clickable { }
                 .fillMaxWidth()
                 .height(225.dp),
             contentAlignment = Alignment.Center

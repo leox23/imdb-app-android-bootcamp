@@ -1,141 +1,78 @@
 package com.bootcamp.imdb.ui.screens.main_screen
 
-import android.annotation.SuppressLint
-import android.content.Context
-import android.view.LayoutInflater
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Scaffold
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.sp
-import androidx.compose.ui.viewinterop.AndroidView
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bootcamp.imdb.R
-import com.bootcamp.imdb.adapter.MovieAdapter
-import com.bootcamp.imdb.databinding.ActivityMainBinding
-import com.bootcamp.imdb.lorem.MovieProvider
+import com.bootcamp.imdb.ui.components.DividerAndPadding
+import com.bootcamp.imdb.ui.components.DividerGrey
 import com.bootcamp.imdb.ui.components.SearchItemList
-import com.bootcamp.imdb.ui.theme.Black
 import com.bootcamp.imdb.ui.theme.IMDbTheme
-import com.bootcamp.imdb.ui.theme.White_Smoke
+import com.bootcamp.imdb.viewmodel.SearchViewModel
 
-@SuppressLint("InflateParams")
+
 @Composable
-fun SearchScreen() {
-    Scaffold(
-        topBar = { TopBar() },
-        backgroundColor = White_Smoke
+fun SearchScreen(thisViewModel: SearchViewModel) {
+    Column(
+        Modifier
+            .fillMaxSize()
     ) {
-        Column(
-            Modifier
+        OutlinedTextField(
+            value = thisViewModel.search,
+            placeholder = {
+                Text(text = stringResource(R.string.search_on_imdb))
+            },
+            onValueChange = { thisViewModel.onSearchChange(it) },
+            leadingIcon = {
+                Icon(
+                    Icons.Default.Search,
+                    contentDescription = stringResource(R.string.search_icon),
+                    Modifier.size(30.dp)
+                )
+            },
+            modifier = Modifier
                 .fillMaxWidth()
-                .verticalScroll(rememberScrollState())
-        ) {
-            //MovieDetail() //esta es la descriocion del item seleccionado
-            SearchItemList(
-                "https://image.tmdb.org/t/p/w185_and_h278_bestv2/bnuC6hu7AB5dYW26A3o6NNLlIlE.jpg",
-                "Godzilla vs Kong",
-                "2022",
-                "Godzilla es una pelicula que cuenta la pelea entre bla bla bla..."
-            )
-            SearchItemList(
-                "https://image.tmdb.org/t/p/w185_and_h278_bestv2/bnuC6hu7AB5dYW26A3o6NNLlIlE.jpg",
-                "Godzilla vs Kong",
-                "2022",
-                "Godzilla es una pelicula que cuenta la pelea entre bla bla bla..."
-            )
-            SearchItemList(
-                "https://image.tmdb.org/t/p/w185_and_h278_bestv2/bnuC6hu7AB5dYW26A3o6NNLlIlE.jpg",
-                "Godzilla vs Kong",
-                "2022",
-                "Godzilla es una pelicula que cuenta la pelea entre bla bla bla..."
-            )
-            // todo debe ir una barra de busqueda que pueda dar resultados del recycleView creado en Android view
-
-
-            AndroidView(
-                factory = { context: Context ->
-                    val view = LayoutInflater.from(context)
-                        .inflate(R.layout.activity_main, null, false)
-                    view
-                },
-                update = { view ->
-                    val binding = ActivityMainBinding.bind(view).recyclerMovies
-                    binding.layoutManager = LinearLayoutManager(binding.context)
-                    binding.adapter = MovieAdapter(MovieProvider.movieList)
+                .padding(24.dp, 16.dp),
+            shape = RoundedCornerShape(12.dp),
+            maxLines = 1
+        )
+        DividerGrey()
+        if (thisViewModel.search != "") {
+            LazyColumn(
+                contentPadding = PaddingValues(12.dp)
+            ) {
+                itemsIndexed(thisViewModel.filteredMovies) { index, movie ->
+                    SearchItemList(
+                        movie.featuredImage,
+                        movie.title,
+                        movie.year.toString(),
+                        movie.description
+                    )
+                    DividerAndPadding()
                 }
-            )
+
+            }
 
         }
     }
 }
 
-
-
 @Preview()
 @Composable
 fun SearchScreenPreview() {
     IMDbTheme {
-        SearchScreen()
+        SearchScreen(viewModel())
     }
-}
-
-
-/*
-######################################################################
-  lo siguiente es para colocar en un componente aparte
-######################################################################
-*/
-
-@Composable
-fun TopBar(){
-    TopAppBar(
-        title = { Text("Mi titulo de barra de busqueda") },
-        backgroundColor = White_Smoke,
-        contentColor = Black
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun TopBarPreview(){
-    TopBar()
-}
-
-
-
-@Composable
-fun SearchView(){
-    val state = remember { mutableStateOf(TextFieldValue()) }
-
-        TextField(
-            value = state.value,
-            onValueChange = { value ->
-                state.value = value
-            },
-            modifier = Modifier
-                .fillMaxWidth(),
-            textStyle = TextStyle(
-                color = Black,
-                fontSize = 10.sp),
-            //falta leading icon y trailing icon
-        )
-
-}
-
-@Preview(showBackground = true)
-@Composable
-fun SearchViewPreview() {
-    SearchView()
 }

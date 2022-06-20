@@ -29,4 +29,8 @@
     <string name="you_have_not_visited_any_pages_recently">No has visitado ninguna pagina recientemente</string>
     <string name="favorite_people">Personas Favoritas</string>
     <string name="you_dont_have_favorite_people_yet">Aun no tienes personas favoritas</string>
+
+    <!-- search -->
+    <string name="search_on_imdb">Buscar en IMDb</string>
+    <string name="search_icon">Icono de busqueda</string>
 </resources>

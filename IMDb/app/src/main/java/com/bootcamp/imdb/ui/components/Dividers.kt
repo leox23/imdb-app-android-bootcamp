@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
@@ -38,4 +39,17 @@ fun DividerGrey(){
             .fillMaxWidth(),
         thickness = 1.dp
     )
+}
+
+@Composable
+fun DividerAndPadding(){
+    Spacer(
+        Modifier
+            .fillMaxWidth()
+            .padding(0.dp, 7.dp))
+    DividerGrey()
+    Spacer(
+        Modifier
+            .fillMaxWidth()
+            .padding(0.dp, 7.dp))
 }

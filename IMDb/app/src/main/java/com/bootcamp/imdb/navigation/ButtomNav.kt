@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
@@ -34,14 +35,16 @@ fun ButtomNav() {
         bottomBar = {
             BottomNavigation(
                 Modifier
-                    .clip(shape = RoundedCornerShape(
-                        45,
-                        45,
-                        0,
-                        0)
+                    .clip(
+                        shape = RoundedCornerShape(
+                            45,
+                            45,
+                            0,
+                            0
+                        )
                     ),
                 backgroundColor = Mustard
-            ){
+            ) {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentDestination = navBackStackEntry?.destination
                 screens.forEach { screen ->
@@ -69,17 +72,17 @@ fun ButtomNav() {
             startDestination = BottomBarScreen.Home.route,
             Modifier.padding(innerPadding)
         ) {
-            composable(route = BottomBarScreen.Home.route){
+            composable(route = BottomBarScreen.Home.route) {
                 BackHandler(true) {}
                 HomeScreen()
             }
-            composable(route = BottomBarScreen.Search.route){
-                SearchScreen()
+            composable(route = BottomBarScreen.Search.route) {
+                SearchScreen(viewModel())
             }
-            composable(route = BottomBarScreen.Play.route){
+            composable(route = BottomBarScreen.Play.route) {
                 PlayScreen()
             }
-            composable(route = BottomBarScreen.User.route){
+            composable(route = BottomBarScreen.User.route) {
                 UserScreen()
             }
         }
