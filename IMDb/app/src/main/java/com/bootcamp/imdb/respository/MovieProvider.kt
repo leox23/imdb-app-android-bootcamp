@@ -4,7 +4,6 @@ import com.bootcamp.imdb.model.Movie
 
 class MovieProvider {
     companion object {
-
         val movieList = listOf(
                 Movie(
                     0,
