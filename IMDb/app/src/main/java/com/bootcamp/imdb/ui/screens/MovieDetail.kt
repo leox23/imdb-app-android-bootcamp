@@ -10,12 +10,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.bootcamp.imdb.R
 import com.bootcamp.imdb.navigation.BottomBarScreen
@@ -25,10 +26,17 @@ import com.bootcamp.imdb.ui.components.SpacerGrey
 import com.bootcamp.imdb.ui.components.TitleSection
 import com.bootcamp.imdb.ui.theme.Charcoal
 import com.bootcamp.imdb.ui.theme.Grey
+import com.bootcamp.imdb.viewmodel.MovieDetailViewModel
 
 @Composable
-fun MovieDetail() {
-    val navController = rememberNavController()
+fun MovieDetail(
+    string : String?,
+    navController: NavController,
+    movie : MovieDetailViewModel
+    ) {
+
+    movie.onMovieSearchResultClick(string!!.toInt())
+
     Column(
         Modifier
             .fillMaxWidth()
@@ -42,22 +50,22 @@ fun MovieDetail() {
                 .height(30.dp),
             contentAlignment = Alignment.Center
         ) {
-            Row(Modifier
+            Row(Modifier //todo flecha y barra deberia ser hecho en scaffold
                 .padding(20.dp, 0.dp)
                 .clickable {
-                    navController.navigate(BottomBarScreen.Home.route)
+                    navController.navigate(BottomBarScreen.Search.route)
                 }
                 .padding(5.dp)
                 .align(Alignment.CenterStart)) {
                 Image(
                     painter = painterResource(R.drawable.arrow_left),
-                    contentDescription = "Arrow Left",
+                    contentDescription = stringResource(R.string.back_button),
                     modifier = Modifier
                         .size(24.dp)
                 )
             }
             Text(
-                "Queens gambit",
+                movie.originalTitle, //todo recortar titulo a solo 26 caracteres, titulos largos soperponen el boton atras
                 style = MaterialTheme.typography.h4,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -70,43 +78,45 @@ fun MovieDetail() {
         }
         DividerGrey()
 
-        TitleSection("Gambito de dama")
+        TitleSection(movie.title)
         Column(
             Modifier
                 .padding(40.dp, 0.dp, 0.dp, 0.dp)
                 .offset(y = -(20).dp)
         ) {
             Text(
-                "The Queens Gambit (titulo original)",
+                "${movie.originalTitle} (${stringResource(R.string.original_title)})",
                 Modifier.padding(0.dp, 0.dp, 0.dp, 8.dp),
                 style = MaterialTheme.typography.body1,
                 color = Grey,
                 fontSize = 10.sp
             )
-            Text(
-                "Miniserie de TV 2020 - 2020 16",
-                style = MaterialTheme.typography.body1,
-                color = Grey,
-                fontSize = 12.sp
-            )
+            if (movie.isSerie == true){
+                Text( //todo condicional para no mostrar si es serie
+                    "${stringResource(R.string.tv_series)} ${movie.emissionTime}",
+                    style = MaterialTheme.typography.body1,
+                    color = Grey,
+                    fontSize = 12.sp
+                )
+            }
         }
-        Box(     // trailer
+        Box(     // trailer image
             modifier = Modifier
-                .clickable{ }
+                .clickable { }
                 .fillMaxWidth()
                 .height(225.dp),
             contentAlignment = Alignment.Center
         ) {
             AsyncImage(
-                "https://image.tmdb.org/t/p/w1280/4aTonMQCSEgu5PV3n3xRaNMZmG1.jpg",
-                "imagen de trailer",
+                model = movie.trailerImage,
+                stringResource(R.string.trailer_image),
                 modifier = Modifier
                     .fillMaxSize()
             )
 
             Image(
                 painter = painterResource(R.drawable.ic_play_shape),
-                contentDescription = "Play Shape",
+                contentDescription = stringResource(R.string.play_button),
                 modifier = Modifier
                     .size(50.dp)
             )
@@ -117,8 +127,8 @@ fun MovieDetail() {
                 .padding(20.dp, 20.dp, 20.dp, 10.dp)
         ) {
             AsyncImage(
-                model = "https://image.tmdb.org/t/p/w185_and_h278_bestv2/gKxPyeItCrOscP8On4y5sG3WY9A.jpg",
-                contentDescription = "Actor de reparto",
+                model = movie.featuredImage,
+                contentDescription = stringResource(R.string.cover_image),
                 modifier = Modifier
                     .padding(0.dp)
                     .size(100.dp, 140.dp)
@@ -129,35 +139,33 @@ fun MovieDetail() {
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        "Drama",
+                        movie.genre,
                         Modifier
-                            .size(72.dp, 32.dp)
+                            .height(32.dp)
                             .border(
                                 BorderStroke(1.dp, Grey.copy(alpha = ContentAlpha.medium)),
                                 RoundedCornerShape(4.dp)
                             )
-                            .padding(0.dp, 6.dp, 0.dp, 0.dp),
+                            .padding(6.dp, 4.dp),
                         textAlign = TextAlign.Center,
                         color = Grey.copy(alpha = ContentAlpha.medium),
                         lineHeight = 20.sp
                     )
-                    AsyncImage(
-                        model = "https://upload.wikimedia.org/wikipedia/commons/1/18/Estrella_amarilla.png", // todo pendiente por colocar en recursos
-                        contentDescription = "Img estrella",
+                    AsyncImage( // todo estrella rating pendiente por colocar en recursos strings
+                        model = stringResource(R.string.yellow_star_icon),
+                        contentDescription = stringResource(R.string.image_star_rating),
                         modifier = Modifier
                             .padding(12.dp, 0.dp, 0.dp, 0.dp)
                             .size(20.dp)
                             .clip(CircleShape)
                     )
                     Text(
-                        text = "4.20",
+                        text = movie.rating, //todo rating a sacar de datos originales
                         Modifier.padding(4.dp, 0.dp)
                     )
                 }
                 Text(
-                    "Beth Harmon, una huérfana de ocho años, " +
-                            "es tranquila, hosca y, según todas las " +
-                            "apariencias, poco llamativa.",
+                    movie.description,
                     Modifier.padding(0.dp, 16.dp),
                     lineHeight = 22.sp,
                     fontSize = 16.sp
@@ -166,42 +174,46 @@ fun MovieDetail() {
         }
 
         DividerGrey()
-        Row(
-            Modifier
-                .clickable { }
-                .fillMaxWidth()
-                .padding(26.dp, 10.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(
-                "Guia de espisodios",
-                style = MaterialTheme.typography.h4,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold
-            )
-            Row {
+
+        if (movie.isSerie == true){
+            Row(
+                Modifier
+                    .clickable { }
+                    .fillMaxWidth()
+                    .padding(26.dp, 10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
                 Text(
-                    "7 episodios",
-                    color = Grey
+                    "Guia de espisodios", //todo debe ser leida de variable, aplico cuando consuma api
+                    style = MaterialTheme.typography.h4,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold
                 )
-                Image(
-                    painter = painterResource(R.drawable.ic_angle_bracket),
-                    contentDescription = "Imager ver lista de episodios ",
-                    modifier = Modifier
-                        .padding(20.dp, 0.dp, 0.dp, 0.dp)
-                        .size(20.dp)
-                )
+                Row {
+                    Text(
+                        "7 episodios", //todo igual que arriba
+                        color = Grey
+                    )
+                    Image(
+                        painter = painterResource(R.drawable.ic_angle_bracket),
+                        contentDescription = stringResource(R.string.see_list_of_episodes),
+                        modifier = Modifier
+                            .padding(20.dp, 0.dp, 0.dp, 0.dp)
+                            .size(20.dp)
+                    )
+                }
             }
         }
         DividerGrey()
-        FollowListButton("Agregar a mi lista de seguimiento")
+        FollowListButton(stringResource(R.string.add_to_my_watch_list))
         SpacerGrey()
-        TitleSection("Lorem ipsum dolor")
+        TitleSection(stringResource(R.string.lorem_ipsum_dolor))
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun MovieDetailPreview() {
-    MovieDetail()
+    //val navController = rememberNavController()
+    //MovieDetail(navController)
 }

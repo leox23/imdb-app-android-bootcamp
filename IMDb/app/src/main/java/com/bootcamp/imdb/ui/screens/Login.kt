@@ -111,7 +111,6 @@ fun StandartLogin(navController: NavController, thisViewModel : LoginViewModel =
                     style = MaterialTheme.typography.body2
                 )
             }
-            //todo falta este por aplicarle el efecto del click
             Text(
                 text = stringResource(R.string.continue_as_a_guest),
                 modifier = Modifier

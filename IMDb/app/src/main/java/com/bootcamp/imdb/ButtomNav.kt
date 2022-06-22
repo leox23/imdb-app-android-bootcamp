@@ -1,5 +1,6 @@
 package com.bootcamp.imdb.navigation
 
+import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -9,18 +10,24 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.*
+import androidx.navigation.navArgument
+import com.bootcamp.imdb.MainActivity
+import com.bootcamp.imdb.ui.components.SplashIntro
+import com.bootcamp.imdb.ui.screens.MovieDetail
+import com.bootcamp.imdb.ui.screens.Register
+import com.bootcamp.imdb.ui.screens.StandartLogin
 import com.bootcamp.imdb.ui.screens.main_screen.HomeScreen
 import com.bootcamp.imdb.ui.screens.main_screen.PlayScreen
 import com.bootcamp.imdb.ui.screens.main_screen.SearchScreen
 import com.bootcamp.imdb.ui.screens.main_screen.UserScreen
 import com.bootcamp.imdb.ui.theme.Charcoal
 import com.bootcamp.imdb.ui.theme.Mustard
+import kotlin.system.exitProcess
 
 @Composable
 fun ButtomNav() {
@@ -76,15 +83,32 @@ fun ButtomNav() {
                 BackHandler(true) {}
                 HomeScreen()
             }
-            composable(route = BottomBarScreen.Search.route) {
-                SearchScreen(viewModel())
-            }
+
+            searchAndDetail(navController)
+
             composable(route = BottomBarScreen.Play.route) {
                 PlayScreen()
             }
+
             composable(route = BottomBarScreen.User.route) {
                 UserScreen()
             }
         }
     }
 }
+fun NavGraphBuilder.searchAndDetail(navController: NavController) {
+    navigation(startDestination = BottomBarScreen.Search.route, route = "searchPath"){
+        composable(route = BottomBarScreen.Search.route) {
+            SearchScreen(navController,viewModel())
+        }
+
+        val routeMDetailAndData = "movieDetail/{argument}" //todo pendiente por colocar movieDetail en sealed class
+        composable(
+            routeMDetailAndData,
+            arguments = listOf(navArgument(name = "argument"){})
+        ){ navEntry ->
+            MovieDetail( navEntry.arguments?.getString("argument"), navController, viewModel())
+        }
+    }
+}
+

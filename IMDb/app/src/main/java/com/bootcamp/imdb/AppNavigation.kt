@@ -18,7 +18,7 @@ fun AppNavigation() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = "loginPath"
+        startDestination = OthersViews.LoginPath.route
     ) {
 
         splashAndLogin(navController)
@@ -32,7 +32,7 @@ fun AppNavigation() {
 
 
 fun NavGraphBuilder.splashAndLogin(navController: NavController) {
-    navigation(startDestination = OthersViews.Splash.route, route = "loginPath") {
+    navigation(startDestination = OthersViews.Splash.route, route = OthersViews.LoginPath.route) {
         composable(route = OthersViews.Splash.route) {
             SplashIntro(navController = navController)
         }

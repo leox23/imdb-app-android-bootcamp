@@ -5,6 +5,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.ui.graphics.vector.ImageVector
 
 sealed class OthersViews (val route : String){
+    object LoginPath : OthersViews(route = "loginPath")
     object Splash : OthersViews(route = "splash")
     object Login : OthersViews(route = "login")
     object Register : OthersViews(route = "register")

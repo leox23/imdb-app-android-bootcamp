@@ -15,16 +15,23 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.bootcamp.imdb.R
+import com.bootcamp.imdb.respository.MovieDetailProvider.Companion.movieDetailList
 import com.bootcamp.imdb.ui.components.DividerAndPadding
 import com.bootcamp.imdb.ui.components.DividerGrey
 import com.bootcamp.imdb.ui.components.SearchItemList
 import com.bootcamp.imdb.ui.theme.IMDbTheme
+import com.bootcamp.imdb.viewmodel.MovieDetailViewModel
 import com.bootcamp.imdb.viewmodel.SearchViewModel
 
 
 @Composable
-fun SearchScreen(thisViewModel: SearchViewModel) {
+fun SearchScreen(
+    navController: NavController,
+    thisViewModel: SearchViewModel
+    ) {
     Column(
         Modifier
             .fillMaxSize()
@@ -55,10 +62,8 @@ fun SearchScreen(thisViewModel: SearchViewModel) {
             ) {
                 itemsIndexed(thisViewModel.filteredMovies) { index, movie ->
                     SearchItemList(
-                        movie.featuredImage,
-                        movie.title,
-                        movie.year.toString(),
-                        movie.description
+                        movie,
+                        navController,
                     )
                     DividerAndPadding()
                 }
@@ -73,6 +78,7 @@ fun SearchScreen(thisViewModel: SearchViewModel) {
 @Composable
 fun SearchScreenPreview() {
     IMDbTheme {
-        SearchScreen(viewModel())
+        val navController = rememberNavController()
+        SearchScreen(navController,viewModel())
     }
 }
