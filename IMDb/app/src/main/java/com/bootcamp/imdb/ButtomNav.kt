@@ -1,6 +1,5 @@
 package com.bootcamp.imdb.navigation
 
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -16,18 +15,13 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.*
 import androidx.navigation.navArgument
-import com.bootcamp.imdb.MainActivity
-import com.bootcamp.imdb.ui.components.SplashIntro
 import com.bootcamp.imdb.ui.screens.MovieDetail
-import com.bootcamp.imdb.ui.screens.Register
-import com.bootcamp.imdb.ui.screens.StandartLogin
 import com.bootcamp.imdb.ui.screens.main_screen.HomeScreen
 import com.bootcamp.imdb.ui.screens.main_screen.PlayScreen
 import com.bootcamp.imdb.ui.screens.main_screen.SearchScreen
 import com.bootcamp.imdb.ui.screens.main_screen.UserScreen
 import com.bootcamp.imdb.ui.theme.Charcoal
 import com.bootcamp.imdb.ui.theme.Mustard
-import kotlin.system.exitProcess
 
 @Composable
 fun ButtomNav() {
