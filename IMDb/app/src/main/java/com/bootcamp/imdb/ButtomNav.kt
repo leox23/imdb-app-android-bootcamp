@@ -81,7 +81,7 @@ fun ButtomNav() {
         ) {
             composable(route = BottomBarScreen.Home.route) {
                 BackHandler(true) {}
-                HomeScreen()
+                HomeScreen(viewModel())
             }
 
             searchAndDetail(navController)

@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -17,10 +18,13 @@ import com.bootcamp.imdb.respository.MovieProvider
 
 
 @Composable
-fun Trailer() {
-    val title = MovieProvider.movieList[5].title
-    val urlImage = MovieProvider.movieList[5].featuredImage
-    val tumbnTrailer = "https://image.tmdb.org/t/p/w1280/g2djzUqA6mFplzC03gDk0WSyg99.jpg"
+fun Trailer(
+    id: Int?,  //por si tengo que ir a la vista detalle desde aqui
+    trailerImage: String,
+    coverImage: String,
+    titleTrailer: String,
+    description: String
+) {
     Box(
         modifier = Modifier
             .padding(0.dp, 0.dp, 0.dp, 20.dp)
@@ -35,14 +39,14 @@ fun Trailer() {
             contentAlignment = Alignment.Center
         ) {
             AsyncImage(
-                model = tumbnTrailer,
-                contentDescription = "Trailer de encanto",
+                model = trailerImage,
+                contentDescription = stringResource(R.string.trailer_image),
                 modifier = Modifier
                     .fillMaxSize()
             )
             Image(
                 painter = painterResource(R.drawable.ic_play_shape),
-                contentDescription = "Play Shape",
+                contentDescription = stringResource(R.string.play_button),
                 modifier = Modifier
                     .size(50.dp)
             )
@@ -54,12 +58,12 @@ fun Trailer() {
                 .align(Alignment.BottomEnd)
         ) {
             Text(
-                text = title,
+                text = titleTrailer,
                 modifier = Modifier.padding(12.dp, 8.dp, 0.dp, 0.dp),
                 style = MaterialTheme.typography.body2
             )
             Text(
-                text = "Encanto, te trasla...",
+                text = description,
                 modifier = Modifier.padding(12.dp, 8.dp, 0.dp, 0.dp),
                 style = MaterialTheme.typography.subtitle1
             )
@@ -71,8 +75,8 @@ fun Trailer() {
                 .align(Alignment.BottomStart)
         ) {
             AsyncImage(
-                model = urlImage,
-                contentDescription = "Portada de Encanto",
+                model = coverImage,
+                contentDescription = stringResource(R.string.cover_image),
                 modifier = Modifier
                     .fillMaxSize()
             )
@@ -84,5 +88,5 @@ fun Trailer() {
 @Preview(showBackground = true)
 @Composable
 fun TrailerPreview() {
-    Trailer()
+    //Trailer()
 }

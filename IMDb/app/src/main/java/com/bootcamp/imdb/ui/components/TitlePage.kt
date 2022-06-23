@@ -13,19 +13,16 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.bootcamp.imdb.R
-import com.bootcamp.imdb.respository.MovieProvider.Companion.movieList
+import com.bootcamp.imdb.model.Movie
 
 
 @Composable
-fun TitlePage(position: Int) {
-// todo es el mismo tamaño que se usa en la portadaimagen del trailer
-    val title = movieList[position].title
-    val urlImage = movieList[position].featuredImage
-    val rating = movieList[position].rating.toString()
+fun TitlePage( movie : Movie ) {
     Column(
         Modifier
             .clickable { }
@@ -34,22 +31,22 @@ fun TitlePage(position: Int) {
             .width(124.dp)
             .wrapContentHeight()) {
         AsyncImage(
-            model = urlImage,
-            contentDescription = "imagen portada",
+            model = movie.featuredImage,
+            contentDescription = stringResource(R.string.cover_image),
             modifier = Modifier
                 .size(124.dp, height = 186.dp)
         )
         Row(Modifier.padding(6.dp)) {
             AsyncImage(
-                model = "https://upload.wikimedia.org/wikipedia/commons/1/18/Estrella_amarilla.png", // todo pendiente por colocar en recursos
-                contentDescription = "Img estrella",
+                model = stringResource(R.string.yellow_star_icon),
+                contentDescription = stringResource(R.string.image_star_rating),
                 modifier = Modifier
                     .size(20.dp)
                     .clip(CircleShape)
             )
             Text(
-                text = rating,
-                Modifier.padding(8.dp, 0.dp, 0.dp, 2.dp)
+                text = movie.rating.toString(),
+                Modifier.padding(8.dp, 0.dp, 8.dp, 2.dp)
             )
         }
         Row(
@@ -57,7 +54,7 @@ fun TitlePage(position: Int) {
                 .padding(start = 8.dp)
                 .height(22.dp)
         ) {
-            Text(title)
+            Text(movie.title)
         }
         Row(
             modifier = Modifier // titulo y descripcion
@@ -81,5 +78,5 @@ fun TitlePage(position: Int) {
 @Preview(showBackground = true)
 @Composable
 fun TitlePagePreview() {
-    TitlePage(1)
+    //TitlePage(1)
 }
