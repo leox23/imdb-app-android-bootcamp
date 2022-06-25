@@ -1,7 +1,9 @@
 package com.bootcamp.imdb.ui.screens.main_screen
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -24,7 +26,7 @@ fun HomeScreen( thisViewModel : HomeViewModel) {
     }
     Column(
         Modifier
-            .padding(0.dp, 0.dp, 0.dp, 20.dp)
+            .wrapContentHeight()
     ) {
         Trailer(
             thisViewModel.selectedHomeMovie,
@@ -36,7 +38,7 @@ fun HomeScreen( thisViewModel : HomeViewModel) {
         SpacerGrey()
         TitleSection(stringResource(R.string.the_best_selections))
         thisViewModel.carouselItems?.let { Carousel(it) }
-        SpacerGrey()
+        SpacerGrey() // todo inonsistencia en diseño, no hay suficiente espacio para jugar con padding para que sea mas distinguible la sombra inderior y la barra gris siguientem queda pendiente ajuztar
     }
 }
 

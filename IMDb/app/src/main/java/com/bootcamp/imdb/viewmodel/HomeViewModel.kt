@@ -30,7 +30,7 @@ class HomeViewModel : ViewModel() { //todo pendiente refactor, quiza sea posible
 
     fun carouselItems() {
         //todo los items del carousel deberian ser solo los 7 con mayor rating, queda asi por ahora
-        var i : Int = 0
+        var i = 0
         while(i <= 6){
             ranVal = (0..last).random()
             if (!carouselItemsId.contains(ranVal) && ranVal != selectedHomeMovie){

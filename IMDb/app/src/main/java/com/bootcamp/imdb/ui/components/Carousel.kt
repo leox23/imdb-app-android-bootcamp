@@ -17,7 +17,7 @@ fun Carousel( carouselItems : List<Movie> ) {
             LazyRow(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(0.dp,0.dp,0.dp,12.dp),
+                    .wrapContentHeight(),
                 state = rememberLazyListState()
             ) {
                 itemsIndexed(carouselItems) { index, item ->
