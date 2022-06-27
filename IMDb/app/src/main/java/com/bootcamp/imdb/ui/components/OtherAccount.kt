@@ -24,12 +24,12 @@ fun LoginOtherAccount(logo : Painter, description : String, onClick: () -> Unit 
         contentDescription = description,
         modifier = Modifier
             .padding(9.dp)
+            .clip(CircleShape)
+            .clickable { onClick() }
             .shadow(elevation = 10.dp, shape = CircleShape)
             .size(62.dp)
-            .clip(CircleShape)
             .background(White_Smoke)
-            .padding(14.dp)
-            .clickable { onClick() },
+            .padding(14.dp),
     )
 }
 

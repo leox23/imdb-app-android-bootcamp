@@ -4,7 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.bootcamp.imdb.respository.MovieProvider.Companion.movieList
+import com.bootcamp.imdb.di.MovieProvider.Companion.movieList
 
 class SearchViewModel : ViewModel() {
     var search by mutableStateOf("")

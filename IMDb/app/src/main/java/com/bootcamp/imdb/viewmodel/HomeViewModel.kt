@@ -5,8 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.bootcamp.imdb.model.Movie
-import com.bootcamp.imdb.respository.MovieDetailProvider.Companion.movieDetailList
-import com.bootcamp.imdb.respository.MovieProvider.Companion.movieList
+import com.bootcamp.imdb.di.MovieDetailProvider.Companion.movieDetailList
+import com.bootcamp.imdb.di.MovieProvider.Companion.movieList
 
 class HomeViewModel : ViewModel() { //todo pendiente refactor, quiza sea posible lograr trabajar con los id de Movie, en ves de ids locales aca, aunque quisa sea mas facil asi pora pasar argumentos en navegacion
     var selectedHomeMovie : Int? by mutableStateOf(null)

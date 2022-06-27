@@ -1,4 +1,4 @@
-package com.bootcamp.imdb.respository
+package com.bootcamp.imdb.di
 
 import com.bootcamp.imdb.model.MovieDetail
 

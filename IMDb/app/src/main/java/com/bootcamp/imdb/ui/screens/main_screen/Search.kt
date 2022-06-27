@@ -18,12 +18,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.bootcamp.imdb.R
-import com.bootcamp.imdb.respository.MovieDetailProvider.Companion.movieDetailList
 import com.bootcamp.imdb.ui.components.DividerAndPadding
 import com.bootcamp.imdb.ui.components.DividerGrey
 import com.bootcamp.imdb.ui.components.SearchItemList
 import com.bootcamp.imdb.ui.theme.IMDbTheme
-import com.bootcamp.imdb.viewmodel.MovieDetailViewModel
 import com.bootcamp.imdb.viewmodel.SearchViewModel
 
 
