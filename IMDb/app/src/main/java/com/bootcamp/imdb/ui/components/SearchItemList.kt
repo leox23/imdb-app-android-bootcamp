@@ -16,22 +16,22 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.bootcamp.imdb.model.Movie
+import com.bootcamp.imdb.model.Pelicula
 import com.bootcamp.imdb.ui.theme.Charcoal
 import com.bootcamp.imdb.ui.theme.Grey
 
 @Composable
 fun SearchItemList(
-    movie : Movie,
+    movie : Pelicula,
     navController: NavController,
 ) {
-    val i  = movie.id
     Row(Modifier
         .clickable {
             navController.navigate("movieDetail/${movie.id}")
         }
     ){
         AsyncImage(
-            movie.featuredImage,
+            "https://image.tmdb.org/t/p/w200" + movie.poster_path,
             contentDescription = null,
             modifier = Modifier
                 .size(100.dp, 140.dp)
@@ -45,13 +45,13 @@ fun SearchItemList(
                 style = MaterialTheme.typography.body2
             )
             Text(
-                movie.year.toString(),
+                movie.release_date.slice(0..3),
                 style = MaterialTheme.typography.body1,
                 color = Grey,
                 fontSize = 18.sp
             )
             Text(
-                movie.description,
+                movie.overview.slice(0..110) + "...",
                 Modifier.padding(0.dp, 14.dp, 0.dp, 0.dp),
                 style = MaterialTheme.typography.body1,
                 color = Grey,
@@ -65,7 +65,7 @@ fun SearchItemList(
 @Composable
 fun SearchItemListPreview() {
     val navController = rememberNavController()
-    /*
+/*
     SearchItemList(
         "Godzilla vs Kong",
         2.5,
@@ -74,5 +74,5 @@ fun SearchItemListPreview() {
         "Godzilla es una pelicula que cuenta la pelea entre bla bla bla...",
         navController = navController
     )
-    */
+*/
 }

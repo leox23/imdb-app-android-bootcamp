@@ -30,6 +30,7 @@ fun SearchScreen(
     navController: NavController,
     thisViewModel: SearchViewModel
     ) {
+
     Column(
         Modifier
             .fillMaxSize()
@@ -71,6 +72,7 @@ fun SearchScreen(
         }
     }
 }
+
 
 @Preview()
 @Composable
