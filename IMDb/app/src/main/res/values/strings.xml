@@ -43,6 +43,7 @@
     <string name="cover_image">Imagen Portada</string>
     <string name="yellow_star_icon">https://upload.wikimedia.org/wikipedia/commons/1/18/Estrella_amarilla.png</string>
     <string name="image_star_rating">Imagen Estrella Rating</string>
+    <string name="episode_guide">Guia de espisodios</string>
     <string name="see_list_of_episodes">Ver lista de episodios</string>
     <string name="add_to_my_watch_list">Agregar a mi lista de seguimiento</string>
     <string name="lorem_ipsum_dolor">Lorem ipsum dolor</string>

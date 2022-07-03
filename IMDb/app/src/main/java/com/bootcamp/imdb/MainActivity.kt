@@ -8,7 +8,6 @@ import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import com.bootcamp.imdb.navigation.AppNavigation
 import com.bootcamp.imdb.ui.theme.IMDbTheme
-import com.bootcamp.imdb.viewmodel.RetrofitViewModel
 
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +18,6 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    RetrofitViewModel().callList()
                     AppNavigation()
                 }
             }

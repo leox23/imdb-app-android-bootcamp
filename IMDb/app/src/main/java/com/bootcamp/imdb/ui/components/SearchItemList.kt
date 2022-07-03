@@ -9,13 +9,15 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
-import com.bootcamp.imdb.model.Movie
+import com.bootcamp.imdb.R
+import com.bootcamp.imdb.api.ApiConstants.IMAGE_W200
 import com.bootcamp.imdb.model.Pelicula
 import com.bootcamp.imdb.ui.theme.Charcoal
 import com.bootcamp.imdb.ui.theme.Grey
@@ -31,8 +33,8 @@ fun SearchItemList(
         }
     ){
         AsyncImage(
-            "https://image.tmdb.org/t/p/w200" + movie.poster_path,
-            contentDescription = null,
+            IMAGE_W200 + movie.poster_path,
+            contentDescription = stringResource(R.string.cover_image),
             modifier = Modifier
                 .size(100.dp, 140.dp)
         )

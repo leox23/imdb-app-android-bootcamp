@@ -1,41 +1,50 @@
 package com.bootcamp.imdb.viewmodel
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.bootcamp.imdb.di.MovieDetailProvider.Companion.movieDetailList
-import com.bootcamp.imdb.di.MovieProvider.Companion.movieList
+import com.bootcamp.imdb.RetrofitApi
+import com.bootcamp.imdb.model.DetallePelicula
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MovieDetailViewModel : ViewModel() {
-    var id : Int? by mutableStateOf(null)
-    var title by mutableStateOf("")
-    var rating by mutableStateOf("")
-    var year by mutableStateOf("")
-    var description by mutableStateOf("")
-    var featuredImage by mutableStateOf("")
+    var pelicula : DetallePelicula? by mutableStateOf(null)
+    var originalTitleCutCheck : String by mutableStateOf("")
+    var genreJoined : String by mutableStateOf("")
+    var rating : String by mutableStateOf("")
 
-    var originalTitle by mutableStateOf("")
-    var trailerImage by mutableStateOf("")
-    var genre by mutableStateOf("")
-    var isSerie : Boolean? by mutableStateOf(null)
-    var emissionTime : String? by mutableStateOf(null)
-    var chapters : Int? by mutableStateOf(null)
+    fun apicalldetailMovie(movieId : Int){
+        val apiInterface2 = RetrofitApi.create().getMovieDetail(movieId)
+        apiInterface2.enqueue(object : Callback<DetallePelicula> {
+            override fun onResponse(call: Call<DetallePelicula>, response: Response<DetallePelicula>) {
+                pelicula  = response.body()
+                resolveTextsLength()
+            }
 
-    fun onMovieSearchResultClick(index : Int){
-        id = movieList[index].id
-        title = movieList[index].title
-        rating = movieList[index].rating.toString()
-        year = movieList[index].year.toString()
-        description = movieList[index].description
-        featuredImage = movieList[index].featuredImage
+            override fun onFailure(call: Call<DetallePelicula>, t: Throwable) {
+                Log.e("ERROR", t.toString())
+            }
 
-        originalTitle = movieDetailList[index].originalTitle
-        trailerImage = movieDetailList[index].trailerImage
-        genre = movieDetailList[index].genre
-        isSerie = movieDetailList[index].isSerie
-        emissionTime = movieDetailList[index].emissionTime
-        chapters = movieDetailList[index].chapters
+        })
     }
 
+    fun resolveTextsLength() {
+        originalTitleCutCheck =
+            if (pelicula?.original_title?.length!! >= 28){
+                pelicula?.original_title?.slice(0..28) + "..."
+            } else {
+                (pelicula?.original_title)!!
+            }
+
+        genreJoined = "${pelicula!!.genres[0].name} | ${pelicula!!.genres[1].name}"
+        if (genreJoined.length >= 17){
+            genreJoined = genreJoined.slice(0..17) + "."
+        }
+
+        rating = pelicula?.vote_average?.div(2).toString()
+    }
 }

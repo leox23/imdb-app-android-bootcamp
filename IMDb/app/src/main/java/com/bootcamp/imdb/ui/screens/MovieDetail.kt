@@ -19,6 +19,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.bootcamp.imdb.R
+import com.bootcamp.imdb.api.ApiConstants.IMAGE_W200
+import com.bootcamp.imdb.api.ApiConstants.IMAGE_W500
 import com.bootcamp.imdb.navigation.BottomBarScreen
 import com.bootcamp.imdb.ui.components.DividerGrey
 import com.bootcamp.imdb.ui.components.FollowListButton
@@ -30,12 +32,14 @@ import com.bootcamp.imdb.viewmodel.MovieDetailViewModel
 
 @Composable
 fun MovieDetail(
-    string : String?,
+    navArgumentMovieId : String?,
     navController: NavController,
-    movie : MovieDetailViewModel
+    vm : MovieDetailViewModel
     ) {
-
-    movie.onMovieSearchResultClick(string!!.toInt())
+    if (vm.pelicula == null){
+        vm.apicalldetailMovie(navArgumentMovieId!!.toInt())
+    }
+    val movie = vm.pelicula
 
     Column(
         Modifier
@@ -65,7 +69,7 @@ fun MovieDetail(
                 )
             }
             Text(
-                movie.originalTitle, //todo recortar titulo a solo 26 caracteres, titulos largos soperponen el boton atras
+                vm.originalTitleCutCheck,
                 style = MaterialTheme.typography.h4,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -78,37 +82,38 @@ fun MovieDetail(
         }
         DividerGrey()
 
-        TitleSection(movie.title)
+        TitleSection(movie?.title ?: "")
         Column(
             Modifier
                 .padding(40.dp, 0.dp, 0.dp, 0.dp)
                 .offset(y = -(20).dp)
         ) {
             Text(
-                "${movie.originalTitle} (${stringResource(R.string.original_title)})",
+                "${movie?.original_title} (${stringResource(R.string.original_title)})",
                 Modifier.padding(0.dp, 0.dp, 0.dp, 8.dp),
                 style = MaterialTheme.typography.body1,
                 color = Grey,
                 fontSize = 10.sp
             )
-            if (movie.isSerie == true){
-                Text( //todo condicional para no mostrar si es serie
-                    "${stringResource(R.string.tv_series)} ${movie.emissionTime}",
+            if (false){ // aun no he adaptado recibir series desde la api
+                    Text( // condicional para no mostrar si no serie
+                    "${stringResource(R.string.tv_series)} + /*todo ultima emision variable */ ",
                     style = MaterialTheme.typography.body1,
                     color = Grey,
                     fontSize = 12.sp
                 )
             }
         }
-        Box(     // trailer image
+        Box(
             modifier = Modifier
                 .clickable { }
                 .fillMaxWidth()
                 .height(225.dp),
             contentAlignment = Alignment.Center
         ) {
+            // trailer image
             AsyncImage(
-                model = movie.trailerImage,
+                model = IMAGE_W500 + movie?.backdrop_path,
                 stringResource(R.string.trailer_image),
                 modifier = Modifier
                     .fillMaxSize()
@@ -127,7 +132,7 @@ fun MovieDetail(
                 .padding(20.dp, 20.dp, 20.dp, 10.dp)
         ) {
             AsyncImage(
-                model = movie.featuredImage,
+                model = IMAGE_W200 + movie?.poster_path,
                 contentDescription = stringResource(R.string.cover_image),
                 modifier = Modifier
                     .padding(0.dp)
@@ -139,7 +144,7 @@ fun MovieDetail(
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        movie.genre,
+                        vm.genreJoined,
                         Modifier
                             .height(32.dp)
                             .border(
@@ -160,12 +165,12 @@ fun MovieDetail(
                             .clip(CircleShape)
                     )
                     Text(
-                        text = movie.rating, //todo rating a sacar de datos originales
+                        text = vm.rating, //todo rating a sacar de datos originales
                         Modifier.padding(4.dp, 0.dp)
                     )
                 }
                 Text(
-                    movie.description,
+                    (movie?.overview?.slice(0..118) ?: "") + "...",
                     Modifier.padding(0.dp, 16.dp),
                     lineHeight = 22.sp,
                     fontSize = 16.sp
@@ -175,7 +180,7 @@ fun MovieDetail(
 
         DividerGrey()
 
-        if (movie.isSerie == true){
+        if (false){ //todo falta reimplementar las series pero llamando de api
             Row(
                 Modifier
                     .clickable { }
@@ -184,7 +189,7 @@ fun MovieDetail(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    "Guia de espisodios", //todo debe ser leida de variable, aplico cuando consuma api
+                    stringResource(R.string.episode_guide), //todo debe ser leida de variable, aplico cuando consuma api
                     style = MaterialTheme.typography.h4,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold

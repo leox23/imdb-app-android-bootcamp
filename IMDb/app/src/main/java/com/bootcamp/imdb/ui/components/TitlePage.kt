@@ -22,7 +22,7 @@ import com.bootcamp.imdb.model.Movie
 
 
 @Composable
-fun TitlePage( movie : Movie ) {
+fun TitlePage( movie : Movie) {
     Column(
         Modifier
             .clickable { }

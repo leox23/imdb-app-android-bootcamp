@@ -7,7 +7,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bootcamp.imdb.RetrofitApi
-import com.bootcamp.imdb.model.MovieDB
+import com.bootcamp.imdb.api.model.MovieDB
 import com.bootcamp.imdb.model.Pelicula
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -19,9 +19,7 @@ class SearchViewModel : ViewModel() {
         viewModelScope.launch {
             getMovieList()
         }
-
     }
-
     var search by mutableStateOf("")
     var peliculas : List<Pelicula> by mutableStateOf(listOf())
     var filteredMovies by mutableStateOf(peliculas)
@@ -33,12 +31,11 @@ class SearchViewModel : ViewModel() {
         }
     }
 
-    suspend fun getMovieList() {
+    fun getMovieList() {
         val apiInterface = RetrofitApi.create().getMovies()
         apiInterface.enqueue(object : Callback<MovieDB> {
             override fun onResponse(call: Call<MovieDB>, response: Response<MovieDB>) {
                 peliculas = response.body()?.items ?: listOf()
-                Log.d("lista leida: ",peliculas[0].toString())
             }
 
             override fun onFailure(call: Call<MovieDB>, t: Throwable) {
