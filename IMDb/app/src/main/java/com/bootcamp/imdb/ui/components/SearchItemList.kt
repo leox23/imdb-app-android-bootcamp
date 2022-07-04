@@ -1,10 +1,7 @@
 package com.bootcamp.imdb.ui.components
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -18,15 +15,16 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.bootcamp.imdb.R
 import com.bootcamp.imdb.api.ApiConstants.IMAGE_W200
-import com.bootcamp.imdb.model.Pelicula
+import com.bootcamp.imdb.model.Peliculas
 import com.bootcamp.imdb.ui.theme.Charcoal
 import com.bootcamp.imdb.ui.theme.Grey
 
 @Composable
 fun SearchItemList(
-    movie : Pelicula,
+    movie : Peliculas,
     navController: NavController,
 ) {
+    //habria que crear nuevo modelo para utilizar stringsAdapter, son bruscos los cambios al tipear, tiene que recalcular muy rapido, no le da tiempo y crashea.
     Row(Modifier
         .clickable {
             navController.navigate("movieDetail/${movie.id}")
@@ -42,7 +40,9 @@ fun SearchItemList(
         Column(modifier = Modifier.padding(14.dp, 0.dp, 0.dp, 0.dp)) {
             Text(
                 text = movie.title,
-                Modifier.padding(0.dp, 14.dp, 0.dp, 8.dp),
+                Modifier
+                    .padding(0.dp, 14.dp, 0.dp, 8.dp)
+                    .height(20.dp),
                 color = Charcoal,
                 style = MaterialTheme.typography.body2
             )

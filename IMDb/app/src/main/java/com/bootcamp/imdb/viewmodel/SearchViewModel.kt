@@ -7,8 +7,8 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bootcamp.imdb.RetrofitApi
-import com.bootcamp.imdb.api.model.MovieDB
-import com.bootcamp.imdb.model.Pelicula
+import com.bootcamp.imdb.api.model.MoviesApiModel
+import com.bootcamp.imdb.model.Peliculas
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,9 +20,23 @@ class SearchViewModel : ViewModel() {
             getMovieList()
         }
     }
+
     var search by mutableStateOf("")
-    var peliculas : List<Pelicula> by mutableStateOf(listOf())
+    var peliculas : List<Peliculas> by mutableStateOf(listOf())
     var filteredMovies by mutableStateOf(peliculas)
+
+    fun getMovieList() {
+        val apiInterface = RetrofitApi.create().getMovies()
+        apiInterface.enqueue(object : Callback<MoviesApiModel> {
+            override fun onResponse(call: Call<MoviesApiModel>, response: Response<MoviesApiModel>) {
+                peliculas = response.body()?.items ?: listOf()
+            }
+
+            override fun onFailure(call: Call<MoviesApiModel>, t: Throwable) {
+                Log.e("ERROR", t.toString())
+            }
+        })
+    }
 
     fun onSearchChange(onChange: String) {
         search = onChange
@@ -31,17 +45,5 @@ class SearchViewModel : ViewModel() {
         }
     }
 
-    fun getMovieList() {
-        val apiInterface = RetrofitApi.create().getMovies()
-        apiInterface.enqueue(object : Callback<MovieDB> {
-            override fun onResponse(call: Call<MovieDB>, response: Response<MovieDB>) {
-                peliculas = response.body()?.items ?: listOf()
-            }
-
-            override fun onFailure(call: Call<MovieDB>, t: Throwable) {
-                Log.e("ERROR", t.toString())
-            }
-        })
-    }
 
 }

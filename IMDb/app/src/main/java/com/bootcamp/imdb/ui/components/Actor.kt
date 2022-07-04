@@ -16,7 +16,7 @@ import com.bootcamp.imdb.R
 import com.bootcamp.imdb.ui.theme.Grey
 
 @Composable
-fun Actor(){
+fun Actor(){ // no fue utilizado :(
     Column(modifier = Modifier
         .width(100.dp)) {
         Image(

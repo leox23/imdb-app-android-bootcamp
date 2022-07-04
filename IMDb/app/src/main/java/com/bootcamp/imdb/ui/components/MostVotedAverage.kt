@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,20 +19,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.bootcamp.imdb.R
-import com.bootcamp.imdb.model.Movie
+import com.bootcamp.imdb.model.PeliculasMejorCalificadas
+import com.bootcamp.imdb.api.TMDBStringsAdapter
 
 
 @Composable
-fun TitlePage( movie : Movie ) {
+fun MostVotedAverage(movie : PeliculasMejorCalificadas?) {
+    val r = TMDBStringsAdapter()
     Column(
         Modifier
             .clickable { }
             .shadow(1.dp)
             .background(Color.White)
             .width(124.dp)
-            .height(276.dp)) {
+            .wrapContentHeight()) {
         AsyncImage(
-            model = movie.featuredImage,
+            //model = IMAGE_W200 + movie?.poster_path
+            model = r.posterPathResolver(movie?.poster_path ?: ""),
             contentDescription = stringResource(R.string.cover_image),
             modifier = Modifier
                 .size(124.dp, height = 186.dp)
@@ -45,7 +49,7 @@ fun TitlePage( movie : Movie ) {
                     .clip(CircleShape)
             )
             Text(
-                text = movie.rating.toString(),
+                text = r.voteAvrResolver(movie?.vote_average!!),
                 Modifier.padding(8.dp, 0.dp, 8.dp, 2.dp)
             )
         }
@@ -54,7 +58,11 @@ fun TitlePage( movie : Movie ) {
                 .padding(start = 8.dp)
                 .height(22.dp)
         ) {
-            Text(movie.title)
+            Text(
+                //movie?.title.toString()
+                text = r.titleResolver(movie?.title ?: "",12,"~"),
+                style = MaterialTheme.typography.body1
+            )
         }
         Row(
             modifier = Modifier // titulo y descripcion
@@ -65,7 +73,7 @@ fun TitlePage( movie : Movie ) {
         ) {
             Image(
                 painter = painterResource(R.drawable.info_icon),
-                contentDescription = null,
+                contentDescription = stringResource(R.string.icon_info),
                 modifier = Modifier
                     .size(20.dp)
             )
@@ -78,12 +86,5 @@ fun TitlePage( movie : Movie ) {
 @Preview(showBackground = true)
 @Composable
 fun TitlePagePreview() {
-    TitlePage(Movie(
-        0,
-        "Godzilla vs Kong",
-        4.11,
-        2022,
-        "Godzilla y Kong, dos de las fuerzas más poderosas de un...",
-        "https://image.tmdb.org/t/p/w185_and_h278_bestv2/bnuC6hu7AB5dYW26A3o6NNLlIlE.jpg"
-    ))
+    //TitlePage(1)
 }

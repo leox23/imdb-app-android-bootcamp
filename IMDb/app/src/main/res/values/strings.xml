@@ -51,4 +51,7 @@
     <!-- home -->
     <string name="the_best_selections">Las mejores selecciones</string>
 
+    <!-- titlePage -->
+    <string name="icon_info">Icono informacion</string>
+
 </resources>

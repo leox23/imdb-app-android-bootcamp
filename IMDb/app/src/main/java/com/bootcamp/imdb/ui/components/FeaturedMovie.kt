@@ -14,16 +14,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.bootcamp.imdb.R
+import com.bootcamp.imdb.model.PeliculasMejorCalificadas
+import com.bootcamp.imdb.api.TMDBStringsAdapter
 
 
 @Composable
-fun Trailer(
-    id: Int?,  //por si tengo que ir a la vista detalle desde aqui
-    trailerImage: String,
-    coverImage: String,
-    titleTrailer: String,
-    description: String
-) {
+fun Trailer( featuredMovie : PeliculasMejorCalificadas?) {
+    val r = TMDBStringsAdapter()
+
     Box(
         modifier = Modifier
             .padding(0.dp, 0.dp, 0.dp, 20.dp)
@@ -38,7 +36,7 @@ fun Trailer(
             contentAlignment = Alignment.Center
         ) {
             AsyncImage(
-                model = trailerImage,
+                model = featuredMovie?.let { r.backDropPathResolver(it.backdrop_path) },
                 contentDescription = stringResource(R.string.trailer_image),
                 modifier = Modifier
                     .fillMaxSize()
@@ -57,12 +55,12 @@ fun Trailer(
                 .align(Alignment.BottomEnd)
         ) {
             Text(
-                text = titleTrailer,
+                text = r.titleResolver(featuredMovie?.title ?: "",17),
                 modifier = Modifier.padding(12.dp, 8.dp, 0.dp, 0.dp),
                 style = MaterialTheme.typography.body2
             )
             Text(
-                text = description,
+                text = r.overviewResolver(featuredMovie?.overview ?: "",80),
                 modifier = Modifier.padding(12.dp, 8.dp, 0.dp, 0.dp),
                 style = MaterialTheme.typography.subtitle1
             )
@@ -74,7 +72,7 @@ fun Trailer(
                 .align(Alignment.BottomStart)
         ) {
             AsyncImage(
-                model = coverImage,
+                model = featuredMovie?.let { r.posterPathResolver(it.poster_path) },
                 contentDescription = stringResource(R.string.cover_image),
                 modifier = Modifier
                     .fillMaxSize()

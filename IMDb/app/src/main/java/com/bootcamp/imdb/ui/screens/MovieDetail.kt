@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -19,13 +20,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.bootcamp.imdb.R
-import com.bootcamp.imdb.api.ApiConstants.IMAGE_W200
-import com.bootcamp.imdb.api.ApiConstants.IMAGE_W500
+import com.bootcamp.imdb.model.ModelConstant.EMPTY_RESOLVED
 import com.bootcamp.imdb.navigation.BottomBarScreen
-import com.bootcamp.imdb.ui.components.DividerGrey
-import com.bootcamp.imdb.ui.components.FollowListButton
-import com.bootcamp.imdb.ui.components.SpacerGrey
-import com.bootcamp.imdb.ui.components.TitleSection
+import com.bootcamp.imdb.ui.components.*
 import com.bootcamp.imdb.ui.theme.Charcoal
 import com.bootcamp.imdb.ui.theme.Grey
 import com.bootcamp.imdb.viewmodel.MovieDetailViewModel
@@ -36,60 +33,52 @@ fun MovieDetail(
     navController: NavController,
     vm : MovieDetailViewModel
     ) {
-    if (vm.pelicula == null){
-        vm.apicalldetailMovie(navArgumentMovieId!!.toInt())
+    val r = vm.MovieDetailResolved
+    if (r == EMPTY_RESOLVED){
+        vm.apiCallDetailMovie(navArgumentMovieId!!.toInt())
     }
-    val movie = vm.pelicula
-
+    
     Column(
         Modifier
             .fillMaxWidth()
             .padding(0.dp)
             .verticalScroll(rememberScrollState())
     ) {
-        Box(
-            Modifier
-                .fillMaxWidth()
-                .padding(0.dp, 10.dp)
-                .height(30.dp),
-            contentAlignment = Alignment.Center
-        ) {
-            Row(Modifier //todo flecha y barra deberia ser hecho en scaffold
-                .padding(20.dp, 0.dp)
-                .clickable {
-                    navController.navigate(BottomBarScreen.Search.route)
-                }
-                .padding(5.dp)
-                .align(Alignment.CenterStart)) {
-                Image(
-                    painter = painterResource(R.drawable.arrow_left),
-                    contentDescription = stringResource(R.string.back_button),
+        TopAppBar(
+            backgroundColor = White,
+            navigationIcon = {
+                IconButton(
+                    onClick = { navController.navigate(BottomBarScreen.Search.route)
+                    }) {
+                    Icon(
+                        painter = painterResource(R.drawable.arrow_left),
+                        contentDescription = stringResource(R.string.back_button))
+                       }
+            },
+            title = {
+                Text(
+                    r.original_title,
+                    style = MaterialTheme.typography.h4,
                     modifier = Modifier
-                        .size(24.dp)
-                )
-            }
-            Text(
-                vm.originalTitleCutCheck,
-                style = MaterialTheme.typography.h4,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(60.dp),
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center,
-                color = Charcoal
-            )
-        }
+                        .fillMaxWidth()
+                        .offset(-(30.dp)),
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center,
+                    color = Charcoal
+                ) }
+        )
+
         DividerGrey()
 
-        TitleSection(movie?.title ?: "")
+        TitleSection(r.title)
         Column(
             Modifier
                 .padding(40.dp, 0.dp, 0.dp, 0.dp)
                 .offset(y = -(20).dp)
         ) {
             Text(
-                "${movie?.original_title} (${stringResource(R.string.original_title)})",
+                "${r.original_title} (${stringResource(R.string.original_title)})",
                 Modifier.padding(0.dp, 0.dp, 0.dp, 8.dp),
                 style = MaterialTheme.typography.body1,
                 color = Grey,
@@ -113,7 +102,7 @@ fun MovieDetail(
         ) {
             // trailer image
             AsyncImage(
-                model = IMAGE_W500 + movie?.backdrop_path,
+                model = r.backdrop_path,
                 stringResource(R.string.trailer_image),
                 modifier = Modifier
                     .fillMaxSize()
@@ -132,7 +121,7 @@ fun MovieDetail(
                 .padding(20.dp, 20.dp, 20.dp, 10.dp)
         ) {
             AsyncImage(
-                model = IMAGE_W200 + movie?.poster_path,
+                model = r.poster_path,
                 contentDescription = stringResource(R.string.cover_image),
                 modifier = Modifier
                     .padding(0.dp)
@@ -144,7 +133,7 @@ fun MovieDetail(
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        vm.genreJoined,
+                        r.genres,
                         Modifier
                             .height(32.dp)
                             .border(
@@ -165,12 +154,12 @@ fun MovieDetail(
                             .clip(CircleShape)
                     )
                     Text(
-                        text = vm.rating, //todo rating a sacar de datos originales
+                        text = r.vote_average, //todo rating a sacar de datos originales
                         Modifier.padding(4.dp, 0.dp)
                     )
                 }
                 Text(
-                    (movie?.overview?.slice(0..118) ?: "") + "...",
+                    r.overview,
                     Modifier.padding(0.dp, 16.dp),
                     lineHeight = 22.sp,
                     fontSize = 16.sp
