@@ -201,7 +201,6 @@ fun MovieDetail(
         DividerGrey()
         FollowListButton(stringResource(R.string.add_to_my_watch_list))
         SpacerGrey()
-        TitleSection(stringResource(R.string.lorem_ipsum_dolor))
     }
 }
 

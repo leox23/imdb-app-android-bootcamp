@@ -25,7 +25,7 @@ class SearchViewModel : ViewModel() {
     var peliculas : List<Peliculas> by mutableStateOf(listOf())
     var filteredMovies by mutableStateOf(peliculas)
 
-    fun getMovieList() {
+    private fun getMovieList() {
         val apiInterface = RetrofitApi.create().getMovies()
         apiInterface.enqueue(object : Callback<MoviesApiModel> {
             override fun onResponse(call: Call<MoviesApiModel>, response: Response<MoviesApiModel>) {
@@ -44,6 +44,4 @@ class SearchViewModel : ViewModel() {
             it.title.lowercase().contains(search.lowercase())
         }
     }
-
-
 }
