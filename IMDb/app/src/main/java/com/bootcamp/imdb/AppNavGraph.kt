@@ -4,11 +4,14 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.ui.graphics.vector.ImageVector
 
-sealed class OthersViews (val route : String){
-    object LoginPath : OthersViews(route = "loginPath")
-    object Splash : OthersViews(route = "splash")
-    object Login : OthersViews(route = "login")
-    object Register : OthersViews(route = "register")
+sealed class ViewsNavRoutes (val route : String){
+    object LoginPath : ViewsNavRoutes(route = "loginPath")
+    object Splash : ViewsNavRoutes(route = "splash")
+    object Login : ViewsNavRoutes(route = "login")
+    object Register : ViewsNavRoutes(route = "register")
+    object MainScreen : ViewsNavRoutes(route = "mainScreen")
+    object SearchPath : ViewsNavRoutes(route = "searchPath")
+    object MovieDetail : ViewsNavRoutes(route = "movieDetail")
 }
 
 sealed class BottomBarScreen (

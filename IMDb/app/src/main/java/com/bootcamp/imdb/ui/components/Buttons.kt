@@ -22,7 +22,7 @@ import com.bootcamp.imdb.ui.theme.Mustard
 import com.bootcamp.imdb.ui.theme.White_Smoke
 
 @Composable
-fun LoginButton(label: String, onClickAction: () -> Unit) {
+fun LoginButton(label: String, enabled : Boolean, onClickAction: () -> Unit) {
     Button(
         onClick = onClickAction,
         modifier = Modifier
@@ -31,7 +31,7 @@ fun LoginButton(label: String, onClickAction: () -> Unit) {
             .shadow(
                 elevation = 15.dp,
             ),
-        enabled = true,
+        enabled = enabled,
         shape = RoundedCornerShape(20),
         colors = ButtonDefaults.textButtonColors(
             // en el momento no recuerdo como usar res/value/colors.xml

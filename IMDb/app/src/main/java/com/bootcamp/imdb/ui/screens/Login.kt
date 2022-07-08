@@ -1,6 +1,5 @@
 package com.bootcamp.imdb.ui.screens
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -21,18 +20,12 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.bootcamp.imdb.App
 import com.bootcamp.imdb.R
-import com.bootcamp.imdb.database.UserDatabase
 import com.bootcamp.imdb.navigation.BottomBarScreen
-import com.bootcamp.imdb.navigation.OthersViews
-import com.bootcamp.imdb.repository.UserDatabaseRepository
+import com.bootcamp.imdb.navigation.ViewsNavRoutes
 import com.bootcamp.imdb.ui.components.*
 import com.bootcamp.imdb.ui.theme.*
 import com.bootcamp.imdb.viewmodel.LoginViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 
 @Composable
@@ -65,8 +58,8 @@ fun StandartLogin(navController: NavController, thisViewModel : LoginViewModel =
             )
             LoginButton(
                 stringResource(R.string.login),
-                onClickAction = {
-                    navController.navigate(BottomBarScreen.Home.route)
+                enabled = thisViewModel.buttonEnabled,
+                onClickAction = {navController.navigate(BottomBarScreen.Home.route)
 /* probando room
                     CoroutineScope(Dispatchers.IO).launch {
                         val db = UserDatabase.getInstance(App.getContext())
@@ -100,7 +93,7 @@ fun StandartLogin(navController: NavController, thisViewModel : LoginViewModel =
                 LoginOtherAccount(
                     painterResource(R.drawable.ic_google_logo),
                     "Cuenta de Google") {
-                    //navController.navigate(OthersViews.Register.route)
+                    //navController.navigate(ViewsNavRoutes.Register.route)
                     //aqui el login de google
                 }
             }
@@ -120,7 +113,7 @@ fun StandartLogin(navController: NavController, thisViewModel : LoginViewModel =
                             enabled = true,
                             role = Role.Button
                         ) {
-                            navController.navigate(OthersViews.Register.route)
+                            navController.navigate(ViewsNavRoutes.Register.route)
                         },
                     color = Charcoal,
                     style = MaterialTheme.typography.body2

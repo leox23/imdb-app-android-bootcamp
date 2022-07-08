@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.bootcamp.imdb.navigation.OthersViews
+import com.bootcamp.imdb.navigation.ViewsNavRoutes
 import com.bootcamp.imdb.ui.theme.Mustard
 import kotlinx.coroutines.delay
 
@@ -58,8 +58,8 @@ fun Animation(
         )
         delay(timeMillis = delayScreen)
 
-        navController.navigate(route = OthersViews.Login.route) {
-            popUpTo(route = OthersViews.Splash.route) {
+        navController.navigate(route = ViewsNavRoutes.Login.route) {
+            popUpTo(route = ViewsNavRoutes.Splash.route) {
                 inclusive = false
             }
         }

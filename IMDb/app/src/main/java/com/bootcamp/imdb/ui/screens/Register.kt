@@ -52,8 +52,7 @@ fun Register(navController: NavController, thisViewModel : RegisterViewModel = v
             hideText = thisViewModel.hidePassIcon,
             hideTextSwitch = { thisViewModel.hidePassIconSwitch() }
         )
-        LoginButton(stringResource(R.string.accept), onClickAction = {
-
+        LoginButton(stringResource(R.string.accept), true, onClickAction = {
             navController.navigate(BottomBarScreen.Home.route)
             /* probando room
             CoroutineScope(Dispatchers.IO).launch {

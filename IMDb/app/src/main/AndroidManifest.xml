@@ -4,12 +4,11 @@
     android:versionCode="1"
     android:versionName="0.1">
     <uses-permission android:name="android.permission.INTERNET"/>
-    <!-- pendiente por colocar custom icons-->
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/imdb_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/imdb_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IMDb">
         <activity
