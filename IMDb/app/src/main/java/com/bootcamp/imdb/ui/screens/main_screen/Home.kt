@@ -25,7 +25,7 @@ fun HomeScreen( thisViewModel : HomeViewModel) {
         SpacerGrey()
         TitleSection(stringResource(R.string.the_best_selections))
         Carousel(thisViewModel.peliculasMasPuntuadas)
-        SpacerGrey() // todo inonsistencia en diseño, no hay suficiente espacio para jugar con padding para que sea mas distinguible la sombra inderior y la barra gris siguientem queda pendiente ajuztar
+        SpacerGrey()
     }
 }
 

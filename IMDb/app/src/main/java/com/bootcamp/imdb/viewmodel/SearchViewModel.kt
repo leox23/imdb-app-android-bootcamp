@@ -20,7 +20,6 @@ class SearchViewModel : ViewModel() {
             getMovieList()
         }
     }
-
     var search by mutableStateOf("")
     var peliculas : List<Peliculas> by mutableStateOf(listOf())
     var filteredMovies by mutableStateOf(peliculas)

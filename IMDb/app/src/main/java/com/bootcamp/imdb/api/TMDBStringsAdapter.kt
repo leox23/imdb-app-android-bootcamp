@@ -4,7 +4,6 @@ import com.bootcamp.imdb.api.ApiConstants.IMAGE_W200
 import com.bootcamp.imdb.api.ApiConstants.IMAGE_W500
 import com.bootcamp.imdb.model.GenresOfMovie
 
-// para facilitar el manejo de los strings por vistas y por distintos disdispositivos
 class TMDBStringsAdapter {
     fun titleResolver(title : String, titleLength : Int, endChar : String = "...") : String {
         val result = if (title.length <= titleLength){

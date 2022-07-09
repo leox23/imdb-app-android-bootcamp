@@ -13,23 +13,6 @@ class RegisterViewModel : ViewModel(){
     val isPass = true
     var hidePassIcon by mutableStateOf(true)
 
-    //para probar Room
-    var user = User(
-        0,
-        "Leonel",
-        "leox-23@hotmail.com",
-        "Passmio2"
-    )
-
-    fun takeNewUserData() : User {
-        user = User(
-            name = textName,
-            email = textEmail,
-            password = password
-        )
-        return user as User
-    }
-
     fun onTextNameChange(newString : String){
         textName = newString
     }

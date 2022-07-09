@@ -24,7 +24,6 @@ fun SearchItemList(
     movie : Peliculas,
     navController: NavController,
 ) {
-    //habria que crear nuevo modelo para utilizar stringsAdapter, son bruscos los cambios al tipear, tiene que recalcular muy rapido, no le da tiempo y crashea.
     Row(Modifier
         .clickable {
             navController.navigate("movieDetail/${movie.id}")

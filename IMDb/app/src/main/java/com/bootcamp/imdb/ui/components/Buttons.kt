@@ -34,10 +34,9 @@ fun LoginButton(label: String, enabled : Boolean, onClickAction: () -> Unit) {
         enabled = enabled,
         shape = RoundedCornerShape(20),
         colors = ButtonDefaults.textButtonColors(
-            // en el momento no recuerdo como usar res/value/colors.xml
             backgroundColor = Grey,
             contentColor = White_Smoke,
-            disabledContentColor = White_Smoke, //inconsistencia al intentar recibir desde recursos
+            disabledContentColor = White_Smoke,
         ),
     ) {
         Text(
@@ -51,10 +50,6 @@ fun LoginButton(label: String, enabled : Boolean, onClickAction: () -> Unit) {
     name = "LoginButton component",
     showBackground = true,
 )
-@Composable
-fun LoginButtonPreview() {
-    // LoginButton("Lorem"){}
-}
 
 
 @Composable
@@ -68,7 +63,6 @@ fun FollowListButton(text: String = "Empieza tu lista de Seguimiento") {
             .padding(30.dp, 0.dp)
             .clip(shape = RoundedCornerShape(10.dp)),
         colors = ButtonDefaults.textButtonColors(
-            // en el momento no recuerdo como usar res/value/colors.xml
             backgroundColor = Mustard,
             contentColor = Charcoal
         )

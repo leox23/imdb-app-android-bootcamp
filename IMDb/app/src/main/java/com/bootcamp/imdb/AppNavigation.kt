@@ -76,7 +76,7 @@ fun NavGraphBuilder.searchAndDetail(navController: NavController) {
             SearchScreen(navController,viewModel())
         }
 
-        val routeMDetailAndData = "${ViewsNavRoutes.MovieDetail.route}/{argument}" //todo pendiente por colocar movieDetail en sealed class
+        val routeMDetailAndData = "${ViewsNavRoutes.MovieDetail.route}/{argument}"
         composable(
             routeMDetailAndData,
             arguments = listOf(navArgument(name = "argument"){})

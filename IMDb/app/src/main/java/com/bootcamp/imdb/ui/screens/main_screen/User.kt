@@ -115,7 +115,7 @@ fun TextNormal(text: String, paddingBotton: Dp = 20.dp) {
 
 @Composable
 fun CarouselThings() {
-    val items = (0..2).map { it } //solo de prueba, luego buscare que sea random
+    val items = (0..2).map { it }
     Box {
         BoxWithConstraints(
             modifier =

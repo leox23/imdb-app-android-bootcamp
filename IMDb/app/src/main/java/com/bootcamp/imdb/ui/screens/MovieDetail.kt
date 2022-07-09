@@ -84,8 +84,8 @@ fun MovieDetail(
                 color = Grey,
                 fontSize = 10.sp
             )
-            if (false){ // aun no he adaptado recibir series desde la api
-                    Text( // condicional para no mostrar si no serie
+            if (false){
+                    Text(
                     "${stringResource(R.string.tv_series)} + /*todo ultima emision variable */ ",
                     style = MaterialTheme.typography.body1,
                     color = Grey,
@@ -145,7 +145,7 @@ fun MovieDetail(
                         color = Grey.copy(alpha = ContentAlpha.medium),
                         lineHeight = 20.sp
                     )
-                    AsyncImage( // todo estrella rating pendiente por colocar en recursos strings
+                    AsyncImage(
                         model = stringResource(R.string.yellow_star_icon),
                         contentDescription = stringResource(R.string.image_star_rating),
                         modifier = Modifier
@@ -154,7 +154,7 @@ fun MovieDetail(
                             .clip(CircleShape)
                     )
                     Text(
-                        text = r.vote_average, //todo rating a sacar de datos originales
+                        text = r.vote_average,
                         Modifier.padding(4.dp, 0.dp)
                     )
                 }
@@ -169,7 +169,7 @@ fun MovieDetail(
 
         DividerGrey()
 
-        if (false){ //todo falta reimplementar las series pero llamando de api
+        if (false){
             Row(
                 Modifier
                     .clickable { }
@@ -178,14 +178,14 @@ fun MovieDetail(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    stringResource(R.string.episode_guide), //todo debe ser leida de variable, aplico cuando consuma api
+                    stringResource(R.string.episode_guide),
                     style = MaterialTheme.typography.h4,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Row {
                     Text(
-                        "7 episodios", //todo igual que arriba
+                        "7 episodios",
                         color = Grey
                     )
                     Image(

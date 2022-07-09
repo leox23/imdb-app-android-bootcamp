@@ -16,7 +16,7 @@ import com.bootcamp.imdb.R
 import com.bootcamp.imdb.ui.theme.Grey
 
 @Composable
-fun Actor(){ // no fue utilizado :(
+fun Actor(){
     Column(modifier = Modifier
         .width(100.dp)) {
         Image(
@@ -32,7 +32,7 @@ fun Actor(){ // no fue utilizado :(
             textAlign = TextAlign.Center,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(10.dp, 6.dp, 6.dp, 2.dp)) // todo unificar con estilos globales, ver con que esta alineado en terminos de diseño
+                .padding(10.dp, 6.dp, 6.dp, 2.dp))
         Text(text = "Tony Stark",
             fontSize = 12.sp,
             textAlign = TextAlign.Center,

@@ -121,7 +121,7 @@ fun LogoPreview() {
 @Composable
 fun LogoSmall(){
     Text(
-        text = "IMDb", // todo aqui tengo que reutilizar el componente que voy a utilizar en el splash
+        text = "IMDb",
         textAlign = TextAlign.Start,
         modifier = Modifier
             .background(Mustard, shape = RoundedCornerShape(8.dp))

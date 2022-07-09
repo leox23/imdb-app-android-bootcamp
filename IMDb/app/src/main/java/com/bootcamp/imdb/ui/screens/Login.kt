@@ -35,7 +35,7 @@ fun StandartLogin(navController: NavController, thisViewModel : LoginViewModel =
             .fillMaxHeight()
             .verticalScroll(rememberScrollState())
             .background(Mustard)
-            .padding(  // todo colocar como variable accesible luego, para reutilizar en otros bloques de diseño
+            .padding(
                 50.dp,
                 0.dp
             ),
@@ -60,13 +60,6 @@ fun StandartLogin(navController: NavController, thisViewModel : LoginViewModel =
                 stringResource(R.string.login),
                 enabled = thisViewModel.buttonEnabled,
                 onClickAction = {navController.navigate(BottomBarScreen.Home.route)
-/* probando room
-                    CoroutineScope(Dispatchers.IO).launch {
-                        val db = UserDatabase.getInstance(App.getContext())
-                        val temp = db.userDao().getUserByEmail("leox-23@hotmail.com")
-                        Log.d("usuario jalado", temp.toString())
-                    }
- */
                 })
 
         }
@@ -75,13 +68,11 @@ fun StandartLogin(navController: NavController, thisViewModel : LoginViewModel =
             Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            //Spacer(modifier = Modifier.size(40.dp))
             Text(
                 text = stringResource(R.string.or_login_with),
                 style = MaterialTheme.typography.subtitle1,
                 modifier = Modifier.padding(0.dp, 40.dp, 0.dp, 20.dp)
             )
-            //Spacer(modifier = Modifier.size(20.dp))
             Row {
                 LoginOtherAccount(
                     painterResource(R.drawable.ic_apple_logo),
@@ -93,8 +84,6 @@ fun StandartLogin(navController: NavController, thisViewModel : LoginViewModel =
                 LoginOtherAccount(
                     painterResource(R.drawable.ic_google_logo),
                     "Cuenta de Google") {
-                    //navController.navigate(ViewsNavRoutes.Register.route)
-                    //aqui el login de google
                 }
             }
             Row(

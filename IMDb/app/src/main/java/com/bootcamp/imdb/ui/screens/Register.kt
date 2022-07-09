@@ -54,12 +54,6 @@ fun Register(navController: NavController, thisViewModel : RegisterViewModel = v
         )
         LoginButton(stringResource(R.string.accept), true, onClickAction = {
             navController.navigate(BottomBarScreen.Home.route)
-            /* probando room
-            CoroutineScope(Dispatchers.IO).launch {
-                val db = UserDatabase.getInstance(App.getContext())
-                db.userDao().addUser(thisViewModel.user)
-            }
-            */
         })
     }
 }

@@ -33,12 +33,12 @@ sealed class BottomBarScreen (
     object  Play : BottomBarScreen(
         route = "play",
         title = "Play",
-        icon = Icons.Default.PlayArrow //todo buscar icono parecido
+        icon = Icons.Default.PlayArrow
     )
     object  User : BottomBarScreen(
         route = "user",
         title = "User",
-        icon = Icons.Default.AccountBox //todo buscar icono parecido
+        icon = Icons.Default.AccountBox
     )
 }
 
