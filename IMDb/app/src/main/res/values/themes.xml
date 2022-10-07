@@ -3,4 +3,11 @@
     <style name="Theme.IMDb" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">@color/mustard</item>
     </style>
+
+    <style name="BottomNavegation">
+        <item name="android:background">@color/mustard</item>
+        <item name="itemIconTint">@color/charcoal</item>
+        <item name="itemTextColor">@color/charcoal</item>
+        <item name="itemTextAppearanceActive">@color/black</item>
+    </style>
 </resources>
