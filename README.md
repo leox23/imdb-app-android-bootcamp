@@ -1,24 +1,63 @@
-# Programacion orientada a objetos (POO)
+# Bootcamp Android
+**Inicialmente con Andorid View, luego con Jetpack Compose y explorando la interopreabilidad entre ellos, tambien Retrofit Api Calls, Room, Corutinas, Componente de Navegación.**
 
-Es un paradigma de programacion con lenguaje descriptivo y funcional, cercano al mundo real. En este metodo de programacion el codigo se organiza unidades llamadas **clases** (como tu molde), de las cuales se crean **objetos** que contienen su datos en forma de atributos y sus funcionalidades (o procesos) en forma de metodos, los objetos los relacionamos entre si para consegir las funcionalidades que requerimos de nuestras aplicaciones.
+### Contenido del repositorio
 
-Fue creada con el los proposito de resolver limitaciones y problemas de la programacion estructurada, agregando:
+- El proyecto final del Bootcamp esta en la carpeta [IMDB](https://github.com/leox23/imdb-app-android-bootcamp/tree/master/IMDb).
+- Hay [un ejercicio de Kotlin de nomina en consola aqui](https://github.com/leox23/imdb-app-android-bootcamp/tree/master/Semana%2001/ejercicio-nomina).
+- Y un [Quiz sobre Kotlin acá.](https://github.com/leox23/imdb-app-android-bootcamp/blob/master/Semana%2001/Homework.md)
 
-- [x] Poder escalar el projectos grandes con mayor facilidad.
+A continuación, un repaso sobre importantes puntos teóricos de programación.
 
-- [x] Resolver la division que habia entre la programacion orientada a los procesos (aqui resuelto siendo metodos) y la programacion orientada a los datos (aqui siendo atributos).
-- [x] Facilitar la reutilizacion de codigo, lo que llevo a la posibilidad de creacion de bibliotecas, y poder usar bibliotecas de terceros con facilidad, lo que evita la repeticion de codigo.
+- [Programación orientada a objetos (POO)](#programacion-orientada-a-objetos-poo)
+  * [Abstracción](#abstraccion)
+  * [Herencia](#herencia)
+  * [Polimorfismo](#polimorfismo)
+  * [Encapsulamiento](#encapsulamiento)
+- [SOLID](#solid)
+  * [S – Single Responsibility Principle (SRP)](#single-responsibility-principle-srp)
+  * [O – Open/Closed Principle (OCP)](#open-closed-principle-ocp)
+  * [L – Liskov Substitution Principle (LSP)](#liskov-substitution-principle-lsp)
+  * [I – Interface Segregation Principle (ISP)](#interface-segregation-principle-isp)
+  * [D – Dependency Inversion Principle (DIP)](#dependency-inversion-principle-dip)
+- [Programación Funcional](#programacion-funcional)
+    + [Funciones puras](#funciones-puras)
+    + [Estados inmutables](#estados-inmutables)
+    + [Composición de funciones](#composicion-de-funciones)
+- [Git](#git)
+  * [git clone](#git-clone)
+  * [git branch](#git-branch)
+  * [git checkout](#git-checkout)
+  * [git status](#git-status)
+  * [git add](#git-add)
+  * [git commit](#git-commit)
+  * [git push](#git-push)
+  * [git pull](#git-pull)
+  * [git revert](#git-revert)
+  * [git merge](#git-merge)
 
-La programacion orientada a objetos tiene 4 pilares fundamentales: *Abstracion, Herencia, Polimorfismo y Encapsulamiento*. Los cuales ampliaremos a continuacion.
 
-## **Abstracion**
+# Programacion orientada a objetos POO
 
-Se trata de aislar una pieza de codigo del resto de su contexto y otras piezas de codigo que  la acompañan, para enfocarse unicamente en ¿que es lo que hace?, en vez de ¿como lo hace?.
+Es un paradigma de programación con lenguaje descriptivo y funcional, cercano al mundo real. En este método de programación el código se organiza unidades llamadas **clases** (como tu molde), de las cuales se crean **objetos** que contienen sus datos en forma de atributos y sus funcionalidades (o procesos) en forma de métodos, los objetos los relacionamos entre si para conseguir las funcionalidades que requerimos de nuestras aplicaciones.
 
-En especifico, las abstracciones dentro de la programacion orientada a objetos son las caracteristicas especificas de un objeto, las cuales lo distinguen de los demas tipos de objetos, a la ves que marca limites conceptuales. Un ejemplo sencillo seria:
+Fue creada con el los propósito de resolver limitaciones y problemas de la programación estructurada, agregando:
 
-```javascript
-//codigo JavaScript
+- [x] Poder escalar los proyectos grandes con mayor facilidad.
+
+- [x] Resolver la división que había entre la programación orientada a los procesos (aquí resuelto siendo métodos) y la programación orientada a los datos (aquí siendo atributos).
+- [x] Facilitar la reutilización de código, lo que llevo a la posibilidad de creación de bibliotecas, y poder usar bibliotecas de terceros con facilidad, lo que evita la repetición de código.
+
+La programación orientada a objetos tiene 4 pilares fundamentales: *Abstracción, Herencia, Polimorfismo y Encapsulamiento*. Los cuales ampliaremos a continuación.
+
+## **Abstraccion**
+
+Se trata de aislar una pieza de código del resto de su contexto y otras piezas de código que la acompañan, para enfocarse únicamente en ¿qué es lo que hace?, en vez de ¿cómo lo hace?.
+
+En específico, las abstracciones dentro de la programación orientada a objetos son las características específicas de un objeto, las cuales lo distinguen de los demás tipos de objetos, a la vez que marca limites conceptuales. Un ejemplo sencillo seria:
+
+```JavaScript
+//código JavaScript
 class Humano {
 
   constructor(edad, alimentarlo) {
@@ -26,16 +65,16 @@ class Humano {
     this.alimentarlo = alimentarlo;
   }
 
-    darComida() {
-    alimentarlo.darComida(this.edad);
-    /* Qué es lo que hace el alimentarlo? ps ni idea. Y no me importa.
-     Me importa que lo hace, el resultado que me da, no el CÓMO lo hace.
-     Yo solo sé que le paso la edad a ese método y el ser vivo se alimenta 
-     correctamente!.
-      Es un ejemplo claro de abstraccion. Sabemos lo que necesitamos darle,
-     y lo que recibimos de el, pero el funcionamiento interno no es de importancia. 
-      Es decir, abstraemos al programador de todo el  funcionamiento del método, 
-     y el solo se concentrara en  arreglar/hacer lo que necesite sin tener idea de lo demas*/
+    alimentarse() {
+      alimentarlo.darAlimento(this.edad);
+      /* Qué es lo que hace el alimentarlo y darAlimento? pues ni idea. Y no me importa.
+       Me importa que lo hace, el resultado que me da, no el CÓMO lo hace.
+       Yo solo sé que le paso la edad a ese método y el ser vivo se alimenta 
+       correctamente!
+        Es un ejemplo claro de abstracción. Sabemos lo que necesitamos darle,
+       y lo que recibimos de él, pero el funcionamiento interno no es de importancia. 
+        Es decir, abstraemos al programador de todo el funcionamiento del método, 
+       y el solo se concentrará en arreglar/hacer lo que necesite sin tener idea de lo demás*/
   }
 }
 ```
@@ -44,9 +83,9 @@ class Humano {
 
 ## Herencia
 
-Es una mecanica de POO que como hemos hablado se basa en clases, la cual equivale a un molde, y con la herencia podemos extender su funcionalidad a otras clases. Comunmente se le llama **Clase Padre** (con sus atributos y metodos "genericos") a la clase que extiende, y **Clase Hija** la que esta recibiendo los atributos y metodos (la herencia) de la clase padre, la cual tendra los comportamientos de la clase padre, como si hubieran sido escrito dentro de si misma, y apartir de alli extender su funcionalidad, modificarla, o ambas, aqui el potencial de reutilizacion de codigo de la programacion Orientada a objetos. En sintesis: **Herencia = Copy paste**.
+Es una mecánica de POO que como hemos hablado se basa en clases, la cual equivale a un molde, y con la herencia podemos extender su funcionalidad a otras clases. Comúnmente se le llama **Clase Padre** (con sus atributos y métodos "genéricos") a la clase que extiende, y **Clase Hija** la que está recibiendo los atributos y métodos (la herencia) de la clase padre, la cual tendrá los comportamientos de la clase padre, como si hubieran sido escrito dentro de si misma, y a partir de allí extender su funcionalidad, modificarla, o ambas, aquí el potencial de reutilización de código de la programación Orientada a objetos. En síntesis: **Herencia = Copy paste**.
 
-```kotlin
+```Kotlin
 //Kotlin
 
 //colocamos open para permitir extender clases hijas desde esta clase padre
@@ -54,15 +93,15 @@ open class Student {
   
   // la funcion es open para poder ser moficada 
   open fun schoolFees(): BigDecimal {
-    // do implementation
+    // tu implementacion
   }
 }
 
 open class GraduateStudent : Student() {
  
-    // override modificando la funcion de schoolFees() en Student(), 
+    // override modificando la función de schoolFees() en Student(), 
     // con override queda "open" de forma predeterminada para
-    // cuando otra clase la exitienda
+    // cuando otra clase la extienda
     override fun schoolFees(): BigDecimal {
         return super.schoolFees() + calculateSchoolFees()
     }
@@ -78,13 +117,13 @@ open class GraduateStudent : Student() {
 
 ## Polimorfismo 
 
-Partiendo de descomponer el termino, tenemos **Poli** = Muchos, y **Morfismo** = forma | estructura de un cuerpo. Es la capacidad que tienen los objetos de una clase de responder a los mismos mensajes o eventos (es decir al invocar el mismo metodo) desde distintas clases hijas, y que cada una de esas clases pueda responder a ese mensaje de forma distinta. Esto se logra modificando los metodos y agregar atributos en la clase hija, cosas que previamente habias heredado de la clase padre. En sintesis: **Polimorfismo = modificar el Copy Paste**, sintactimente, claro.
+Partiendo de descomponer el termino, tenemos **Poli** = Muchos, y **Morfismo** = forma | estructura de un cuerpo. Es la capacidad que tienen los objetos de una clase de responder a los mismos mensajes o eventos (es decir al invocar el mismo método) desde distintas clases hijas, y que cada una de esas clases pueda responder a ese mensaje de forma distinta. Esto se logra modificando los métodos y agregar atributos en la clase hija, cosas que previamente habías heredado de la clase padre. En síntesis: **Polimorfismo = modificar el Copy Paste**, sintácticamente, claro.
 
 **Primero creamos una clase padre:**
 
-```kotlin
+```Kotlin
 abstract class SerVivo(var name: String) {
-    // aqui definimos las acciones de la clase
+    // aquí definimos las acciones de la clase
     abstract fun darCamisa()
 }
 ```
@@ -103,9 +142,9 @@ class Hombre(name:String) :SerVivo(name){
 }
 ```
 
-Mujeres
+Mujer
 
-```kotlin
+```Kotlin
 // Mujer
 class Mujer(name:String) :SerVivo(name) {
     // reescribe el método de dar camisa
@@ -119,71 +158,71 @@ class Mujer(name:String) :SerVivo(name) {
 
 ## Encapsulamiento
 
-Es ocultar los datos miembros de un objeto, definiendo las permisos y formas de acceso a los metodos y atributos que pertenecen a una clase, para que solo puedan ser accedidas y cambiadas por la forma definida dentro del objeto.
+Es ocultar los datos miembros de un objeto, definiendo las permisos y formas de acceso a los métodos y atributos que pertenecen a una clase, para que solo puedan ser accedidas y cambiadas por la forma definida dentro del objeto.
 
 Existen tres principales modificadores de acceso, que son:
 
-**Public:** en este caso, todas las clases de afuera y las de afuera del paquete tendran acceso. cuando implementamos una clase por defecto todas las propiedades y métodos son de tipo public.
+**Public:** en este caso, todas las clases de afuera y las de afuera del paquete tendrán acceso. cuando implementamos una clase por defecto todas las propiedades y métodos son de tipo public.
 
-**Protected:** solo las clases del paquete pueden tener aceso.
+**Protected:** solo las clases del paquete pueden tener acceso.
 
-**Private:** solo la clase principal tendra permitido el acceso.
+**Private:** solo la clase principal tendrá permitido el acceso.
 
 ```kotlin
 class Cocina {
-    // tiempos de coccion (min)
+    // tiempos de cocción (min)
     var arroz : Int = 25
     var pollo : Int = 35
     var tajada : Int = 5
     // las variables anteriores no tienen modificadores de acceso,
     // por lo que por defecto son Public (todos acceden y modifican)
 
-    // metodos para cocinar
+    // métodos para cocinar
     fun Arroz() {
         if ( arroz > 24 ) {
-            println("El arroz se cocino durante ${arroz} minutos o un poco mas, quedo bueno.")
+            println("El arroz se cocinó durante ${arroz} minutos o un poco más, quedo bueno.")
         } else if (arroz > 35){
-            println("El arroz se te quemo, botalo e intentalo de nuevo.")
+            println("El arroz se te quemo, bótalo e inténtalo de nuevo.")
         } else {
-            println("El arroz aun esta crudo, dejalo mas tiempo")
+            println("El arroz aun esta crudo, déjalo más tiempo")
         }
     }
     fun Pollo() {
-        println("El pollo se cocino durante ${pollo} minutos, esta bien.")
+        println("El pollo se cocinó durante ${pollo} minutos, está bien.")
     }
 
     fun Tajada() {
-        println("La tajada se cocino y se volteo durante ${tajada} minutos, esta dorada")
+        println("La tajada se cocinó y se volteó durante ${tajada} minutos, esta dorada")
     }
 }
 
 fun main() {
     val cocinarDeInmediato = Cocina()
 
-    // en ocaciones no queremos que se nos cambie el valor de nuetras variables
-    // aqui no queda comestible ni el pegado
+    // en ocasiones no queremos que se nos cambie el valor de nuestras variables
+    // aquí no queda comestible ni el pegado
     cocinarDeInmediato.arroz = 50
 
     // cocinamos el arroz
-    cocinarDeInmediato.Arroz() // El arroz se te quemo, botalo e intentalo de nuevo.
+    cocinarDeInmediato.Arroz() // El arroz se te quemo, bótalo e inténtalo de nuevo.
 }
 ```
 
-Usando los modificadores de acceso (encapsulando) evitamos que cambie, probemos:
+Usando los modificadores de acceso (es decir encapsulando) evitamos que cambie, probemos:
 
 ```kotlin
 class Cocina {
-    // tiempos de coccion (min)
+    // tiempos de cocción (min)
     private var arroz : Int = 25
     private var pollo : Int = 35
     private var tajada : Int = 5
     // con private solo podemos acceder y modificar
     // desde este mismo objeto
 
-    // metodos para cocinar
+    // métodos para cocinar
     fun Arroz() {
         if ( arroz > 24 ) {
-            println("El arroz se cocino durante ${arroz} minutos o un poco mas, quedo bueno.")
+            println("El arroz se cocinó durante ${arroz} minutos o un poco más, quedo bueno.")
         } 
         /*...*/
     }
@@ -193,7 +232,7 @@ class Cocina {
 fun main() {
     val cocinarDeInmediato = Cocina()
 
-    // arroz, por estar privado, arrojara una excepsion y no dejara compilar
+    // arroz, por estar privado, arrojara una excepción y no dejara compilar
     cocinarDeInmediato.arroz = 60 //❌Cannot access 'arroz': it is private in 'cocina'
 
     // cocinamos el arroz
@@ -201,13 +240,13 @@ fun main() {
 }
 ```
 
-Te diras, ok, ya nadie profanara mi codigo del olimpo, pero... ¿y si es necesario que en casos especificos acceder a ellos o modificarlos? : Para eso existen los **Getters** y los **Setters**.
+Te dirás, ok, ya nadie profanara mi código del olimpo, pero... ¿y si es necesario que en casos específicos acceder a ellos o modificarlos? : Para eso existen los **Getters** y los **Setters**.
 
-Los metodos getters son usados para obtener el valor de un atributo, y los setters para fijarles valores:
+Los métodos getters son usados para obtener el valor de un atributo, y los setters para fijarles valores:
 
-```kotlin
+```Kotlin
 class Cocina {
-    // tiempos de coccion (min)
+    // tiempos de cocción (min)
     private var arroz : Int = 25
     private var pollo : Int = 35
     private var tajada : Int = 5
@@ -217,16 +256,16 @@ class Cocina {
     // meollo
     fun setArroz ( arroz : Int){
         this.arroz = arroz
-        // y la logica que necesitemos
+        // y la lógica que necesitemos
     }
     fun getArroz(): Int {
         return arroz
     }
 
-    // metodos para cocinar
+    // métodos para cocinar
     fun Arroz() {
         if ( arroz > 24 ) {
-            println("El arroz se cocino durante ${arroz} minutos o un poco mas, quedo bueno.")
+            println("El arroz se cocinó durante ${arroz} minutos o un poco más, quedo bueno.")
         }
         /*...*/
     }
@@ -236,45 +275,45 @@ class Cocina {
 fun main() {
     val cocinarDeInmediato = Cocina()
 
-    // cambiamos el valor con el metodo set
+    // cambiamos el valor con el método set
     cocinarDeInmediato.setArroz(26)
 
-    // si necesitaramos el valor de arroz
+    // si necesitáramos el valor de arroz
     // cocinarDeInmediato.getArroz()
 
     // cocinamos el arroz
-    cocinarDeInmediato.Arroz() //El arroz se cocino durante 25 minutos o un poco mas, quedo bueno.
+    cocinarDeInmediato.Arroz() //El arroz se cocinó durante 25 minutos o un poco más, quedo bueno.
 }
 ```
 
 # SOLID
 
-Es un acronimo (en ingles) que se basa en los 5 principios basicos de la programacion orientada a objetos, con la intencion de conseguir codigo limpio, por lo que no es necesario refactorizar, y a la vez que sea mas facil de mantener.
+Es un acrónimo (en inglés) que se basa en los 5 principios básicos de la programación orientada a objetos, con la intención de conseguir código limpio, por lo que no es necesario refactorizar, y a la vez que sea más fácil de mantener.
 
 Estos 5 principios son:
 
-## S – Single Responsibility Principle (SRP)
+## Single Responsibility Principle SRP
 
-El **Principio de Responsabilidad Unica** fija la idea de que cada módulo de software de un sistema debe tener la  responsabilidad de un único actor (*stakeholder*). Si vamos creando el sistema basandonos en los limites que en que obran los actores, obtenemos un sistema más robusto en el que los cambios asociados a un área, no afectara al resto del codigo. Al ver el panorama de unica responsabilidad bajo el punto de su creador, vemos que va mas alla de responsabilidades en clases y funciones, sino las responsabilidades a nivel de componentes y arquitectura de software.
+El **Principio de Responsabilidad Única** fija la idea de que cada módulo de software de un sistema debe tener la responsabilidad de un único actor (*stakeholder*). Si vamos creando el sistema basándonos en los límites que en que obran los actores, obtenemos un sistema más robusto en el que los cambios asociados a un área, no afectara al resto del código. Al ver el panorama de única responsabilidad bajo el punto de su creador, vemos que va más allá de responsabilidades en clases y funciones, sino las responsabilidades a nivel de componentes y arquitectura de software.
 
 Una buena manera de resumirlo es como lo dijo el mismo **Robert C. Martin** (~voz Oogway 🐢~):
 
 > Junta las cosas que cambian por las mismas razones. Separa las cosas que cambian por diferentes razones.
 
-Bueno, cada caso es unico, por lo que es dificil generalizar, parece ser algo mas profundo, seria bueno revisar a detalle su libro Clean Architecture.
+Bueno, cada caso es único, por lo que es difícil generalizar, parece ser algo más profundo, sería bueno revisar a detalle su libro Clean Architecture, veamos un ejemplo.
 
-```kotlin
-// kotlin, pequeño ejemplo
+```Kotlin
+// Kotlin, pequeño ejemplo
 
 class RegistroDeUsuario(email : String , password : String){
         fun crearUsuario(email : String, password : String){
             /*
-                codigo de encriptacion de contraseña - ❌ - colocar en otra clase
+                código de encriptación de contraseña - ❌ - colocar en otra clase
              */
 
             /*
             	para luego hacer...
-                codigo de creacion del usuario
+                código de creación del usuario
              */
         }
     }
@@ -282,11 +321,11 @@ class RegistroDeUsuario(email : String , password : String){
 
 En este caso tenemos dos responsabilidades en la misma clase, por lo que lo ideal esas responsabilidades en clases separadas.
 
-## O – Open/Closed Principle (OCP)
+## Open Closed Principle OCP
 
-El **Principio de Abierto Cerrado** afirma que cada parte del software debe ser cerrado para la modificacion, pero que debe estar abierto para poder extender funcionalidades. La idea es escribir codigo que no se tenga que cambiar cada vez que cambien los requerimientos, lo mas comun es resolverlo con la **herencia** y el **polimorfismo**.
+El **Principio de Abierto Cerrado** afirma que cada parte del software debe ser cerrado para la modificación, pero que debe estar abierto para poder extender funcionalidades. La idea es escribir código que no se tenga que cambiar cada vez que cambien los requerimientos, lo más común es resolverlo con la **herencia** y el **polimorfismo**.
 
-```kotlin
+```Kotlin
 data class Rectangulo(var ancho: Double, var alto : Double)
 data class triangulo(var ancho: Double, var alto : Double)
 
@@ -300,9 +339,9 @@ data class triangulo(var ancho: Double, var alto : Double)
             }
 ```
 
-Podemos calcular areas de rectangulos y triangulos, que sucederia si quisieramos calcular areas de circuloso otros? Pues tendriamos que modificar nuestra clase padre `CalculadorDeArea` si nos basamos en este modelo, estariamos pisotearamos este segundo principio. Si lo resolvemos asi, el *pecadote* se veria asi mas o menos:
+Podemos calcular áreas de rectángulos y triángulos, ¿que sucedería si quisiéramos calcular áreas de círculos otros? Pues tendríamos que modificar nuestra clase padre `CalculadorDeArea` si nos basamos en este modelo, estaríamos pisoteando este segundo principio. Si lo resolvemos así, el *pecadote* se vería así más o menos:
 
-```kotlin
+```Kotlin
 data class Rectangulo(var ancho: Double, var alto : Double)
 data class Triangulo(var ancho: Double, var alto : Double)
 data class Circulo(var radio: Double)
@@ -318,9 +357,9 @@ data class Circulo(var radio: Double)
             }
 ```
 
-Una solucion ideal seria poder usar una interface, quedaria algo asi:
+Una solución ideal sería poder usar una interface, quedaría algo así:
 
-```kotlin
+```Kotlin
 interface FormaInterface {
     fun area() : Double
 }
@@ -349,11 +388,11 @@ class CalculadorDeArea {
 }
 ```
 
-De esta forma podemos facilmente mantener la clase padre intacta, sin ningun tipo de errores futuros, y con facilidad para extender funcionalidades.
+De esta forma podemos fácilmente mantener la clase padre intacta, sin ningún tipo de errores futuros, y con facilidad para extender funcionalidades.
 
-## L – Liskov Substitution Principle (LSP)
+## Liskov Substitution Principle LSP
 
-El **Principio de Sustitucion de Liskov** establece toda clase que es hija de otra clase, debe poder utiliazarse como la clase padre misma sin que lanze un excepsion, es decir que este tipo de cambios no debe generar errores, lo logramos usando **herencia** y **polimorfismo**.
+El **Principio de Sustitución de Liskov** establece toda clase que es hija de otra clase, debe poder utilizarse como la clase padre misma sin que lance una excepción, es decir que este tipo de cambios no debe generar errores, lo logramos usando **herencia** y **polimorfismo**.
 
 ```kotlin
 abstract class Pato {
@@ -376,7 +415,7 @@ class PatoDeHule : Pato() {...}
 class Patito : Pato() {...}
 
 fun main(){
-    // en esta forma nuestro codigo, nos presentara diversos problemas
+    // en esta forma nuestro código, nos presentara diversos problemas
     val patoDeHule = PatoDeHule()
     patoDeHule.nadar()  // ❌ no es posible 
     patoDeHule.flotar() // ✅ posible
@@ -386,13 +425,13 @@ fun main(){
     patito.volar() // ❌ no es posible 
 }
 
-// dara inconsistencias a nuestro soft
+// dará inconsistencias a nuestro software
 ```
 
-Al trabajar de esta manera lo podemos resolver cambiando esas funciones que presentaran error dentro de cada extension de clase:
+Al trabajar de esta manera lo podemos resolver cambiando esas funciones que presentaran error dentro de cada extensión de clase:
 
-```kotlin
-// codigo diabolico, de ahora en adelante, no hacer ni en casa
+```Kotlin
+// código diabólico, de ahora en adelante, no hacer ni en casa
 
 class PatoDeHule : Pato() {
     override fun volar() {
@@ -402,13 +441,13 @@ class PatoDeHule : Pato() {
         // No puede nadar
     }
     override fun mover() {
-        // No puede movese
+        // No puede moverse
     }
 }
-// y asi tocaria hacer con todas las funciones de todas las clases que presenten problemas
+// y así tocaría hacer con todas las funciones de todas las clases que presenten problemas
 ```
 
-Para desarrollar el codigo con buena practica, respetando este principio lo ideal es trabajar la clase como abierta y extenderla, en este caso, modificamos un poco el ejemplo para hacerlo mas visible:
+Para desarrollar el código con buena práctica, respetando este principio lo ideal es trabajar la clase como abierta y extenderla, en este caso, modificamos un poco el ejemplo para hacerlo más visible:
 
 ```kotlin
 open class Pato {
@@ -423,8 +462,8 @@ open class Pato {
     }
 }
 class Patito : Pato() {
-    // lo basico de un pato
-    // mas detalles especificos que se quiera
+    // lo básico de un pato
+    // más detalles específicos que se quiera
     // agregar de un pato pequeño
     // tamaño, lo que come, etc.
 }
@@ -434,7 +473,7 @@ class PatoAdulto : Pato() {
     fun volar() {
         println("Vuela")
     }
-    // mas todo lo demas que se necesite
+    // mas todo lo demás que se necesite
 }
 
 fun main(){
@@ -443,7 +482,7 @@ fun main(){
     patito.flotar() // ✅ posible
 	
     val patoAdulto = PatoAdulto()
-    // aqui podemos acceder a las operaciones de la clase padre 
+    // aquí podemos acceder a las operaciones de la clase padre 
     // desde una clase hija sin errores, podemos usar:
     // flotar | moverse | nadar
     patoAdulto.nadar() // ✅ posible
@@ -453,15 +492,15 @@ fun main(){
 }
 ```
 
-Asi nuestro codigo no tendra comportamientos inesperados.
+Así nuestro código no tendrá comportamientos inesperados.
 
-## I – Interface Segregation Principle (ISP)
+## Interface Segregation Principle ISP
 
-El **Principio de Segregacion de Interface** define que se debe evitar que las interfaces sean muy grandes, en especifico que se eviten aplicar caracteristicas extras que al objeto en realidad no deben corresponder. Es mejor tener interfaces pequeñas y especializadas, que una interface enorme, porque con una interface grandes solo se utilizan partes pequeñas en todo nuestro codigo. Con clases mas pequeñas y especificas es mucho mas facil apuntar a las necesidades.
+El **Principio de Segregación de Interface** define que se debe evitar que las interfaces sean muy grandes, en específico que se eviten aplicar características extras que al objeto en realidad no deben corresponder. Es mejor tener interfaces pequeñas y especializadas, que una interface enorme, porque con una interface grandes solo se utilizan partes pequeñas en todo nuestro código. Con clases más pequeñas y especificas es mucho más fácil apuntar a las necesidades.
 
-```kotlin
+```Kotlin
 // Kotlin
-// veamos una interfaz cargada y sus consecuencias (ya habiamos visto malas clases parecidas)
+// veamos una interfaz cargada y sus consecuencias (ya habíamos visto malas clases parecidas)
 
 interface Pato {
     fun flotar(){
@@ -478,10 +517,10 @@ interface Pato {
     }
 }
 
-// si cargamos la interfaz con caracteristicas que no tienen
+// si cargamos la interfaz con características que no tienen
 // que ver una con la otra, luego tendremos que remover ciertas 
-// caracteristicas porque en todas las subclases no pueden ser usadas,
-// o peor aun, que por razones obvias no deben ser usadas:
+// características porque en todas las subclases no pueden ser usadas,
+// o peor aún, que por razones obvias no deben ser usadas:
 class PatoDeHule : Pato() {
     override fun moverse(){
         // No se mueve
@@ -500,7 +539,7 @@ class PatoBebe : Pato() {
 }
 ```
 
-En cambio, en el siguiente ejemplo seleccionamos caracteristicas especificas para cada clase hija:
+En cambio, en el siguiente ejemplo seleccionamos características específicas para cada clase hija:
 
 ```kotlin
 interface CriaturaOCosaQueFlota {
@@ -539,27 +578,27 @@ class PatoAdulto : CriaturaOCosaQueFlota, CriaturaQueSeMueve, CriaturaQueNada, C
 
 
 
-## D – Dependency Inversion Principle (DIP)
+## Dependency Inversion Principle DIP
 
-El **Principio de inversion de dependencia** hace el mayor enfasis en la abstraccion, nos quiere decir que implementaciones concretas, no deben depender de otras implementaciones concretas, sino que debe depender de **capas de abstraccion**.  Esto nos permite por ejemplo que si nuestra base de datos usa una tecnologia o otra, no nos debe importar que pueda afectar nuestro codigo, sino que esto lo soluciona una capa de abstraccion que esta construida en medio de ambos, en este caso hipotetico, hablamos de nuestro codigo, y cualquier base de datos. 
+El **Principio de inversión de dependencia** hace el mayor énfasis en la abstracción, nos quiere decir que implementaciones concretas, no deben depender de otras implementaciones concretas, sino que debe depender de **capas de abstracción**.  Esto nos permite por ejemplo que si nuestra base de datos usa una tecnología u otra, no nos debe importar que pueda afectar nuestro código, sino que esto lo soluciona una capa de abstracción que está construida en medio de ambos, en este caso hipotético, hablamos de nuestro código, y cualquier base de datos. 
 
-Siendo asi, la comunicacion de un componente u otro componente de nuestro sistema serian simplemente interfaces, que manejaria los cambios, lo que hara nuestro codigo mas irrompible. 
+Siendo así, la comunicación de un componente u otro componente de nuestro sistema serian simplemente interfaces, que manejaría los cambios, lo que hará nuestro código más irrompible. 
 
-```javascript
+```JavaScript
 // JavaScript
 
 class Controlador {
-  // El codigo no tiene ni idea si esto es SQL, MongoDB, HTTP...
-  let datos = Repositorio.obtenerDatos() // sea cual sea se conecta
-	manipularData(datos)
+  // El código no tiene ni idea si esto es SQL, MongoDB, HTTP...
+  let datos = Repositorio.obtenerDatos() // sea cual sea se intenta conectar, sin saber que hay detras.
+  manipularData(datos)
 }
 
 ```
 
-Este codigo de arriba trabaja sin problemas con cualquiera de las 2 interfases de abajo, segun fuera necesario se modifica, solo que nuestro componente principal sigue estando en su estado original.
+Este código de arriba trabaja sin problemas con cualquiera de las 2 interfases de abajo, segun fuera necesario se modifica, solo que nuestro componente principal sigue estando en su estado original.
 
-``` javascript
-// Aqui la interfaz (1) que esta conectando con una base de datos
+``` JavaScript
+// Aquí la interfaz (1) que está conectando con una base de datos
 // de mongoDB
 class Repositorio {
   function obtenerDatos(){
@@ -570,7 +609,7 @@ class Repositorio {
 
 //=========================
 
-// Aqui la interfaz (2) en caso que la base de datos fuera SQLite
+// Aquí la interfaz (2) en caso que la base de datos fuera SQLite
 class Repository {
   function obtenerDatos(){
     let datos = SQLite.query('SELECT * FROM datos')
@@ -581,15 +620,14 @@ class Repository {
 
 # Programacion Funcional
 
-Resumiendolo, podemos decir que la programacion funcional es un paradigma en el que el codigo se esta compuesto de funciones. En comparacion a la programacion imperativa es mucho mejor, mas directa:
+Resumiéndolo, podemos decir que la programación funcional es un paradigma en el que el código se esta compuesto de funciones. En comparación a la programación imperativa es mucho mejor, mas directa:
 
 - Se le entrega un dato o datos.
 - Se le aplica una serie de funciones consecutivas (pocas o muchas).
 - Con el fin de obtener resultado deseado.
 
-```kotlin
+```Kotlin
 // Kotlin
-// un ejemplo random
 
 class Estudiante(
     val nombre: String,
@@ -609,13 +647,13 @@ Estudiante.filter { it.graduado && it.promedio > 4.0 } // paso 1
 3. Toma solo los primero 10 estudiantes.
 4. Luego, los ordena por apellido, y si son iguales, los compara los nombres.
 
-Super efectivo, cero verborrea y al grano, ¿a quien no le gusta?
+Super efectivo, cero verborreas y al grano, ¿a quién no le gusta?
 
-Para resolver esto mismo en programacion imperativa, habria que usar loops y seguramente metodos/funciones separadas linea a linea. Luego de este pequeña vista general, aqui **las tres ventajas por las que conviene usar programacion funcional**:
+Para resolver esto mismo en programación imperativa, habría que usar loops y seguramente métodos/funciones separadas línea a línea. Luego de esta pequeña vista general, aquí **las tres ventajas por las que conviene usar programación funcional**:
 
 ### Funciones puras
 
-Esta basada en funciones matematicas, y el uso de las funciones no influye sobre la ejecucion del resto del codigo (ej. otras funciones), porque el resultado de las funciones depende unicamente de los argumentos que recibio de entrada. No existen las variables globales.
+Está basada en funciones matemáticas, y el uso de las funciones no influye sobre la ejecución del resto del código (ej. otras funciones), porque el resultado de las funciones depende únicamente de los argumentos que recibió de entrada. No existen las variables globales.
 
 ```javaScript
 // JavaScript
@@ -633,11 +671,11 @@ miArray.splice(0,3); //=> []
 
 ### Estados inmutables
 
-Acostumbramos hasta el momento tener los estados mutables. Variables a las que le reasignamos valores, o arrays a los que le insertamos y quitamos lo necesario en cualquier momento de la ejecucion. Los estados inmutables no son modificables despues de haber sido creados o despues de que se le asigno un valor.
+Acostumbramos hasta el momento tener los estados mutables. Variables a las que le reasignamos valores, o arras a los que le insertamos y quitamos lo necesario en cualquier momento de la ejecución. Los estados inmutables no son modificables después de haber sido creados o después de que se le asigno un valor.
 
 ### Composicion de funciones
 
-Es el poder colocar funciones en cadena para que se ejecuten en serie, para obtener el resultado que deseamos. un ejemplo claro es el primer ejemplo de codigo de programacion que mostramos, como se ejecutaba una funcion detras de la otra en secuencia segun se necesita
+Es el poder colocar funciones en cadena para que se ejecuten en serie, para obtener el resultado que deseamos. un ejemplo claro es el primer ejemplo de código de programación que mostramos, como se ejecutaba una función detrás de la otra en secuencia según se necesita
 
 > ```kotlin
 > /*...*/
@@ -650,11 +688,11 @@ Es el poder colocar funciones en cadena para que se ejecuten en serie, para obte
 
 # Git
 
-Esta herramienta fue desarrollada por Linus Torvadls y su funcion es tener control de las versiones del codigo de forma distribuida. Parte de los comandos usados son:
+Esta herramienta fue desarrollada por Linus Torvadls y su función es tener control de las versiones del código de forma distribuida. Parte de los comandos usados son:
 
 ## git clone
 
- Se usa para descargarte a tu ordenador la ultima version del codigo fuente de un repositorio remoto (gitlab / github) , puede descargarse a traves del metodo SSH o HTTPS.
+ Se usa para descargarte a tu ordenador la última versión del código fuente de un repositorio remoto (gitlab / github) , puede descargarse a través del método SSH o HTTPS.
 
 ```bash
 git clone <https://el-link--con-nombre-del-repositorio>
@@ -664,10 +702,10 @@ git clone <https://el-link--con-nombre-del-repositorio>
 
 ## git branch
 
- Las ramas son de lo mas importante en el mundo de git, con ellas varios desarrolladores pueden trabajar al mismo tiempo sin que hayan conflictos o superposiciones a la hora de  modificar el codigo, con este comando puedes listarlas, crearlas o eliminarlas a nivel local.
+ Las ramas son de lo más importante en el mundo de git, con ellas varios desarrolladores pueden trabajar al mismo tiempo sin que hayan conflictos o superposiciones a la hora de  modificar el código, con este comando puedes listarlas, crearlas o eliminarlas a nivel local.
 
 ```bash
-//  creando una nueva rama
+// creando una nueva rama
 git branch <tu-rama-para-trabajar>
 
 // visualizar ramas
@@ -687,8 +725,8 @@ git branch -d <nombre-de-la-rama-a eliminar>
 ```bash
 git checkout <nombre-de-la-rama-donde-quieres-trabajar>
 
-// puedes puedes resumir crear rama (en local) y cambiarte a esa rama
-// a traves del comando:
+// puedes resumir crear rama (en local) y cambiarte a esa rama
+// a través del comando:
 git checkout -b <nombre-de-tu-rama-a-crear-y-posicionarte>
 // (el -b viene de rama (branch)) 
 ```
@@ -697,13 +735,13 @@ git checkout -b <nombre-de-tu-rama-a-crear-y-posicionarte>
 
 ## git status
 
- Nos da toda la infromacion del estado actual de la rama que estamos trabajando, detalles numerados en la imagen:
+ Nos da toda la información del estado actual de la rama que estamos trabajando, detalles numerados en la imagen:
 
 1. La rama en la que estamos posicionados.
 
 2. Si hay cambios para confirmar, enviar o recibir (*pull*).
 
-3. Si hay archivos que ya estan en preparación (*staged*), sin preparación (*unstaged*) o archivos que no están recibiendo seguimiento (*untracked*).
+3. Si hay archivos que ya están en preparación (*staged*), sin preparación (*unstaged*) o archivos que no están recibiendo seguimiento (*untracked*).
 
 4. Si hay archivos creados, modificados o eliminados.
 
@@ -713,7 +751,7 @@ git checkout -b <nombre-de-tu-rama-a-crear-y-posicionarte>
 
 ## git add
 
- Al realizar cambios en nuestra rama, estos cambios suceden en local pero aun no son incluidas para el siguiente commit, con este comando podemos incluir los cambios del archivo o de los archivos para el siguiente commit:
+ Al realizar cambios en nuestra rama, estos cambios suceden en local, pero aún no son incluidas para el siguiente commit, con este comando podemos incluir los cambios del archivo o de los archivos para el siguiente commit:
 
 ```bash
 // añadir un archivo en especifico
@@ -730,7 +768,7 @@ git add .
 
 ## git commit
 
- Habiendo avanzado en las mejoras y correciones del codigo llegara el punto en el que queremos guardar los cambios (generalmente cuando una mejora esta completada o un bug resuelto), y asi estableces un punto de control para cuando quieras continuar nuevamente, el comando va a acompañado con un mesaje descriptivo en comillas para explicar que se ha modificado dentro del margen de ese commit.
+ Habiendo avanzado en las mejoras y correcciones del código llegara el punto en el que queremos guardar los cambios (generalmente cuando una mejora esta completada o un bug resuelto), y así estableces un punto de control para cuando quieras continuar nuevamente, el comando va a acompañado con un mensaje descriptivo en comillas para explicar que se ha modificado dentro del margen de ese commit.
 
 ```
 git commit -m "la descripcion de tu commit"
@@ -740,7 +778,7 @@ git commit -m "la descripcion de tu commit"
 
 ## git push
 
- Ya tenemos los comandos para trabajar las ramas a nivel local, despues de haber confirmado los cambios, necesitamos enviar la nueva rama al repositorio remoto, necesitarás usar el siguiente comando:
+ Ya tenemos los comandos para trabajar las ramas a nivel local, después de haber confirmado los cambios, necesitamos enviar la nueva rama al repositorio remoto, necesitarás usar el siguiente comando:
 
 ```bash
 git push <nombre-remoto> <nombre-de-rama-a-subir>
@@ -759,7 +797,7 @@ Ten en cuenta que `git push` solo carga los archivos que han sido confirmados (c
 
 ## git pull
 
- Utilisamos este comando para recibir actualizaciones del repositirio remoto. Este comando fusiona las funcionalidades de los comandos `git fetch` y `git merge`, lo que quiere decir que al usar `git pull`, jalaremos las actualizaciones del repositorio remoto (`git fetch`) y de inmediato aplicamos esos ultimos cambios en local (`git merge`)
+ Utilizamos este comando para recibir actualizaciones del repositorio remoto. Este comando fusiona las funcionalidades de los comandos `git fetch` y `git merge`, lo que quiere decir que al usar `git pull`, jalaremos las actualizaciones del repositorio remoto (`git fetch`) y de inmediato aplicamos esos últimos cambios en local (`git merge`)
 
 ```bash
 git pull <nombre-remoto>
@@ -771,11 +809,11 @@ Recuerda, este comando puede generar conflictos que tendremos que resolver nosot
 
 ## git revert
 
- En ocaciones hacemos `git commit`/`push` a codigo con ciertos errores que queremos corregir, hay varios comandos para deshacer cambios en local o remoto, estos comandos hay que tratarlos con cuidado, pausadamente, porque queriendo corregir algo podemos cometer error encima de error. Es necesario primero revisar el historial de commits, lo hacemos con el comando `git log` y veras un listado detallado de tus commits asi:
+ En ocasiones hacemos `git commit`/`push` a codigo con ciertos errores que queremos corregir, hay varios comandos para deshacer cambios en local o remoto, estos comandos hay que tratarlos con cuidado, pausadamente, porque queriendo corregir algo podemos cometer error encima de error. Es necesario primero revisar el historial de commits, lo hacemos con el comando `git log` y veras un listado detallado de tus commits asi:
 
 ![gitlog](./gitlog.png)
 
-Ya visto el historial usamos el numero (alfanum) del commit que queremos revertir:
+Ya visto el historial usamos el numero (alfanumerico) del commit que queremos revertir:
 
 ```bash
 git revert <tu-commit-a-revertir>
@@ -788,7 +826,7 @@ Una ventaja de usar git revert es que lo soluciona creando un nuevo commit rever
 
 ## git merge
 
-Por ultimo y no menos imortante, cuando ya hayas completado tu parte del projecto, y pulido todos los detalles, asegurandote de que todo funcione correctamente, el ultimo paso es fusionar la rama que desarrollaste con su rama padre (**`master`** en este projecto), 
+Por ultimo y no menos importante, cuando ya hayas completado tu parte del proyecto, y pulido todos los detalles, asegurándote de que todo funcione correctamente, el ultimo paso es fusionar la rama que desarrollaste con su rama padre (**`master`** en este proyecto), 
 
 El paso a paso es:
 
@@ -804,10 +842,10 @@ git checkout master
 git fetch
 ```
 
-**3) Ahora si, puedes fusionar las caracteristicas de tu rama con la rama `master`:**
+**3) Ahora si, puedes fusionar las características de tu rama con la rama `master`:**
 
 ```bash
 git merge <nombre-de-la-rama-a-fusionar>
 ```
 
-Asegurate de que tu rama master tenga la ultima version (paso 1 y 2) antes de fusionar la rama, sino te presentara conflictos y cosas que no esperabas.
+Asegúrate de que tu rama master tenga la última versión (paso 1 y 2) antes de fusionar la rama, sino te presentara conflictos y cosas que no esperabas.
